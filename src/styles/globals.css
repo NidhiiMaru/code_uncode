@@ -1,147 +1,118 @@
+/* ===== RESET ===== */
 *,
-html,
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primaryColor: #282a57;
-    --secondaryColor: #e4e4e4;
+  --primaryColor: #1f1f3a;
+  --secondaryColor: #ffffff;
+  --accentColor: #f2c94c;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--primaryColor);
-    color: var(--secondaryColor);
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--primaryColor);
+  color: var(--secondaryColor);
+  overflow-x: hidden;
 }
 
+/* ===== HERO WRAPPER ===== */
 .parallax-outer {
-    overflow: hidden;
-    position: relative;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
+/* ===== PARALLAX SECTION ===== */
 .parallax {
-    height: 110vh;
-    width: 100%;
-    position: relative;
-    background-image: url('/parallax/bg.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  background-image: url("/parallax/bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
+/* All images inside parallax */
 .parallax img {
-    position: absolute;
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
 }
 
+/* ===== LAYERS ===== */
 
-.mountain-3,
-.mountain-2,
-.mountain-1 {
-    width: 100%;
-    bottom: 0;
-    z-index: 3;
-}
-
-.mountain-2 {
-    bottom: 20px;
-    z-index: 2;
-}
-
-.mountain-1 {
-    bottom: 40px;
-    z-index: 1;
-}
-
-.sun {
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40%;
-}
-
-.clouds-left {
-    left: 0;
-    width: 20%;
-}
-
-.clouds-right {
-    right: 0;
-    width: 20%;
-}
-
-.clouds-bottom {
-    bottom: 0px;
-    width: 100%;
-}
-
-.stars {
-    top: -550px;
-    left: 0;
-    width: 100%;
-}
-
+/* ===== TEXT CONTENT ===== */
 .copy {
-    position: absolute;
-    top: 6%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 4;
-    color: var(--secondaryColor);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    opacity: 1;
-    text-align: center;
-    width: min(90%, 900px);
-    gap: 1rem;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  width: min(90%, 900px);
+  gap: 1rem;
 }
 
 .hero-logo {
-    display: block;
-    width: min(55%, 380px);
-    height: auto;
-    margin-bottom: 0.8rem;
+  width: min(65%, 390px);
+  height: auto;
 }
 
 .hero-subtitle {
-    color: #f2c94c;
-    font-size: clamp(1.1rem, 2vw, 1.6rem);
-    font-weight: 600;
-    margin-bottom: 0.35rem;
+  color: var(--accentColor);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 600;
 }
 
 .hero-description {
-    color: #ffffff;
-    font-size: clamp(1rem, 1.4vw, 1.25rem);
-    line-height: 1.6;
-    margin-bottom: 0.9rem;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.6;
 }
 
 .hero-cta {
-    background-color: var(--secondaryColor);
-    color: var(--primaryColor);
-    padding: 1rem;
-    font-weight: 800;
-    border-radius: 0.5rem;
-    opacity: 1;
+  background-color: var(--secondaryColor);
+  color: var(--primaryColor);
+  padding: 1rem 1.5rem;
+  font-weight: 800;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.hero-cta:hover {
+  transform: translateY(-4px);
+}
+
+/* ===== NEXT SECTION (for scroll space) ===== */
 .about {
-    color: var(--secondaryColor);
-    padding-left: 10%;
-    padding-bottom: 20%;
+  min-height: 100vh;
+  padding: 10% 10%;
 }
+.middle-mountain {
+  position: absolute;
+  bottom: auto;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 
-.about h2 {
-    color: var(--secondaryColor);
-    font-size: 5rem;
-}
+  width: 130%;
+  height: auto;
+  object-fit: cover;
 
-.about p {
-    margin-top: 20px;
-    width: 50%;
+  z-index: 2;
+  will-change: transform;
 }
