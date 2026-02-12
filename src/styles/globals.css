@@ -34,7 +34,7 @@ body {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-
+  inset: 0; 
   background-image: url("/parallax/bg.png");
   background-position: center;
   background-size: cover;
@@ -102,6 +102,19 @@ body {
   min-height: 100vh;
   padding: 10% 10%;
 }
+.volcano {
+  position: absolute;
+ bottom: -15%;
+  left: -10%;
+/* top: 40%; */
+  width: 65%;
+  height: auto;
+  object-fit: contain;
+
+  z-index: 3;
+  will-change: transform;
+}
+
 .middle-mountain {
   position: absolute;
   bottom: auto;
@@ -114,5 +127,18 @@ body {
   object-fit: cover;
 
   z-index: 2;
+  will-change: transform;
+}
+
+.right-bottommost {
+  position: absolute;
+  bottom: -19%;
+  right: -29%;
+
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+
+  z-index: 3;
   will-change: transform;
 }

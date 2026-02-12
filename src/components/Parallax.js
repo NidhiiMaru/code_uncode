@@ -6,6 +6,8 @@ function Parallax() {
   const parallaxOuterRef = useRef(null);
 
   const middleMountain = useRef(null);
+  const volcano = useRef(null);
+  const rightBottommost = useRef(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +25,8 @@ function Parallax() {
       });
 
       tl.to(middleMountain.current, { y: -120, ease: "none" }, 0);
+      tl.to(volcano.current, { y: -60, ease: "none" }, 0);
+      tl.to(rightBottommost.current, { y: -60, ease: "none" }, 0);
     }, parallaxOuterRef);
 
     return () => ctx.revert();
@@ -54,9 +58,21 @@ function Parallax() {
 
         <div className="parallax">
           <img
+            ref={volcano}
+            className="volcano"
+            src="/parallax/volcano.png"
+            alt=""
+          />
+          <img
             ref={middleMountain}
             className="middle-mountain"
             src="/parallax/middle-mountain.png"
+            alt=""
+          />
+          <img
+            ref={rightBottommost}
+            className="right-bottommost"
+            src="/parallax/right-bottommost.png"
             alt=""
           />
         </div>
