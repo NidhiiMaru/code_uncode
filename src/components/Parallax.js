@@ -32,9 +32,50 @@ function Parallax() {
         },
       });
 
-      // 1. Bird Movements - Start immediately
-      tl.to(hoOh.current, { x: "-110vw", y: "-40vh", scale: 4, rotate: -15, ease: "power1.out" }, 0);
-      tl.to(moltres.current, { x: "110vw", y: "-80vh", scale: 3, rotate: 15, ease: "power1.out" }, 0);
+      // 1. Bird Movements - Parabolic Flight Paths
+      // Ho-Oh: Flies from top-right to top-left with upward arc
+      // Split x and y animations to create parabolic trajectory
+
+      // Ho-Oh X-axis: Linear movement left
+      tl.to(hoOh.current, {
+        x: "-110vw",
+        ease: "none" // Linear movement for horizontal
+      }, 0);
+
+      // Ho-Oh Y-axis: Upward arc with power ease
+      tl.to(hoOh.current, {
+        y: "-50vh", // Peak height of the arc
+        ease: "power2.out" // Creates upward curve
+      }, 0);
+
+      // Ho-Oh Scale and Rotation
+      tl.to(hoOh.current, {
+        scale: 4,
+        rotate: -15,
+        ease: "power1.out"
+      }, 0);
+
+      // Moltres: Flies from bottom-left to top-right with upward arc
+      // Split x and y animations to create parabolic trajectory
+
+      // Moltres X-axis: Linear movement right
+      tl.to(moltres.current, {
+        x: "110vw",
+        ease: "none" // Linear movement for horizontal
+      }, 0);
+
+      // Moltres Y-axis: Upward arc with power ease
+      tl.to(moltres.current, {
+        y: "-80vh", // Higher peak for dramatic exit
+        ease: "power2.out" // Creates upward curve
+      }, 0);
+
+      // Moltres Scale and Rotation
+      tl.to(moltres.current, {
+        scale: 3,
+        rotate: 15,
+        ease: "power1.out"
+      }, 0);
 
       // 2. Scenery Rising - Start immediately with ease: "none" for linear movement
       tl.to(mountains.current, { y: "-25%", ease: "none" }, 0);
