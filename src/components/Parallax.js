@@ -2,6 +2,10 @@ import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./Parallax.module.css";
+import extendedStyles from "./ParallaxExtended.module.css";
+
+// Merge both style objects
+const allStyles = { ...styles, ...extendedStyles };
 
 function Parallax() {
   const parallaxOuterRef = useRef(null);
@@ -186,6 +190,176 @@ function Parallax() {
         <p style={{ fontSize: '1rem', marginTop: '1.5rem', opacity: 0.7 }}>
           Registration opens February 2026
         </p>
+      </section>
+
+      {/* Battle Arena - Problem Categories */}
+      <section className={allStyles.battleArena}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: '#ffcc00' }}>
+          ⚔️ Battle Arena
+        </h2>
+        <p style={{ fontSize: '1.3rem', marginBottom: '60px', opacity: 0.9 }}>
+          Face challenges across multiple battle types
+        </p>
+
+        <div className={allStyles.arenaGrid}>
+          <div className={allStyles.arenaCard}>
+            <div className={allStyles.arenaIcon}>🔥</div>
+            <h3>Fire Type</h3>
+            <p>Dynamic Programming</p>
+            <span className={allStyles.difficulty}>Hard</span>
+          </div>
+          <div className={allStyles.arenaCard}>
+            <div className={allStyles.arenaIcon}>💧</div>
+            <h3>Water Type</h3>
+            <p>Graph Algorithms</p>
+            <span className={allStyles.difficulty}>Medium</span>
+          </div>
+          <div className={allStyles.arenaCard}>
+            <div className={allStyles.arenaIcon}>⚡</div>
+            <h3>Electric Type</h3>
+            <p>Greedy & Optimization</p>
+            <span className={allStyles.difficulty}>Hard</span>
+          </div>
+          <div className={allStyles.arenaCard}>
+            <div className={allStyles.arenaIcon}>🌿</div>
+            <h3>Grass Type</h3>
+            <p>Trees & Recursion</p>
+            <span className={allStyles.difficulty}>Medium</span>
+          </div>
+          <div className={allStyles.arenaCard}>
+            <div className={allStyles.arenaIcon}>🧊</div>
+            <h3>Ice Type</h3>
+            <p>Binary Search & Sorting</p>
+            <span className={allStyles.difficulty}>Easy</span>
+          </div>
+          <div className={allStyles.arenaCard}>
+            <div className={allStyles.arenaIcon}>👻</div>
+            <h3>Ghost Type</h3>
+            <p>Bit Manipulation</p>
+            <span className={allStyles.difficulty}>Hard</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Legendary Trainers - Past Winners */}
+      <section className={styles.legendarySection}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: '#ffcc00' }}>
+          🏆 Legendary Trainers
+        </h2>
+        <p style={{ fontSize: '1.3rem', marginBottom: '60px', opacity: 0.9 }}>
+          Champions who conquered Code UnCode
+        </p>
+
+        <div className={allStyles.trainerGrid}>
+          <div className={allStyles.trainerCard}>
+            <div className={allStyles.trainerBadge}>🥇</div>
+            <h3>Team Charizard</h3>
+            <p className={allStyles.trainerInstitute}>IIT Bombay</p>
+            <p className={allStyles.trainerYear}>Code UnCode 2025</p>
+            <div className={allStyles.trainerStats}>
+              <span>⚡ 2847 Rating</span>
+              <span>🎯 12/12 Solved</span>
+            </div>
+          </div>
+          <div className={allStyles.trainerCard}>
+            <div className={allStyles.trainerBadge}>🥈</div>
+            <h3>Team Mewtwo</h3>
+            <p className={allStyles.trainerInstitute}>BITS Pilani</p>
+            <p className={allStyles.trainerYear}>Code UnCode 2025</p>
+            <div className={allStyles.trainerStats}>
+              <span>⚡ 2756 Rating</span>
+              <span>🎯 11/12 Solved</span>
+            </div>
+          </div>
+          <div className={allStyles.trainerCard}>
+            <div className={allStyles.trainerBadge}>🥉</div>
+            <h3>Team Rayquaza</h3>
+            <p className={allStyles.trainerInstitute}>IIT Delhi</p>
+            <p className={allStyles.trainerYear}>Code UnCode 2025</p>
+            <div className={allStyles.trainerStats}>
+              <span>⚡ 2698 Rating</span>
+              <span>🎯 11/12 Solved</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gym Badges - Achievements */}
+      <section className={allStyles.badgesSection}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: '#ffcc00' }}>
+          🎖️ Earn Your Badges
+        </h2>
+        <p style={{ fontSize: '1.3rem', marginBottom: '60px', opacity: 0.9 }}>
+          Unlock achievements as you progress through the competition
+        </p>
+
+        <div className={allStyles.badgesGrid}>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>🔰</div>
+            <h4>Boulder Badge</h4>
+            <p>Solve your first problem</p>
+          </div>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>💧</div>
+            <h4>Cascade Badge</h4>
+            <p>Qualify for regionals</p>
+          </div>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>⚡</div>
+            <h4>Thunder Badge</h4>
+            <p>Solve 5 hard problems</p>
+          </div>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>🌈</div>
+            <h4>Rainbow Badge</h4>
+            <p>Reach the grand finale</p>
+          </div>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>🌋</div>
+            <h4>Volcano Badge</h4>
+            <p>Top 10 finish</p>
+          </div>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>👁️</div>
+            <h4>Marsh Badge</h4>
+            <p>Perfect score in a round</p>
+          </div>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>🌸</div>
+            <h4>Soul Badge</h4>
+            <p>Help 10 teammates</p>
+          </div>
+          <div className={allStyles.badgeItem}>
+            <div className={allStyles.badgeIcon}>🏆</div>
+            <h4>Earth Badge</h4>
+            <p>Become the Champion</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pokemon League - Sponsors/Partners */}
+      <section className={allStyles.leagueSection}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '1rem', color: '#ffcc00' }}>
+          ⭐ Pokemon League Partners
+        </h2>
+        <p style={{ fontSize: '1.3rem', marginBottom: '60px', opacity: 0.9 }}>
+          Powered by industry leaders
+        </p>
+
+        <div className={allStyles.sponsorGrid}>
+          <div className={allStyles.sponsorCard}>
+            <div className={allStyles.sponsorTier}>Elite Four</div>
+            <p>Title Sponsors</p>
+          </div>
+          <div className={allStyles.sponsorCard}>
+            <div className={allStyles.sponsorTier}>Gym Leaders</div>
+            <p>Gold Sponsors</p>
+          </div>
+          <div className={allStyles.sponsorCard}>
+            <div className={allStyles.sponsorTier}>Trainers</div>
+            <p>Silver Sponsors</p>
+          </div>
+        </div>
       </section>
     </div>
   );
