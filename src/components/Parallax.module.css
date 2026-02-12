@@ -1,0 +1,324 @@
+.wrapper {
+    width: 100%;
+    overflow-x: hidden;
+    /* Prevent horizontal overflow */
+    overflow-y: visible;
+    /* Allow vertical scrolling */
+    background-color: #0a0a0a;
+    /* Prevents white flashes between sections */
+    position: relative;
+    /* Establish positioning context */
+}
+
+.parallaxContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Prevents elements from showing beyond viewport */
+    background-image: url('/parallax/red-bg.png');
+    background-size: cover;
+    background-position: center;
+    /* Clip anything that goes outside the container */
+    clip-path: inset(0);
+}
+
+.layer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 130%;
+    bottom: -45%;
+    /* Deeper start so tape doesn't cut through text on load */
+    pointer-events: none;
+    /* Allow mouse to pass through to text below */
+}
+
+.layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+/* Flying Elements */
+.hoOh,
+.moltres {
+    position: absolute;
+    z-index: 25;
+    filter: drop-shadow(0 0 15px rgba(255, 100, 0, 0.7));
+    pointer-events: none;
+    /* Prevents birds from blocking clicks/hovers on text */
+}
+
+.hoOh {
+    top: 15%;
+    right: 15%;
+    width: 180px;
+}
+
+.moltres {
+    bottom: 35%;
+    left: 10%;
+    width: 150px;
+}
+
+.foregroundLayer {
+    z-index: 20;
+    /* Keep foreground strictly above text */
+}
+
+/* Updated Copy with Glow and Clipping */
+.textWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    /* Initial state: fully visible */
+    clip-path: inset(0% 0% 0% 0%);
+    pointer-events: all;
+    /* Ensure wrapper can receive mouse events */
+}
+
+.copy {
+    position: absolute;
+    top: 35%;
+    /* Shifted further up */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 900px;
+    opacity: 0.85;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: all;
+    /* Ensure text remains interactive despite parent pointer-events */
+}
+
+/* Enhanced Hover Effects */
+.copy:hover {
+    opacity: 1;
+    transform: translate(-50%, -52%) scale(1.05);
+}
+
+.heroLogo {
+    width: clamp(250px, 35vw, 450px);
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+    transition: all 0.4s ease;
+    /* Changed from just 'filter' to 'all' to include transform */
+    transform: scale(1);
+    /* Initial scale */
+    cursor: pointer;
+    /* Show it's interactive */
+}
+
+.heroLogo:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 35px rgba(255, 204, 0, 0.4));
+    transform: scale(1.1);
+    /* Scale up on hover */
+}
+
+.heroSubtitle {
+    color: #ffcc00;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    transition: text-shadow 0.4s ease;
+}
+
+.copy:hover .heroSubtitle {
+    text-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+}
+
+.heroDescription {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    font-weight: 400;
+}
+
+/* Stats/Meaningful Content */
+.infoSection {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #0a0a0a, #1a0505);
+    padding: 100px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 30;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.statCard {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 204, 0, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.statCard:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffcc00;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.statNumber {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffcc00;
+}
+
+/* Timeline Section */
+.timelineSection {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1a0505, #0a0a0a);
+    padding: 100px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 30;
+}
+
+.timeline {
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    padding: 40px 0;
+}
+
+.timelineItem {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.timelineItem:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 70px;
+    width: 2px;
+    height: calc(100% + 20px);
+    background: linear-gradient(to bottom, #ffcc00, rgba(255, 204, 0, 0.2));
+}
+
+.timelineMarker {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0a0a0a;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.timelineItem:hover .timelineMarker {
+    transform: scale(1.1);
+}
+
+.timelineContent {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 204, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.timelineContent:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffcc00;
+    transform: translateX(10px);
+}
+
+.timelineContent h3 {
+    color: #ffcc00;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.timelineContent p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.timelineDate {
+    display: inline-block;
+    background: rgba(255, 204, 0, 0.1);
+    color: #ffcc00;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* CTA Section */
+.ctaSection {
+    min-height: 80vh;
+    background: linear-gradient(135deg, #0a0a0a, #1a0505, #0a0a0a);
+    padding: 100px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 30;
+}
+
+.ctaButton {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    color: #0a0a0a;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 18px 50px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ctaButton:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 204, 0, 0.5);
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+}
+
+.ctaButton:active {
+    transform: translateY(-2px) scale(1.02);
+}
