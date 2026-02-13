@@ -1,4 +1,4 @@
-import Parallax from '@/components/Parallax'
+import Parallax from '@/components/Parallax.tsx'
 
 function Home() {
   return (
