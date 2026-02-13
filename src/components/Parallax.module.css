@@ -261,3 +261,266 @@
         transform: translateX(calc(-100% / 6));
     }
 }
+
+/* Responsive Design */
+
+/* Tablets and Small Laptops */
+@media (max-width: 1024px) {
+    .heroLogo {
+        width: clamp(200px, 30vw, 350px);
+    }
+
+    .heroSubtitle {
+        font-size: 1.5rem;
+        letter-spacing: 1.5px;
+    }
+
+    .heroDescription {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .sectionTitle {
+        font-size: 2.5rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 25px;
+    }
+
+    .statCard {
+        padding: 30px;
+    }
+
+    .statNumber {
+        font-size: 2.5rem;
+    }
+
+    .marqueeTitle {
+        font-size: 2rem;
+        margin-bottom: 3vh;
+    }
+
+    .partnerLogo {
+        height: 15vh;
+    }
+
+    .marqueeTrack {
+        gap: 80px;
+        padding: 0 40px;
+    }
+}
+
+/* Mobile Landscape and Small Tablets */
+@media (max-width: 768px) {
+    .copy {
+        top: 30%;
+        width: 95%;
+        max-width: 600px;
+    }
+
+    .heroLogo {
+        width: clamp(180px, 40vw, 300px);
+    }
+
+    .heroSubtitle {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+
+    .heroDescription {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .hoOh {
+        top: 10%;
+        right: 10%;
+        width: 140px;
+    }
+
+    .moltres {
+        bottom: 30%;
+        left: 5%;
+        width: 120px;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 500px;
+    }
+
+    .statCard {
+        padding: 25px 20px;
+    }
+
+    .statNumber {
+        font-size: 2rem;
+    }
+
+    .infoSection,
+    .timelineSection {
+        padding: 80px 15px;
+    }
+
+    .marqueeContainer {
+        top: 65%;
+        width: 100%;
+    }
+
+    .marqueeTitle {
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        margin-bottom: 2vh;
+    }
+
+    .partnerLogo {
+        height: 12vh;
+    }
+
+    .marqueeTrack {
+        gap: 60px;
+        padding: 0 30px;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    .copy {
+        top: 28%;
+        width: 90%;
+    }
+
+    .heroLogo {
+        width: clamp(150px, 50vw, 250px);
+    }
+
+    .heroSubtitle {
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 10px;
+    }
+
+    .heroDescription {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .hoOh {
+        top: 8%;
+        right: 5%;
+        width: 100px;
+    }
+
+    .moltres {
+        bottom: 25%;
+        left: 3%;
+        width: 90px;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 300px;
+    }
+
+    .statCard {
+        padding: 20px 15px;
+    }
+
+    .statNumber {
+        font-size: 1.8rem;
+    }
+
+    .statCard p {
+        font-size: 0.9rem;
+    }
+
+    .infoSection,
+    .timelineSection {
+        padding: 60px 10px;
+        min-height: auto;
+    }
+
+    .timelineItem {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .timelineItem h3 {
+        font-size: 1.4rem;
+    }
+
+    .timelineItem p {
+        font-size: 0.95rem;
+    }
+
+    .marqueeContainer {
+        top: 70%;
+        width: 100%;
+    }
+
+    .marqueeTitle {
+        font-size: 1.3rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 1.5vh;
+    }
+
+    .partnerLogo {
+        height: 10vh;
+    }
+
+    .marqueeTrack {
+        gap: 40px;
+        padding: 0 20px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+    .heroLogo {
+        width: clamp(120px, 60vw, 200px);
+    }
+
+    .heroSubtitle {
+        font-size: 1rem;
+    }
+
+    .heroDescription {
+        font-size: 0.8rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+
+    .statNumber {
+        font-size: 1.5rem;
+    }
+
+    .marqueeTitle {
+        font-size: 1.1rem;
+    }
+
+    .partnerLogo {
+        height: 8vh;
+    }
+
+    .marqueeTrack {
+        gap: 30px;
+        padding: 0 15px;
+    }
+}
