@@ -1,0 +1,159 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.container.fadeOut {
+    animation: fadeOut 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.content {
+    text-align: center;
+    max-width: 800px;
+    padding: 40px;
+}
+
+.title {
+    font-size: 3.5rem;
+    color: #ffcc00;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    }
+
+    to {
+        text-shadow: 0 0 30px rgba(255, 204, 0, 0.8), 0 0 40px rgba(255, 204, 0, 0.4);
+    }
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 60px;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button {
+    position: relative;
+    width: 280px;
+    padding: 40px 30px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    overflow: hidden;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.button:hover::before {
+    transform: translateX(100%);
+}
+
+.fireButton {
+    background: linear-gradient(135deg, #ff4500 0%, #ff8c00 100%);
+    box-shadow: 0 10px 30px rgba(255, 69, 0, 0.4);
+}
+
+.fireButton:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 69, 0, 0.6);
+}
+
+.waterButton {
+    background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+    box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+}
+
+.waterButton:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(30, 144, 255, 0.6);
+}
+
+.buttonIcon {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.buttonText {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.buttonSubtext {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .buttonContainer {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .button {
+        width: 100%;
+        max-width: 300px;
+    }
+}

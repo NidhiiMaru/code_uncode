@@ -1,11 +1,22 @@
-import Parallax from '@/components/Parallax.tsx'
+"use client";
+
+import { useState } from 'react';
+import Parallax from '@/components/Parallax.tsx';
+import StarterSelection from '@/components/StarterSelection.tsx';
 
 function Home() {
+  const [selectedType, setSelectedType] = useState(null);
+
+  const handleTypeSelect = (type) => {
+    setSelectedType(type);
+  };
+
   return (
     <>
-      <Parallax />
+      {!selectedType && <StarterSelection onSelect={handleTypeSelect} />}
+      {selectedType && <Parallax type={selectedType} />}
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

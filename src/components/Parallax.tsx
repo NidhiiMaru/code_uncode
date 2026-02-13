@@ -1,11 +1,39 @@
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import styles from "./Parallax.module.css";
+import fireStyles from "./Parallax.module.css";
+import waterStyles from "./ParallaxWater.module.css";
 
-export default function Parallax() {
+interface ParallaxProps {
+  type: "fire" | "water";
+}
+
+export default function Parallax({ type }: ParallaxProps) {
+  // Merge styles based on type - water styles override fire styles
+  const styles = useMemo(() => {
+    if (type === "water") {
+      return { ...fireStyles, ...waterStyles };
+    }
+    return fireStyles;
+  }, [type]);
+
+  // Image mapping based on type
+  const images = useMemo(() => {
+    const folder = type === "fire" ? "parallax" : "parallax_water";
+    return {
+      background: type === "fire" ? "red-bg.png" : "water-bg.png",
+      mask: type === "fire" ? "red-bg1.png" : "water-bg1.png",
+      bird1: type === "fire" ? "ho-oh.png" : "lugia.png",
+      bird2: type === "fire" ? "moltres.png" : "kyogre.png",
+      mountains: type === "fire" ? "mountains.png" : "sun.png",
+      trees: type === "fire" ? "trees.png" : "water-layer.png",
+      foreground: "foreground-layer.png",
+      logo: type === "fire" ? "uncode-logo.png" : "uncode-logoblue.png",
+      folder,
+    };
+  }, [type]);
   const parallaxOuterRef = useRef<HTMLDivElement>(null);
   const mountains = useRef<HTMLDivElement>(null);
   const trees = useRef<HTMLDivElement>(null);
@@ -58,16 +86,20 @@ export default function Parallax() {
 
   return (
     <div className={styles.wrapper}>
-      <div ref={parallaxOuterRef} className={styles.parallaxContainer}>
+      <div
+        ref={parallaxOuterRef}
+        className={styles.parallaxContainer}
+        style={{ backgroundImage: `url(/${images.folder}/${images.background})` }}
+      >
         <div ref={mountains} className={styles.layer}>
-          <img src="/parallax/mountains.png" alt="mountains" />
+          <img src={`/${images.folder}/${images.mountains}`} alt="mountains" />
         </div>
         <div ref={trees} className={styles.layer}>
-          <img src="/parallax/trees.png" alt="trees" />
+          <img src={`/${images.folder}/${images.trees}`} alt="trees" />
         </div>
 
         <div ref={textContent} className={styles.copy}>
-          <img className={styles.heroLogo} src="/parallax/uncode-logo.png" alt="Logo" />
+          <img className={styles.heroLogo} src={`/${images.folder}/${images.logo}`} alt="Logo" />
           <h2 className={styles.heroSubtitle}>India's Premier ICPC-Style Competition</h2>
           <p className={styles.heroDescription}>
             With 1,600+ participants from 370+ institutes in 2025, Code UnCode 2026 is going pan-India!
@@ -75,13 +107,18 @@ export default function Parallax() {
           </p>
         </div>
 
-        <img ref={hoOh} src="/parallax/ho-oh.png" className={styles.hoOh} alt="Ho-Oh" />
-        <img ref={moltres} src="/parallax/moltres.png" className={styles.moltres} alt="Moltres" />
+        <img ref={hoOh} src={`/${images.folder}/${images.bird1}`} className={styles.hoOh} alt={type === "fire" ? "Ho-Oh" : "Lugia"} />
+        <img ref={moltres} src={`/${images.folder}/${images.bird2}`} className={styles.moltres} alt={type === "fire" ? "Moltres" : "Kyogre"} />
 
-        <div ref={mask} className={styles.fireMaskLayer} />
+
+        <div
+          ref={mask}
+          className={styles.fireMaskLayer}
+          style={{ backgroundImage: `url(/${images.folder}/${images.mask})` }}
+        />
 
         <div ref={foreground} className={`${styles.layer} ${styles.foregroundLayer}`}>
-          <img src="/parallax/foreground-layer.png" alt="foreground" />
+          <img src={`/${images.folder}/${images.foreground}`} alt="foreground" />
         </div>
       </div>
 
