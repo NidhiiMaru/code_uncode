@@ -175,6 +175,7 @@
     font-weight: 800;
     color: #ffcc00;
 }
+
 /* Timeline Section */
 .timeline {
     max-width: 800px;
@@ -199,4 +200,64 @@
 .timelineItem p {
     font-size: 1.1rem;
     opacity: 0.8;
+}
+
+/* Hosting Partners Marquee - Water Theme */
+.marqueeContainer {
+    position: absolute;
+    top: 72%;
+    left: 0;
+    width: 95%;
+    transform: translateY(-50%);
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.marqueeTitle {
+    color: #00bfff;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+    margin: 0;
+    z-index: 2;
+    margin-bottom: 5vh;
+}
+
+.marqueeContent {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 40s linear infinite;
+    will-change: transform;
+}
+
+.marqueeTrack {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    padding: 0 50px;
+}
+
+.partnerLogo {
+    height: 18vh;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.4));
+    transition: all 0.3s ease;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-100% / 6));
+    }
 }

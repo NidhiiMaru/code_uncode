@@ -115,7 +115,21 @@ export default function Parallax({ type }: ParallaxProps) {
           ref={mask}
           className={styles.fireMaskLayer}
           style={{ backgroundImage: `url(/${images.folder}/${images.mask})` }}
-        />
+        >
+          <div className={styles.marqueeContainer}>
+            <h3 className={styles.marqueeTitle}>Our Hosting Partners</h3>
+            <div className={styles.marqueeContent}>
+              {[...Array(6)].map((_, index) => (
+                <div key={index} className={styles.marqueeTrack}>
+                  <img src="/csispit.png" alt="CSI SPIT" className={styles.partnerLogo} />
+                  <img src="/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
+                  <img src="/newton.png" alt="Newton School" className={styles.partnerLogo} />
+                  <img src="/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         <div ref={foreground} className={`${styles.layer} ${styles.foregroundLayer}`}>
           <img src={`/${images.folder}/${images.foreground}`} alt="foreground" />
