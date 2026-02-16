@@ -17,8 +17,8 @@
 
 /* ===== LEFT PANEL ===== */
 .leftPanel {
-  width: 400px;
-  height: 550px;
+  width: 550px;
+  height: 700px;
   border-radius: 20px 0 0 20px;
   padding: 25px;
   position: relative;
@@ -210,8 +210,8 @@
 
 /* ===== HINGE ===== */
 .hinge {
-  width: 50px;
-  height: 480px;
+  width: 65px;
+  height: 620px;
   background: linear-gradient(
     to right,
     #8b0000 0%,
@@ -227,12 +227,12 @@
 
 /* ===== RIGHT PANEL ===== */
 .rightPanel {
-  width: 380px;
-  height: 480px;
+  width: 500px;
+  height: 620px;
   border-radius: 0 20px 20px 0;
   border-left: none;
   clip-path: polygon(0 0, 40% 0, 100% 15%, 100% 100%, 0 100%);
-  padding: 80px 25px 25px 25px;
+  padding: 110px 40px 40px 40px;
   display: flex;
   flex-direction: column;
   gap: 15px;
