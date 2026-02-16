@@ -136,27 +136,6 @@ export default function Parallax({ type }: ParallaxProps) {
         </div>
       </div>
 
-      <section className={styles.infoSection}>
-        <h2 className={styles.sectionTitle}>Why Code UnCode 2026?</h2>
-        <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <span className={styles.statNumber}>1,600+</span>
-            <p>Participants</p>
-          </div>
-          <div className={styles.statCard}>
-            <span className={styles.statNumber}>370+</span>
-            <p>Institutes</p>
-          </div>
-          <div className={styles.statCard}>
-            <span className={styles.statNumber}>Pan-India</span>
-            <p>Qualifiers</p>
-          </div>
-          <div className={styles.statCard}>
-            <span className={styles.statNumber}>₹5L+</span>
-            <p>Prize Pool</p>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
