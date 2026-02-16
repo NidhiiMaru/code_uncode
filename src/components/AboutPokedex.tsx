@@ -29,6 +29,7 @@ const Pokedex: React.FC = () => {
 
   return (
     <section className={styles.pokedexWrapper}>
+   
       {/* LEFT PANEL */}
       <div className={`${styles.panel} ${styles.leftPanel}`}>
         <div className={styles.topLights}>
