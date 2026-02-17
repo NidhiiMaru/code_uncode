@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Parallax from '@/components/Parallax.tsx';
 import StarterSelection from '@/components/StarterSelection.tsx';
 import KantoPokemonQuiz from '@/components/KantoPokemonQuiz.tsx';
@@ -22,29 +22,29 @@ function Home() {
     return '';
   };
 
+  // Apply global background to body
+  useEffect(() => {
+    if (selectedType) {
+      document.body.style.backgroundImage = `url(${getBackgroundImage()})`;
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center';
+      document.body.style.backgroundAttachment = 'fixed';
+      document.body.style.backgroundRepeat = 'no-repeat';
+    }
+
+    return () => {
+      document.body.style.backgroundImage = '';
+    };
+  }, [selectedType]);
+
   return (
     <>
       {!selectedType && <StarterSelection onSelect={handleTypeSelect} />}
       {selectedType && (
         <>
-          {/* Fixed Pokémon background for entire page */}
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              backgroundImage: `url(${getBackgroundImage()})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundAttachment: 'fixed',
-              zIndex: -1,
-            }}
-          />
           <Parallax type={selectedType} />
           {/* Continuous overlay wrapper for all sections after hero */}
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', marginTop: '-1px' }}>
             <div
               style={{
                 position: 'absolute',
@@ -52,7 +52,7 @@ function Home() {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                background: 'rgba(0, 0, 0, 0.6)',
+                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 15vh, rgba(0, 0, 0, 0.6) 30vh, rgba(0, 0, 0, 0.6) 100%)',
                 zIndex: 0,
                 pointerEvents: 'none',
               }}

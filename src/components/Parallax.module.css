@@ -2,6 +2,8 @@
     width: 100%;
     overflow-x: hidden;
     background-color: transparent;
+    margin: 0;
+    padding: 0;
 }
 
 .parallaxContainer {
