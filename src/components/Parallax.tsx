@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import fireStyles from "./Parallax.module.css";
 import waterStyles from "./ParallaxWater.module.css";
 import grassStyles from "./ParallaxGrass.module.css";
+import MusicPlayer from "./MusicPlayer";
 
 interface ParallaxProps {
   type: "fire" | "water" | "grass";
@@ -93,6 +94,7 @@ export default function Parallax({ type }: ParallaxProps) {
 
   return (
     <div className={styles.wrapper}>
+      <MusicPlayer type={type} />
       <div
         ref={parallaxOuterRef}
         className={styles.parallaxContainer}
@@ -128,10 +130,10 @@ export default function Parallax({ type }: ParallaxProps) {
             <div className={styles.marqueeContent}>
               {[...Array(6)].map((_, index) => (
                 <div key={index} className={styles.marqueeTrack}>
-                  <img src="/csispit.png" alt="CSI SPIT" className={styles.partnerLogo} />
-                  <img src="/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
-                  <img src="/sdc.png" alt="SDC" className={styles.partnerLogo} />
-                  <img src="/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
+                  <img src="/logos/csispit.png" alt="CSI SPIT" className={styles.partnerLogo} />
+                  <img src="/logos/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
+                  <img src="/logos/sdc.png" alt="SDC" className={styles.partnerLogo} />
+                  <img src="/logos/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
                 </div>
               ))}
             </div>
