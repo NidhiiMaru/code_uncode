@@ -5,32 +5,39 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import fireStyles from "./Parallax.module.css";
 import waterStyles from "./ParallaxWater.module.css";
+import grassStyles from "./ParallaxGrass.module.css";
 
 interface ParallaxProps {
-  type: "fire" | "water";
+  type: "fire" | "water" | "grass";
 }
 
 export default function Parallax({ type }: ParallaxProps) {
-  // Merge styles based on type - water styles override fire styles
+  // Merge styles based on type
   const styles = useMemo(() => {
     if (type === "water") {
       return { ...fireStyles, ...waterStyles };
+    }
+    if (type === "grass") {
+      return { ...fireStyles, ...grassStyles };
     }
     return fireStyles;
   }, [type]);
 
   // Image mapping based on type
   const images = useMemo(() => {
-    const folder = type === "fire" ? "parallax" : "parallax_water";
+    let folder = "parallax/parallax_fire";
+    if (type === "water") folder = "parallax/parallax_water";
+    if (type === "grass") folder = "parallax/parallax_grass";
+
     return {
-      background: type === "fire" ? "red-bg.png" : "water-bg.png",
-      mask: type === "fire" ? "red-bg1.png" : "water-bg1.png",
-      bird1: type === "fire" ? "ho-oh.png" : "lugia.png",
-      bird2: type === "fire" ? "moltres.png" : "kyogre.png",
-      mountains: type === "fire" ? "mountains.png" : "sun.png",
-      trees: type === "fire" ? "trees.png" : "water-layer.png",
+      background: type === "fire" ? "red-bg.png" : type === "water" ? "water-bg.png" : "grassbg.png",
+      mask: type === "fire" ? "red-bg1.png" : type === "water" ? "water-bg1.png" : "grassbg1.png",
+      bird1: type === "fire" ? "ho-oh.png" : type === "water" ? "lugia.png" : "ho-oh.png",
+      bird2: type === "fire" ? "moltres.png" : type === "water" ? "kyogre.png" : "moltres.png",
+      mountains: type === "fire" ? "mountains.png" : type === "water" ? "sun.png" : "mountains.png",
+      trees: type === "fire" ? "trees.png" : type === "water" ? "water-layer.png" : "trees.png",
       foreground: "foreground-layer.png",
-      logo: type === "fire" ? "uncode-logo.png" : "uncode-logoblue.png",
+      logo: type === "fire" ? "uncode-logo.png" : type === "water" ? "uncode-logoblue.png" : "uncodelogo-green.png",
       folder,
     };
   }, [type]);
@@ -91,10 +98,10 @@ export default function Parallax({ type }: ParallaxProps) {
         className={styles.parallaxContainer}
         style={{ backgroundImage: `url(/${images.folder}/${images.background})` }}
       >
-        <div ref={mountains} className={styles.layer}>
+        <div ref={mountains} className={`${styles.layer} ${styles.mountainLayer || ""}`}>
           <img src={`/${images.folder}/${images.mountains}`} alt="mountains" />
         </div>
-        <div ref={trees} className={styles.layer}>
+        <div ref={trees} className={`${styles.layer} ${styles.treeLayer}`}>
           <img src={`/${images.folder}/${images.trees}`} alt="trees" />
         </div>
 
@@ -107,8 +114,8 @@ export default function Parallax({ type }: ParallaxProps) {
           </p>
         </div>
 
-        <img ref={hoOh} src={`/${images.folder}/${images.bird1}`} className={styles.hoOh} alt={type === "fire" ? "Ho-Oh" : "Lugia"} />
-        <img ref={moltres} src={`/${images.folder}/${images.bird2}`} className={styles.moltres} alt={type === "fire" ? "Moltres" : "Kyogre"} />
+        <img ref={hoOh} src={`/${images.folder}/${images.bird1}`} className={styles.hoOh} alt={type === "fire" ? "Ho-Oh" : type === "water" ? "Lugia" : "Rayquaza"} />
+        <img ref={moltres} src={`/${images.folder}/${images.bird2}`} className={styles.moltres} alt={type === "fire" ? "Moltres" : type === "water" ? "Kyogre" : "Celebi"} />
 
 
         <div
@@ -123,7 +130,7 @@ export default function Parallax({ type }: ParallaxProps) {
                 <div key={index} className={styles.marqueeTrack}>
                   <img src="/csispit.png" alt="CSI SPIT" className={styles.partnerLogo} />
                   <img src="/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
-                  <img src="/newton.png" alt="Newton School" className={styles.partnerLogo} />
+                  <img src="/sdc.png" alt="SDC" className={styles.partnerLogo} />
                   <img src="/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
                 </div>
               ))}

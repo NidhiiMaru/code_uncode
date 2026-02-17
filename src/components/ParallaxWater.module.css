@@ -9,7 +9,7 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background-image: url('/parallax/red-bg.png');
+    background-image: url('/parallax/parallax_water/water-bg.png');
     background-size: cover;
 }
 
@@ -64,7 +64,7 @@
     height: 100vh;
     z-index: 28;
     top: 84%;
-    background-image: url('/parallax/red-bg1.png');
+    background-image: url('/parallax/parallax_water/water-bg1.png');
     background-size: cover;
 }
 
@@ -102,30 +102,27 @@
 }
 
 .heroSubtitle {
-    color: #ffcc00;
-    font-size: 1.8rem;
-    /* Increased size */
-    font-weight: bold;
-    margin-bottom: 15px;
+    color: #00ffff;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: all 0.4s ease;
-    text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
 }
 
 .heroSubtitle:hover {
     transform: scale(1.05);
-    text-shadow: 0 0 25px rgba(255, 204, 0, 0.9),
-        0 0 40px rgba(255, 204, 0, 0.6);
 }
 
 .heroDescription {
-    font-size: 1.2rem;
-    /* Increased size */
-    line-height: 1.7;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    font-weight: 700;
     transition: all 0.4s ease;
+    color: #fff;
 }
 
 .heroDescription:hover {
@@ -219,15 +216,16 @@
 }
 
 .marqueeTitle {
-    color: #00bfff;
-    font-size: 2.2rem;
-    font-weight: bold;
+    color: #00ffff;
+    font-size: 2rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
     margin: 0;
     z-index: 2;
     margin-bottom: 5vh;
+    transition: all 0.4s ease;
 }
 
 .marqueeContent {

@@ -70,7 +70,7 @@
 
 .content {
     text-align: center;
-    max-width: 900px;
+    max-width: 1200px;
     padding: 40px;
     position: relative;
     z-index: 1;
@@ -237,6 +237,23 @@
 }
 
 .waterButton:active {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.grassButton {
+    background: linear-gradient(135deg, #228b22 0%, #32cd32 50%, #006400 100%);
+    box-shadow: 0 15px 40px rgba(34, 139, 34, 0.5);
+    color: #32cd32;
+}
+
+.grassButton:hover {
+    transform: translateY(-15px) scale(1.1) rotate(2deg);
+    box-shadow: 0 25px 60px rgba(34, 139, 34, 0.8), 0 0 50px rgba(50, 205, 50, 0.6);
+    background: linear-gradient(135deg, #006400 0%, #228b22 50%, #32cd32 100%);
+    border-color: rgba(50, 205, 50, 0.8);
+}
+
+.grassButton:active {
     transform: translateY(-10px) scale(1.05);
 }
 

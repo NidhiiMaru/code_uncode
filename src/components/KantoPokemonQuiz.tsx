@@ -18,6 +18,8 @@ export default function KantoPokemonQuiz() {
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(false);
 
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     useEffect(() => { startNewGame(); }, []);
 
     const startNewGame = () => {
@@ -32,6 +34,7 @@ export default function KantoPokemonQuiz() {
     const fetchPokemon = async (id: number) => {
         setUserInput('');
         setIsRevealed(false);
+        setImageLoaded(false); // Reset image load state
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
         const data = await res.json();
         setPokemon({
@@ -61,73 +64,140 @@ export default function KantoPokemonQuiz() {
         }, 1500);
     };
 
+    const isCorrect = isRevealed && pokemon && userInput.toLowerCase().trim() === pokemon.name.toLowerCase().replace(/-/g, ' ');
+
     return (
-        <section className="min-h-screen w-full flex flex-col items-center justify-center bg-transparent text-white relative px-4">
+        <section className="min-h-screen w-full flex flex-col items-center justify-center relative px-4 py-20">
 
-            {/* Progress Indicator */}
-            <div className="absolute top-20 text-[10px] tracking-[0.5em] uppercase text-white/30 font-mono">
-                Sequence {currentIdx + 1} / 5 — Score: {score}
-            </div>
+            {/* Glass Card Container */}
+            <div className="relative w-full max-w-3xl bg-black/60 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 md:p-14 shadow-2xl flex flex-col items-center gap-10 overflow-hidden">
 
-            <div className="w-full max-w-lg flex flex-col items-center gap-12">
+                {/* Header: Progress & Score */}
+                <div className="w-full flex justify-between items-center border-b border-white/10 pb-6">
+                    <span className="text-white/60 font-mono tracking-[0.2em] text-sm md:text-base uppercase">
+                        Question {currentIdx + 1} / 5
+                    </span>
+                    <div className="flex items-center gap-3 bg-white/5 px-6 py-2 rounded-full border border-white/5">
+                        <span className="text-emerald-400 font-black text-xl md:text-2xl">{score}</span>
+                        <span className="text-white/40 text-xs font-bold tracking-wider uppercase">Points</span>
+                    </div>
+                </div>
 
-                {/* The Sprite: Clean, No Borders */}
-                <div className="relative h-64 w-64 flex items-center justify-center">
+                {/* Pokemon Display */}
+                <div className="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center my-2 group">
                     <AnimatePresence mode="wait">
                         {pokemon && (
                             <motion.img
                                 key={pokemon.id}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                    filter: isRevealed ? 'brightness(1)' : 'brightness(0)'
+                                    opacity: imageLoaded ? 1 : 0, // Only show when loaded
+                                    scale: 1,
+                                    filter: isRevealed ? 'brightness(1) drop-shadow(0 0 30px rgba(255,255,255,0.4))' : 'brightness(0) invert(0)'
                                 }}
-                                exit={{ opacity: 0, y: -20 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
                                 src={pokemon.image}
-                                className="w-full h-full object-contain transition-all duration-700 ease-in-out"
-                                alt="target"
+                                onLoad={() => setImageLoaded(true)}
+                                className="w-full h-full object-contain z-10"
+                                alt="Who's that Pokemon?"
                             />
                         )}
                     </AnimatePresence>
-                    {/* Subtle Scanning Glow */}
-                    <div className="absolute inset-0 bg-cyan-500/5 blur-[100px] rounded-full -z-10" />
+
+                    {/* Loading Spinner if image not ready */}
+                    {!imageLoaded && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                        </div>
+                    )}
+
+                    {/* Background Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-purple-500/10 blur-[60px] rounded-full -z-10" />
+                    <div className={`absolute inset-0 border-2 border-white/5 rounded-full scale-110 transition-all duration-700 ${isRevealed ? 'scale-125 opacity-0' : 'animate-pulse'}`} />
                 </div>
 
-                {/* Minimal Input */}
-                <form onSubmit={handleSubmit} className="w-full max-w-sm">
-                    <input
-                        type="text"
-                        value={userInput}
-                        onChange={(e) => setUserInput(e.target.value)}
-                        disabled={isRevealed}
-                        placeholder={isRevealed ? pokemon?.name.toUpperCase() : "IDENTIFY..."}
-                        className={`w-full bg-transparent border-b border-white/10 py-2 text-center text-2xl font-light tracking-[0.2em] uppercase focus:outline-none focus:border-white transition-colors placeholder:text-white/5 ${isRevealed ? 'text-cyan-400' : 'text-white'}`}
-                        autoComplete="off"
-                    />
+                {/* Answer Reveal Text */}
+                <div className="h-8 flex items-center justify-center">
+                    {isRevealed && pokemon && (
+                        <motion.h3
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className={`text-3xl md:text-4xl font-black uppercase tracking-widest ${isCorrect ? 'text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_15px_rgba(248,113,113,0.6)]'}`}
+                        >
+                            {pokemon.name.replace(/-/g, ' ')}
+                        </motion.h3>
+                    )}
+                </div>
+
+                {/* Input Area */}
+                <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-6 relative z-20">
+                    <div className="relative group w-full max-w-sm">
+                        {/* Dynamic Background Glow on Focus */}
+                        <div className={`absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl opacity-0 group-focus-within:opacity-50 blur transition duration-500 ${isRevealed ? 'hidden' : ''}`} />
+
+                        <input
+                            type="text"
+                            value={userInput}
+                            onChange={(e) => setUserInput(e.target.value)}
+                            disabled={isRevealed}
+                            placeholder={isRevealed ? "" : "WHO'S THAT POKEMON?"}
+                            className={`relative w-full h-24 bg-black/50 border-2 rounded-xl text-center text-3xl md:text-4xl font-bold tracking-[0.15em] uppercase text-white placeholder:text-white/20 focus:outline-none focus:border-white/50 focus:bg-black/70 transition-all duration-300
+                                ${isRevealed
+                                    ? (isCorrect ? 'border-emerald-500/50 text-emerald-400 bg-emerald-950/20' : 'border-red-500/50 text-red-400 bg-red-950/20')
+                                    : 'border-white/10 hover:border-white/30'
+                                }`}
+                            autoComplete="off"
+                        />
+
+                        {/* Status Icon */}
+                        <div className="absolute right-6 top-1/2 -translate-y-1/2 text-3xl">
+                            {isRevealed && (
+                                isCorrect
+                                    ? <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-emerald-400">✓</motion.span>
+                                    : <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-red-400">✗</motion.span>
+                            )}
+                        </div>
+                    </div>
                 </form>
+
+                {/* Instructions */}
+                {!isRevealed && !gameOver && (
+                    <p className="text-white/30 text-xs tracking-[0.3em] font-medium animate-pulse mt-[-10px]">PRESS ENTER TO SUBMIT</p>
+                )}
             </div>
 
-            {/* Modern Game Over Overlay */}
+            {/* Game Over Modal Overlay */}
             <AnimatePresence>
                 {gameOver && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="absolute inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl"
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-lg p-4"
                     >
-                        <div className="text-center space-y-8">
-                            <div className="space-y-2">
-                                <h2 className="text-6xl font-thin tracking-tighter uppercase italic">Done.</h2>
-                                <p className="text-white/40 font-mono text-sm tracking-widest">ANALYSIS RATIO: {score}/5</p>
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="bg-gray-900 border border-white/10 p-12 rounded-[2.5rem] text-center max-w-md w-full shadow-2xl relative overflow-hidden"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10" />
+
+                            <h2 className="text-6xl font-black text-white mb-2 uppercase italic tracking-tighter relative z-10">
+                                Result
+                            </h2>
+                            <div className="my-8 relative z-10">
+                                <span className="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 filter drop-shadow-lg">{score}</span>
+                                <span className="text-4xl text-white/40 font-thin ml-2">/5</span>
                             </div>
+
                             <button
                                 onClick={startNewGame}
-                                className="px-8 py-2 border border-white/20 hover:bg-white hover:text-black transition-all text-xs uppercase tracking-[0.3em]"
+                                className="relative z-10 w-full py-5 bg-white text-black font-black text-sm tracking-[0.3em] uppercase rounded-xl hover:scale-[1.02] hover:bg-cyan-300 transition-all duration-300 shadow-xl shadow-cyan-500/10"
                             >
-                                Reinitialize
+                                Play Again
                             </button>
-                        </div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -4,13 +4,13 @@ import { useState } from "react";
 import styles from "./StarterSelection.module.css";
 
 interface StarterSelectionProps {
-    onSelect: (type: "fire" | "water") => void;
+    onSelect: (type: "fire" | "water" | "grass") => void;
 }
 
 export default function StarterSelection({ onSelect }: StarterSelectionProps) {
     const [isAnimating, setIsAnimating] = useState(false);
 
-    const handleSelect = (type: "fire" | "water") => {
+    const handleSelect = (type: "fire" | "water" | "grass") => {
         setIsAnimating(true);
         setTimeout(() => {
             onSelect(type);
@@ -40,6 +40,15 @@ export default function StarterSelection({ onSelect }: StarterSelectionProps) {
                         <span className={styles.buttonIcon}>💧</span>
                         <span className={styles.buttonText}>Water</span>
                         <span className={styles.buttonSubtext}>Kyogre & Lugia</span>
+                    </button>
+
+                    <button
+                        className={`${styles.button} ${styles.grassButton}`}
+                        onClick={() => handleSelect("grass")}
+                    >
+                        <span className={styles.buttonIcon}>🌿</span>
+                        <span className={styles.buttonText}>Grass</span>
+                        <span className={styles.buttonSubtext}>Rayquaza & Celebi</span>
                     </button>
                 </div>
             </div>
