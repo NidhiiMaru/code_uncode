@@ -1,5 +1,5 @@
 .prizesSection {
-  background: radial-gradient(circle at top, #1c1c1c 0%, #070707 60%, #020202 100%);
+  position: relative;
   padding: clamp(60px, 8vw, 110px) clamp(16px, 6vw, 72px);
   color: #f5f5f5;
   display: flex;
@@ -10,6 +10,8 @@
   width: min(1200px, 95vw);
   text-align: center;
   perspective: 1000px;
+  position: relative;
+  z-index: 1;
 }
 
 .title {

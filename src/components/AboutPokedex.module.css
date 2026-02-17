@@ -4,7 +4,7 @@
   align-items: flex-end;
   justify-content: center;
   padding: 50px 20px;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  position: relative;
   min-height: 100vh;
   font-family: 'Courier New', Courier, monospace;
   perspective: 1500px;
@@ -23,17 +23,17 @@
   border-radius: 20px 0 0 20px;
   padding: 25px;
   position: relative;
-  z-index: 2;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  transform: rotateY(8deg) rotateX(-3deg);
+  transform: rotateY(9deg) rotateX(-4deg);
   transform-style: preserve-3d;
   transition: transform 0.5s ease;
 }
 
 .leftPanel:hover {
-  transform: rotateY(12deg) rotateX(-4deg);
+  transform: rotateY(13deg) rotateX(-5deg);
 }
 
 /* Lights Section */
@@ -231,6 +231,7 @@
   border: 5px solid #333;
   position: relative;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+  z-index: 5;
 }
 
 /* ===== RIGHT PANEL ===== */
@@ -246,8 +247,8 @@
   gap: 15px;
   transform: rotateY(-10deg) rotateX(-5deg);
   transform-style: preserve-3d;
-  transition: transform 0.5s ease;
-}
+  transition: transform 0.5s ease;  position: relative;
+  z-index: 5;}
 
 .rightPanel:hover {
   transform: rotateY(-14deg) rotateX(-6deg);

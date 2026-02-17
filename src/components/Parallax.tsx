@@ -98,7 +98,6 @@ export default function Parallax({ type }: ParallaxProps) {
       <div
         ref={parallaxOuterRef}
         className={styles.parallaxContainer}
-        style={{ backgroundImage: `url(/${images.folder}/${images.background})` }}
       >
         <div ref={mountains} className={`${styles.layer} ${styles.mountainLayer || ""}`}>
           <img src={`/${images.folder}/${images.mountains}`} alt="mountains" />

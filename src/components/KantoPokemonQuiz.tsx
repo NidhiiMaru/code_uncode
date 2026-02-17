@@ -70,7 +70,7 @@ export default function KantoPokemonQuiz() {
         <section className="min-h-screen w-full flex flex-col items-center justify-center relative px-4 py-20">
 
             {/* Glass Card Container */}
-            <div className="relative w-full max-w-3xl bg-black/60 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 md:p-14 shadow-2xl flex flex-col items-center gap-10 overflow-hidden">
+            <div className="relative w-full max-w-3xl bg-black/60 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 md:p-14 shadow-2xl flex flex-col items-center gap-10 overflow-hidden z-10">
 
                 {/* Header: Progress & Score */}
                 <div className="w-full flex justify-between items-center border-b border-white/10 pb-6">
