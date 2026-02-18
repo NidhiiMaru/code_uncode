@@ -27,6 +27,8 @@ const Pokedex: React.FC = () => {
     imageUrl: "https://via.placeholder.com/150" // Replace with your image link
   });
 
+  const [showMobileModal, setShowMobileModal] = useState(false);
+
   return (
     <section className={styles.pokedexWrapper}>
    
@@ -67,8 +69,47 @@ const Pokedex: React.FC = () => {
         
         {/* GREEN BOX (Left side) */}
         <div className={styles.greenScreenLeft}>
-           {content.title}
+           <div className={styles.greenScreenContent}>
+             <span>{content.title}</span>
+             <button 
+               className={styles.infoButton}
+               onClick={() => setShowMobileModal(!showMobileModal)}
+               title="Show Details"
+             >
+               ⓘ
+             </button>
+           </div>
         </div>
+
+        {/* MOBILE MODAL OVERLAY */}
+        {showMobileModal && (
+          <div className={styles.mobileModalOverlay} onClick={() => setShowMobileModal(false)}>
+            <div className={styles.mobileModal} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h3>DETAILS</h3>
+                <button 
+                  className={styles.closeButton}
+                  onClick={() => setShowMobileModal(false)}
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <div className={styles.modalStats}>
+                {content.stats.map((stat, index) => (
+                  <div key={index} className={styles.modalStatLine}>
+                    <span className={styles.modalLabel}>{stat.label}:</span>
+                    <span className={styles.modalValue}>{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className={styles.modalDescription}>
+                {content.description}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className={styles.hinge} />
