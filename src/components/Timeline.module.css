@@ -23,10 +23,10 @@
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  text-shadow: 
-    0 0 20px rgba(255, 68, 68, 0.8),
-    0 0 40px rgba(255, 68, 68, 0.5),
-    0 0 60px rgba(255, 68, 68, 0.3);
+  text-shadow:
+    0 0 20px rgba(var(--theme-rgb), 0.8),
+    0 0 40px rgba(var(--theme-rgb), 0.5),
+    0 0 60px rgba(var(--theme-rgb), 0.3);
   font-family: 'Press Start 2P', monospace, sans-serif;
 }
 
@@ -63,11 +63,14 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px #ff4444) drop-shadow(0 0 16px #ff2222);
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px var(--theme-color)) drop-shadow(0 0 16px var(--theme-color));
   }
+
   50% {
-    filter: drop-shadow(0 0 16px #ff4444) drop-shadow(0 0 24px #ff2222);
+    filter: drop-shadow(0 0 16px var(--theme-color)) drop-shadow(0 0 24px var(--theme-color));
   }
 }
 
@@ -111,7 +114,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.4s ease;
-  box-shadow: 
+  box-shadow:
     0 0 20px rgba(0, 0, 0, 0.5),
     inset 0 0 10px rgba(0, 0, 0, 0.8);
 }
@@ -125,25 +128,28 @@
 }
 
 .checkpoint.active {
-  border-color: #ff4444;
-  box-shadow: 
-    0 0 30px rgba(255, 68, 68, 0.8),
-    0 0 50px rgba(255, 68, 68, 0.5),
-    inset 0 0 20px rgba(255, 68, 68, 0.3);
+  border-color: var(--theme-color);
+  box-shadow:
+    0 0 30px rgba(var(--theme-rgb), 0.8),
+    0 0 50px rgba(var(--theme-rgb), 0.5),
+    inset 0 0 20px rgba(var(--theme-rgb), 0.3);
   animation: checkpointPulse 1.5s ease-in-out infinite;
 }
 
 .checkpoint.active .checkpointInner {
-  background: #ff4444;
-  box-shadow: 
-    0 0 20px rgba(255, 68, 68, 0.8),
-    0 0 30px rgba(255, 68, 68, 0.5);
+  background: var(--theme-color);
+  box-shadow:
+    0 0 20px rgba(var(--theme-rgb), 0.8),
+    0 0 30px rgba(var(--theme-rgb), 0.5);
 }
 
 @keyframes checkpointPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     transform: translate(-50%, -50%) scale(1.15);
   }
@@ -160,9 +166,9 @@
   max-width: 450px;
   width: 90%;
   margin: 0 3rem;
-  box-shadow: 
+  box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(255, 68, 68, 0.1);
+    0 0 20px rgba(var(--theme-rgb), 0.1);
   transition: all 0.3s ease;
 }
 
@@ -179,32 +185,35 @@
 }
 
 .eventCard:hover {
-  border-color: rgba(255, 68, 68, 0.5);
-  box-shadow: 
+  border-color: rgba(var(--theme-rgb), 0.5);
+  box-shadow:
     0 15px 50px rgba(0, 0, 0, 0.7),
-    0 0 40px rgba(255, 68, 68, 0.3);
+    0 0 40px rgba(var(--theme-rgb), 0.3);
   transform: translateY(-5px);
 }
 
 .cardDate {
-  font-size: 0.9rem;
-  color: #ff4444;
+  font-size: 0.8rem;
+  color: var(--theme-color);
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+  text-shadow: 0 0 10px rgba(var(--theme-rgb), 0.5);
+  font-family: 'Press Start 2P', monospace;
+  line-height: 1.5;
 }
 
 .cardTitle {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 800;
   color: #fff;
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  line-height: 1.2;
+  line-height: 1.4;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  font-family: 'Press Start 2P', monospace;
 }
 
 .cardDescription {
@@ -220,18 +229,18 @@
   top: 50%;
   width: 60px;
   height: 2px;
-  background: linear-gradient(to right, rgba(255, 68, 68, 0.3), transparent);
+  background: linear-gradient(to right, rgba(var(--theme-rgb), 0.3), transparent);
   z-index: -1;
 }
 
 .eventRow.left .cardConnector {
   right: -60px;
-  background: linear-gradient(to left, rgba(255, 68, 68, 0.3), transparent);
+  background: linear-gradient(to left, rgba(var(--theme-rgb), 0.3), transparent);
 }
 
 .eventRow.right .cardConnector {
   left: -60px;
-  background: linear-gradient(to right, rgba(255, 68, 68, 0.3), transparent);
+  background: linear-gradient(to right, rgba(var(--theme-rgb), 0.3), transparent);
 }
 
 /* Responsive Design */
@@ -308,7 +317,7 @@
   .eventRow.right .cardConnector {
     left: -50px;
     width: 50px;
-    background: linear-gradient(to right, rgba(255, 68, 68, 0.3), transparent);
+    background: linear-gradient(to right, rgba(var(--theme-rgb), 0.3), transparent);
   }
 
   .cardTitle {

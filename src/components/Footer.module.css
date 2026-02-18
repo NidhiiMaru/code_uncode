@@ -1,0 +1,314 @@
+.footer {
+    width: 100%;
+    background: linear-gradient(180deg, rgba(16, 20, 60, 0.95) 0%, rgba(5, 5, 20, 1) 100%);
+    color: white;
+    padding: 4rem 2rem 1rem 2rem;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    border-top: 4px solid #F7C630;
+    /* Pokemon Yellow border */
+    z-index: 10;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/footer/overlay.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    /* Adjust opacity as needed for overlay effect */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Background overlay or pattern could go here */
+
+.contentWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    padding-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* LEFT SECTION */
+.leftSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 250px;
+}
+
+.snorlaxContainer {
+    width: 200px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+.snorlax {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.socialIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.socialIcon:hover {
+    background: white;
+    color: #1a1a2e;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* CENTER SECTION */
+.centerSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 300px;
+}
+
+.contactTitle {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow:
+        0 0 10px #00e6e6,
+        0 0 20px #00e6e6,
+        0 0 30px #00e6e6;
+    letter-spacing: 2px;
+}
+
+.email {
+    font-size: 1rem;
+    color: #cccccc;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.email:hover {
+    color: #F7C630;
+}
+
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.contactItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .contactItem {
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+/* RIGHT SECTION - POKESTOP */
+.rightSection {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    /* Move to right */
+    align-items: center;
+    min-width: 250px;
+    padding-right: 2rem;
+    /* Add some padding from edge */
+}
+
+.pokestopContainer {
+    position: relative;
+    width: 280px;
+    /* Make bigger (was 200px) */
+    height: 280px;
+    /* Make bigger (was 200px) */
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.pokestopInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.pokestopImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: pulseScale 3s infinite ease-in-out;
+    filter: drop-shadow(0 0 5px rgba(0, 230, 230, 0.4));
+    /* Less glow */
+}
+
+@keyframes pulseScale {
+    0% {
+        transform: scale(0.9);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(0.9);
+    }
+}
+
+.mapContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 4px solid #00e6e6;
+    background: #1a1a2e;
+    z-index: 5;
+}
+
+/* Interaction: Map Reveal */
+.pokestopContainer:hover .mapContainer {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.pokestopContainer:hover .pokestopInner {
+    opacity: 0;
+}
+
+/* BOTTOM BAR */
+.bottomBar {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .bottomBar {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding-left: 2rem;
+        padding-right: 140px;
+        /* More space for bigger Pikachu if needed */
+        align-items: center;
+        /* Ensure vertical alignment */
+    }
+}
+
+.heart {
+    color: #FFA500;
+    /* Orange */
+    display: inline-block;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.2);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}
+
+.pikachu {
+    width: 80px;
+    height: auto;
+    position: relative;
+    /* Fallback for mobile */
+    margin-top: 1rem;
+    animation: pikachuBounce 2s infinite ease-in-out;
+}
+
+@media (min-width: 768px) {
+    .pikachu {
+        position: absolute;
+        bottom: 0;
+        right: 1rem;
+        width: 120px;
+        margin-top: 0;
+    }
+}
+
+@keyframes pikachuBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}

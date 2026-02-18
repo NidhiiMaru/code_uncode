@@ -9,6 +9,7 @@ import Timeline from '@/components/Timeline.tsx';
 import PrizesSection from '@/components/PrizesSection.tsx';
 import ProfessorOakIntro from '@/components/ProfessorOakIntro.tsx';
 import MusicPlayer from '@/components/MusicPlayer.tsx';
+import Footer from '@/components/Footer.tsx';
 
 function Home() {
   const [showIntro, setShowIntro] = useState(true); // Force intro to always show initially
@@ -67,10 +68,11 @@ function Home() {
               }}
             />
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <Timeline />
+              <Timeline type={selectedType} />
               <AboutPokedex />
               <PrizesSection />
               <KantoPokemonQuiz />
+              <Footer />
             </div>
           </div>
         </>

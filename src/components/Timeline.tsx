@@ -15,11 +15,30 @@ interface TimelineEvent {
   position: 'left' | 'right';
 }
 
-const Timeline: React.FC = () => {
+interface TimelineProps {
+  type?: 'fire' | 'water' | 'grass';
+}
+
+const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   const timelineRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const progressLineRef = useRef<SVGPathElement>(null);
   const checkpointsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Theme colors
+  const getThemeColors = () => {
+    switch (type) {
+      case 'water':
+        return { hex: '#3b82f6', rgb: '59, 130, 246' };
+      case 'grass':
+        return { hex: '#22c55e', rgb: '34, 197, 94' };
+      case 'fire':
+      default:
+        return { hex: '#ff4444', rgb: '255, 68, 68' };
+    }
+  };
+
+  const { hex: themeColor, rgb: themeRgb } = getThemeColors();
 
   // Timeline events data
   const events: TimelineEvent[] = [
@@ -131,7 +150,14 @@ const Timeline: React.FC = () => {
   }, []);
 
   return (
-    <section className={styles.timelineSection} ref={timelineRef}>
+    <section
+      className={styles.timelineSection}
+      ref={timelineRef}
+      style={{
+        '--theme-color': themeColor,
+        '--theme-rgb': themeRgb
+      } as React.CSSProperties}
+    >
       <div className={styles.timelineContainer}>
         <h2 className={styles.sectionTitle}>THE JOURNEY</h2>
         <p className={styles.sectionSubtitle}>7 Days • 7 Challenges • 1 Ultimate Goal</p>
@@ -142,22 +168,22 @@ const Timeline: React.FC = () => {
             <defs>
               {/* Glow filter for the path */}
               <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                 <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
               {/* Animated glow for progress line */}
               <filter id="progressGlow">
-                <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="5" result="coloredBlur" />
                 <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
             </defs>
-            
+
             {/* Base curved path */}
             <path
               ref={pathRef}
@@ -172,7 +198,7 @@ const Timeline: React.FC = () => {
               strokeWidth="8"
               filter="url(#glow)"
             />
-            
+
             {/* Animated progress line */}
             <path
               ref={progressLineRef}
@@ -183,7 +209,7 @@ const Timeline: React.FC = () => {
                  Q 70 700, 50 800
                  Q 30 900, 50 1000"
               fill="none"
-              stroke="#ff4444"
+              stroke="var(--theme-color)"
               strokeWidth="6"
               filter="url(#progressGlow)"
               className={styles.progressLine}
