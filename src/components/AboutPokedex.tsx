@@ -15,7 +15,7 @@ interface CustomDexContent {
 const Pokedex: React.FC = () => {
   // 1. Set your custom text here
   const [content] = useState<CustomDexContent>({
-    title: "CODE UNCODE",
+    title: "Heading Guidelines",
     description: "Join us for an immersive competitive programming experience featuring 1,600+ participants from 370+ institutes across India, with an electrifying grand finale in Mumbai.",
     stats: [
       { label: "RANK", value: "CHAMPION" },

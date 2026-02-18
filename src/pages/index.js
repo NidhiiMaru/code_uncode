@@ -67,8 +67,8 @@ function Home() {
               }}
             />
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <AboutPokedex />
               <Timeline />
+              <AboutPokedex />
               <PrizesSection />
               <KantoPokemonQuiz />
             </div>
