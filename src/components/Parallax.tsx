@@ -94,7 +94,6 @@ export default function Parallax({ type }: ParallaxProps) {
 
   return (
     <div className={styles.wrapper}>
-      <MusicPlayer type={type} />
       <div
         ref={parallaxOuterRef}
         className={styles.parallaxContainer}

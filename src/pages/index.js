@@ -7,6 +7,7 @@ import KantoPokemonQuiz from '@/components/KantoPokemonQuiz.tsx';
 import AboutPokedex from '@/components/AboutPokedex.tsx';
 import PrizesSection from '@/components/PrizesSection.tsx';
 import ProfessorOakIntro from '@/components/ProfessorOakIntro.tsx';
+import MusicPlayer from '@/components/MusicPlayer.tsx';
 
 function Home() {
   const [showIntro, setShowIntro] = useState(true); // Force intro to always show initially
@@ -45,10 +46,10 @@ function Home() {
 
   return (
     <>
-      {showIntro && <ProfessorOakIntro onComplete={handleIntroComplete} />}
-      {!showIntro && !selectedType && <StarterSelection onSelect={handleTypeSelect} />}
+      {!selectedType && <StarterSelection onSelect={handleTypeSelect} />}
       {selectedType && (
         <>
+          <MusicPlayer type={selectedType} />
           <Parallax type={selectedType} />
           {/* Continuous overlay wrapper for all sections after hero */}
           <div style={{ position: 'relative', marginTop: '-1px' }}>

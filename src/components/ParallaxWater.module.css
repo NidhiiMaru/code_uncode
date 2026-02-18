@@ -7,7 +7,7 @@
 .parallaxContainer {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     background-image: url('/parallax/parallax_water/water-bg.png');
     background-size: cover;
@@ -46,14 +46,27 @@
 }
 
 .moltres {
-    bottom: 35%;
-    left: 10%;
+    bottom: 25%;
+    /* Shifted down from 35% */
+    left: 5%;
+    /* Shifted more left from 10% */
     width: 150px;
 }
 
 .foregroundLayer {
     z-index: 26;
-    /* Below text */
+    bottom: -36%;
+    /* Shifted higher up */
+}
+
+.mountainLayer {
+    bottom: -25%;
+    /* Shift Sun higher up */
+}
+
+.treeLayer {
+    bottom: -30% !important;
+    /* Shift water layer higher up */
 }
 
 /* THE FIX: Rising curtain anchored to screen bottom */
@@ -63,7 +76,7 @@
     width: 100%;
     height: 100vh;
     z-index: 28;
-    top: 84%;
+    top: 72%;
     background-image: url('/parallax/parallax_water/water-bg1.png');
     background-size: cover;
 }
@@ -398,7 +411,8 @@
     }
 
     .heroLogo {
-        width: clamp(150px, 50vw, 250px);
+        width: clamp(120px, 60vw, 220px);
+        max-width: 80%;
     }
 
     .heroSubtitle {
@@ -415,13 +429,16 @@
     .hoOh {
         top: 8%;
         right: 5%;
-        width: 100px;
+        width: 80px;
+        max-width: 20vw;
     }
 
     .moltres {
-        bottom: 25%;
-        left: 3%;
-        width: 90px;
+        bottom: 20%;
+        /* Adjusted for Water theme positions */
+        left: 2%;
+        width: 70px;
+        max-width: 20vw;
     }
 
     .sectionTitle {
@@ -478,11 +495,12 @@
     }
 
     .partnerLogo {
-        height: 10vh;
+        height: 6vh;
+        max-width: 80px;
     }
 
     .marqueeTrack {
-        gap: 40px;
+        gap: 30px;
         padding: 0 20px;
     }
 }
@@ -510,7 +528,7 @@
     }
 
     .marqueeTitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .partnerLogo {

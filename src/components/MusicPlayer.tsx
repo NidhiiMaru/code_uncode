@@ -82,7 +82,7 @@ export default function MusicPlayer({ type }: MusicPlayerProps) {
     };
 
     return (
-        <div className="fixed top-60 left-60 z-50 font-sans">
+        <div className="fixed bottom-4 right-4 md:top-6 md:right-6 md:bottom-auto z-50 font-sans max-w-[calc(100vw-2rem)]">
             <div className={`
                 flex items-center gap-3 pl-3 pr-4 py-2
                 ${colors.glass} backdrop-blur-md
