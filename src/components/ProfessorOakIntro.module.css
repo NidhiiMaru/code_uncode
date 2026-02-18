@@ -1,0 +1,248 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('/loader/background.png') center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center -50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10000;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+}
+
+.professorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    margin-top: 8vh;
+}
+
+.professorImage {
+    width: auto !important;
+    height: auto !important;
+    max-width: 450px !important;
+    max-height: 520px !important;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: professorFloat 3s ease-in-out infinite;
+    z-index: 2;
+    position: relative;
+    /* Professor Oak sizing with !important to override constraints */
+}
+
+@keyframes professorFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.textBox {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    min-height: 120px;
+    padding: 20px 40px;
+    position: relative;
+    box-shadow: none;
+    max-width: none;
+    width: 100vw;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 2vh;
+}
+
+.textBox::before,
+.textBox::after {
+    display: none;
+}
+
+.textContent {
+    font-size: 1.8rem;
+    color: #2F4F4F;
+    line-height: 1.6;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.completedLine {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.typewriterText {
+    display: inline-block;
+    position: relative;
+}
+
+.cursor {
+    display: inline-block;
+    background-color: #2F4F4F;
+    color: transparent;
+    animation: blink 1s infinite;
+    margin-left: 4px;
+    width: 12px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.cursorButton {
+    display: inline-block;
+    background-color: #2F4F4F;
+    color: transparent;
+    animation: blink 1s infinite;
+    margin-left: 4px;
+    width: 12px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.cursorButton:hover {
+    background-color: #FFD700;
+    transform: scale(1.1);
+    animation: fastBlink 0.5s infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fastBlink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+.continueButton {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    background: linear-gradient(180deg, #FFD700 0%, #FFA500 100%);
+    border: 3px solid #FF8C00;
+    border-radius: 15px;
+    padding: 8px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2F4F4F;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    animation: buttonPulse 2s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 
+            0 4px 8px rgba(0, 0, 0, 0.2),
+            inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 
+            0 6px 12px rgba(0, 0, 0, 0.3),
+            inset 0 2px 4px rgba(255, 255, 255, 0.7);
+    }
+}
+
+.continueButton:hover {
+    background: linear-gradient(180deg, #FFE55C 0%, #FFB347 100%);
+    transform: scale(1.1);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.7);
+}
+
+.continueButton:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .professorImage {
+        max-width: 580px;
+        max-height: 630px;
+    }
+    
+    .textContent {
+        font-size: 1.5rem;
+        padding-left: 15px;
+    }
+    
+    .textBox {
+        padding: 15px 30px;
+        margin-bottom: 1vh;
+    }
+    
+    .continueButton {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        right: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .professorContainer {
+        margin-top: 6vh;
+    }
+    
+    .professorImage {
+        max-width: 450px;
+        max-height: 500px;
+    }
+    
+    .textContent {
+        font-size: 1.3rem;
+        padding-left: 10px;
+    }
+    
+    .textBox {
+        padding: 10px 20px;
+        margin-bottom: 1vh;
+    }
+    
+    .continueButton {
+        right: 20px;
+        bottom: 15px;
+    }
+}

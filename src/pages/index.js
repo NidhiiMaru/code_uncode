@@ -6,12 +6,18 @@ import StarterSelection from '@/components/StarterSelection.tsx';
 import KantoPokemonQuiz from '@/components/KantoPokemonQuiz.tsx';
 import AboutPokedex from '@/components/AboutPokedex.tsx';
 import PrizesSection from '@/components/PrizesSection.tsx';
+import ProfessorOakIntro from '@/components/ProfessorOakIntro.tsx';
 
 function Home() {
+  const [showIntro, setShowIntro] = useState(true); // Force intro to always show initially
   const [selectedType, setSelectedType] = useState(null);
 
   const handleTypeSelect = (type) => {
     setSelectedType(type);
+  };
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
   };
 
   // Background image mapping based on type
@@ -39,7 +45,8 @@ function Home() {
 
   return (
     <>
-      {!selectedType && <StarterSelection onSelect={handleTypeSelect} />}
+      {showIntro && <ProfessorOakIntro onComplete={handleIntroComplete} />}
+      {!showIntro && !selectedType && <StarterSelection onSelect={handleTypeSelect} />}
       {selectedType && (
         <>
           <Parallax type={selectedType} />
