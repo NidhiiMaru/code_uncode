@@ -5,6 +5,7 @@ import Parallax from '@/components/Parallax.tsx';
 import StarterSelection from '@/components/StarterSelection.tsx';
 import KantoPokemonQuiz from '@/components/KantoPokemonQuiz.tsx';
 import AboutPokedex from '@/components/AboutPokedex.tsx';
+import Timeline from '@/components/Timeline.tsx';
 import PrizesSection from '@/components/PrizesSection.tsx';
 import ProfessorOakIntro from '@/components/ProfessorOakIntro.tsx';
 import MusicPlayer from '@/components/MusicPlayer.tsx';
@@ -67,6 +68,7 @@ function Home() {
             />
             <div style={{ position: 'relative', zIndex: 1 }}>
               <AboutPokedex />
+              <Timeline />
               <PrizesSection />
               <KantoPokemonQuiz />
             </div>
