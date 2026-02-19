@@ -44,37 +44,37 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   const events: TimelineEvent[] = [
     {
       id: 1,
-      date: '14th February',
-      title: 'CODE IT RALPH',
-      description: 'A competitive programming showdown. Tackle algorithmic puzzles inspired by retro gaming logic.',
+      date: '16th February (Sunday)',
+      title: 'PRELIMS',
+      description: 'Online | 5:05 PM - 7:05 PM. The first hurdle in your journey to become a champion.',
       position: 'left'
     },
     {
       id: 2,
-      date: '15th February',
-      title: 'PIXEL PERFECT',
-      description: 'A competitive challenge where participants apply core programming and frontend skills to build precise, high-quality solutions.',
+      date: '19th February (Wednesday)',
+      title: 'REGIONAL - K. J. Somaiya',
+      description: 'First Regional Round at K. J. Somaiya School of Engineering (Vidyavihar).',
       position: 'right'
     },
     {
       id: 3,
-      date: '16th February',
-      title: 'THE ULTIMATE CIRCUIT',
-      description: '7 Days • 7 Challenges. Push your limits through week-long intensive coding challenges.',
+      date: '20th February (Thursday)',
+      title: 'REGIONAL - SPIT',
+      description: 'Second Regional Round at Sardar Patel Institute of Technology.',
       position: 'left'
     },
     {
       id: 4,
-      date: '17th February',
-      title: 'MYSTERY EVENT',
-      description: 'Something exciting is coming. Stay tuned for an unforgettable experience.',
+      date: '21th February (Friday)',
+      title: 'REGIONAL - DJ Sanghvi',
+      description: 'Third Regional Round at Dwarkadas J. Sanghvi College of Engineering.',
       position: 'right'
     },
     {
       id: 5,
-      date: '18th February',
-      title: 'GRAND FINALE',
-      description: 'The ultimate showdown in Mumbai. Where champions are crowned and legends are born.',
+      date: '23rd February (Sunday)',
+      title: 'FINALS',
+      description: 'The Ultimate Showdown at Dwarkadas J. Sanghvi College of Engineering. Top 30 participants from regionals compete.',
       position: 'left'
     }
   ];

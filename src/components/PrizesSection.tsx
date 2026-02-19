@@ -25,11 +25,24 @@ const prizes: PrizeItem[] = [
   },
 ];
 
-const PrizesSection: React.FC = () => {
+interface PrizesSectionProps {
+  type?: 'fire' | 'water' | 'grass';
+}
+
+const PrizesSection: React.FC<PrizesSectionProps> = ({ type = 'fire' }) => {
+  const getThemeColors = () => {
+    switch (type) {
+      case 'water': return '#00ffff';
+      case 'grass': return '#76ff03';
+      case 'fire': default: return '#ffcc00';
+    }
+  };
+  const themeColor = getThemeColors();
+
   return (
     <section className={styles.prizesSection}>
       <div className={styles.sectionInner}>
-        <h2 className={styles.title}>Prizes</h2>
+        <h2 className={styles.title} style={{ color: themeColor }}>Prizes</h2>
         <p className={styles.subtitle}>Trophies worthy of legendary competitors.</p>
 
         <div className={styles.trophyRow}>
@@ -40,7 +53,7 @@ const PrizesSection: React.FC = () => {
                   <img src={prize.imagePath} alt={prize.title} className={styles.trophyImage} />
                 </div>
               </article>
-              <p className={styles.trophyLabel}>{prize.title.split(" ")[0]}</p>
+              <p className={styles.trophyLabel} style={{ color: themeColor }}>{prize.title.split(" ")[0]}</p>
             </div>
           ))}
         </div>

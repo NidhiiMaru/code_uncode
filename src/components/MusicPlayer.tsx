@@ -5,6 +5,7 @@ import { Volume2, VolumeX, SkipForward, Play, Pause, Music } from 'lucide-react'
 
 interface MusicPlayerProps {
     type: "fire" | "water" | "grass";
+    onReset?: () => void;
 }
 
 const songs = [
@@ -19,7 +20,7 @@ const songFiles = [
     "/music/opt2.mp3",
 ];
 
-export default function MusicPlayer({ type }: MusicPlayerProps) {
+export default function MusicPlayer({ type, onReset }: MusicPlayerProps) {
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -82,7 +83,22 @@ export default function MusicPlayer({ type }: MusicPlayerProps) {
     };
 
     return (
-        <div className="fixed bottom-4 right-4 md:top-6 md:right-6 md:bottom-auto z-50 font-sans max-w-[calc(100vw-2rem)]">
+        <div className="fixed bottom-4 right-4 md:top-6 md:left-6 md:bottom-auto z-50 font-sans max-w-[calc(100vw-2rem)] flex flex-col md:flex-row items-end md:items-start gap-3">
+            {/* Starter Reset Button (Only visible on Desktop/Tablet if space permits, or stack on mobile) */}
+            <button
+                onClick={onReset}
+                className={`
+                    hidden md:flex items-center px-4 py-2
+                    ${colors.glass} backdrop-blur-md
+                    border ${colors.border} rounded-full
+                    shadow-xl
+                    text-xs font-bold tracking-wider uppercase ${colors.text}
+                    transition-all duration-300 hover:scale-105 hover:bg-white/10
+                `}
+            >
+                Choose Your Starter Again
+            </button>
+
             <div className={`
                 flex items-center gap-3 pl-3 pr-4 py-2
                 ${colors.glass} backdrop-blur-md

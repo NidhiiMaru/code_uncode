@@ -2,7 +2,7 @@
     width: 100%;
     background: linear-gradient(180deg, rgba(16, 20, 60, 0.95) 0%, rgba(5, 5, 20, 1) 100%);
     color: white;
-    padding: 4rem 2rem 1rem 2rem;
+    padding: 0rem 2rem 1rem 1rem;
     position: relative;
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;
@@ -52,7 +52,8 @@
 }
 
 .snorlaxContainer {
-    width: 200px;
+    width: 300px;
+    /* Increased from 200px */
     height: auto;
     margin-bottom: 1.5rem;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
@@ -157,16 +158,14 @@
     /* Move to right */
     align-items: center;
     min-width: 250px;
-    padding-right: 2rem;
-    /* Add some padding from edge */
 }
 
 .pokestopContainer {
     position: relative;
-    width: 280px;
-    /* Make bigger (was 200px) */
-    height: 280px;
-    /* Make bigger (was 200px) */
+    width: 300px;
+    /* Increased from 280px */
+    height: 300px;
+    /* Increased from 280px */
     cursor: pointer;
     transition: transform 0.5s ease;
 }

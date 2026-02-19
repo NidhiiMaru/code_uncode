@@ -5,6 +5,7 @@ import Parallax from '@/components/Parallax.tsx';
 import StarterSelection from '@/components/StarterSelection.tsx';
 import KantoPokemonQuiz from '@/components/KantoPokemonQuiz.tsx';
 import AboutPokedex from '@/components/AboutPokedex.tsx';
+import AboutCodeUncode from '@/components/AboutCodeUncode.tsx';
 import Timeline from '@/components/Timeline.tsx';
 import PrizesSection from '@/components/PrizesSection.tsx';
 import ProfessorOakIntro from '@/components/ProfessorOakIntro.tsx';
@@ -51,7 +52,7 @@ function Home() {
       {!selectedType && <StarterSelection onSelect={handleTypeSelect} />}
       {selectedType && (
         <>
-          <MusicPlayer type={selectedType} />
+          <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />
           <Parallax type={selectedType} />
           {/* Continuous overlay wrapper for all sections after hero */}
           <div style={{ position: 'relative', marginTop: '-1px' }}>
@@ -68,9 +69,10 @@ function Home() {
               }}
             />
             <div style={{ position: 'relative', zIndex: 1 }}>
+              <AboutCodeUncode type={selectedType} />
               <Timeline type={selectedType} />
               <AboutPokedex />
-              <PrizesSection />
+              <PrizesSection type={selectedType} />
               <KantoPokemonQuiz />
               <Footer />
             </div>
