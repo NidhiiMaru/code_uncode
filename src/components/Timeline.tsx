@@ -119,6 +119,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
       });
 
       // Animate event cards on scroll
+      const isMobile = window.innerWidth <= 768;
       events.forEach((event, index) => {
         const card = document.querySelector(`[data-event-id="${event.id}"]`);
         if (card) {
@@ -126,7 +127,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
             card,
             {
               opacity: 0,
-              x: event.position === 'left' ? -100 : 100,
+              x: isMobile ? 30 : (event.position === 'left' ? -100 : 100),
               scale: 0.8
             },
             {

@@ -269,29 +269,84 @@
 @media (max-width: 768px) {
   .timelineSection {
     padding: 6rem 1rem;
-    min-height: 150vh;
+    min-height: auto;
   }
 
   .sectionTitle {
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 0.1em;
   }
 
   .sectionSubtitle {
     font-size: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
+  .timelineWrapper {
+    min-height: auto;
+    margin: 2rem 0;
+  }
+
+  /* Hide the SVG path on mobile — use a simple CSS line instead */
   .timelineSvg {
-    width: 100px;
-    left: 2rem;
-    transform: none;
+    display: none;
   }
 
+  /* Events container switches to normal flow (no absolute positioning) */
+  .eventsContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    min-height: auto;
+    padding-left: 50px;
+  }
+
+  /* Vertical line via pseudo-element */
+  .eventsContainer::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(var(--theme-rgb), 0.4) 10%,
+      rgba(var(--theme-rgb), 0.4) 90%,
+      transparent
+    );
+    border-radius: 2px;
+  }
+
+  /* Override absolute positioning on event rows */
+  .eventRow {
+    position: relative !important;
+    top: auto !important;
+    width: 100%;
+    display: flex;
+    flex-direction: row !important;
+    align-items: flex-start;
+    justify-content: flex-start !important;
+  }
+
+  .eventRow.left,
+  .eventRow.right {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Checkpoint repositioned to left edge */
   .checkpoint {
-    left: 2rem;
+    position: absolute;
+    left: -50px;
+    top: 1.5rem;
+    transform: none;
     width: 32px;
     height: 32px;
+    flex-shrink: 0;
+    z-index: 3;
   }
 
   .checkpointInner {
@@ -299,29 +354,47 @@
     height: 12px;
   }
 
-  .eventRow.left,
-  .eventRow.right {
-    flex-direction: row;
-    justify-content: flex-start;
+  @keyframes checkpointPulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
   }
 
+  /* Cards take full width, aligned to right of checkpoint */
   .eventCard {
     max-width: 100%;
-    margin: 0;
-    margin-left: 5rem !important;
-    margin-right: 0 !important;
+    width: 100%;
+    margin: 0 !important;
+    text-align: left !important;
+    padding: 1.25rem;
+  }
+
+  .eventRow.left .eventCard,
+  .eventRow.right .eventCard {
+    margin: 0 !important;
     text-align: left !important;
   }
 
-  .eventRow.left .cardConnector,
-  .eventRow.right .cardConnector {
-    left: -50px;
-    width: 50px;
-    background: linear-gradient(to right, rgba(var(--theme-rgb), 0.3), transparent);
+  /* Hide connector lines on mobile */
+  .cardConnector {
+    display: none;
+  }
+
+  .cardDate {
+    font-size: 0.65rem;
+    line-height: 1.6;
   }
 
   .cardTitle {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .cardDescription {
+    font-size: 0.9rem;
   }
 }
 
@@ -330,16 +403,44 @@
     padding: 4rem 0.5rem;
   }
 
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+
+  .eventsContainer {
+    padding-left: 44px;
+    gap: 2rem;
+  }
+
+  .eventsContainer::before {
+    left: 15px;
+  }
+
+  .checkpoint {
+    left: -44px;
+    width: 28px;
+    height: 28px;
+    top: 1.25rem;
+  }
+
+  .checkpointInner {
+    width: 10px;
+    height: 10px;
+  }
+
   .eventCard {
-    padding: 1.25rem;
-    margin-left: 4.5rem !important;
+    padding: 1rem;
+  }
+
+  .cardDate {
+    font-size: 0.6rem;
   }
 
   .cardTitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .cardDescription {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
