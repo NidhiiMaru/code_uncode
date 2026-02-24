@@ -38,7 +38,7 @@ export default function Parallax({ type }: ParallaxProps) {
       mountains: type === "fire" ? "mountains.png" : type === "water" ? "sun.png" : "mountains.png",
       trees: type === "fire" ? "trees.png" : type === "water" ? "water-layer.png" : "trees.png",
       foreground: "foreground-layer.png",
-      logo: type === "fire" ? "uncode-logo.png" : type === "water" ? "uncode-logoblue.png" : "uncodelogo-green.png",
+      logo: type === "fire" ? "uncode-logo.png" : type === "water" ? "uncode-logoblue.png" : "uncodelogo-green.svg",
       folder,
     };
   }, [type]);

@@ -71,7 +71,7 @@ function Home() {
             <div style={{ position: 'relative', zIndex: 1 }}>
               <AboutCodeUncode type={selectedType} />
               <Timeline type={selectedType} />
-              <AboutPokedex />
+              <AboutPokedex type={selectedType} />
               <PrizesSection type={selectedType} />
               <KantoPokemonQuiz />
               <Footer />

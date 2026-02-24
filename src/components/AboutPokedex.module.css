@@ -1,11 +1,33 @@
+/* ===== VIEWPORT SECTION (fits the whole component in 1 screen) ===== */
+.viewportSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 3vh 0 3vh;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  margin-bottom: 2vh;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 4px 4px 0px #000000;
+  font-family: 'Courier New', Courier, monospace;
+  transition: color 0.4s ease;
+}
+
 /* Pokédex Color Scheme */
 .pokedexWrapper {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 20px 50px 20px;
+  padding: 0 20px 0 20px;
   position: relative;
-  min-height: 100vh;
   font-family: 'Courier New', Courier, monospace;
   perspective: 1500px;
 }
@@ -18,29 +40,30 @@
 
 /* ===== LEFT PANEL ===== */
 .leftPanel {
-  width: 550px;
-  height: 700px;
+  width: 480px;
+  height: 580px;
   border-radius: 20px 0 0 20px;
-  padding: 25px;
+  padding: 18px;
   position: relative;
   z-index: 5;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   transform: rotateY(9deg) rotateX(-4deg);
   transform-style: preserve-3d;
-  transition: transform 0.5s ease;
+  transition: background 0.4s ease, transform 0.5s ease;
 }
 
 .leftPanel:hover {
-  transform: rotateY(13deg) rotateX(-5deg);
+  /* hover tilt disabled */
+  transform: unset;
 }
 
 /* Lights Section */
 .topLights {
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
@@ -50,9 +73,27 @@
   background: radial-gradient(circle at 30% 30%, #51e1ed, #005a7d);
   border: 5px solid #f5f5f5;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(81, 225, 237, 0.6), inset -2px -2px 5px rgba(0, 0, 0, 0.4);
   position: relative;
   flex-shrink: 0;
+  animation: blueLightBlink 1.8s ease-in-out infinite;
+}
+
+@keyframes blueLightBlink {
+  0% {
+    box-shadow: 0 0 8px 2px rgba(81, 225, 237, 0.3), inset -2px -2px 5px rgba(0, 0, 0, 0.4);
+  }
+
+  40% {
+    box-shadow: 0 0 30px 12px rgba(81, 225, 237, 1), 0 0 60px 22px rgba(0, 180, 220, 0.5), inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  60% {
+    box-shadow: 0 0 22px 8px rgba(81, 225, 237, 0.85), 0 0 40px 14px rgba(0, 200, 230, 0.4), inset -2px -2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  100% {
+    box-shadow: 0 0 8px 2px rgba(81, 225, 237, 0.3), inset -2px -2px 5px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .innerReflection {
@@ -89,14 +130,14 @@
 .screenBorder {
   background: #dedede;
   border: 4px solid #333;
-  border-radius: 10px 10px 10px 45px;
-  padding: 25px;
+  border-radius: 10px 10px 10px 40px;
+  padding: 18px;
   box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.6), inset 0 -5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .screenGlass {
   background: #222;
-  height: 350px;
+  height: 260px;
   border: 3px solid #555;
   border-radius: 8px;
   display: flex;
@@ -125,19 +166,31 @@
   background: #c00d1c;
   border: 3px solid #333;
   border-radius: 50%;
-  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3), 0 0 5px rgba(192, 13, 28, 0.5);
+  animation: redBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes redBlink {
+
+  0%,
+  100% {
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3), 0 0 4px rgba(238, 7, 7, 0.3);
+  }
+
+  50% {
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3), 0 0 14px 5px rgba(241, 8, 8, 0.95);
+  }
 }
 
 .speakerGrill {
-  width: 60px;
-  height: 8px;
-  background: repeating-linear-gradient(
-    90deg,
-    #333,
-    #333 3px,
-    transparent 3px,
-    transparent 6px
-  );
+  width: 70px;
+  height: 25px;
+  background: repeating-linear-gradient(180deg,
+      #333,
+      #333 2px,
+      transparent 2px,
+      transparent 5px,
+      #333 5px,
+      #333 7px);
   border-radius: 4px;
 }
 
@@ -179,79 +232,130 @@
   background: #3298cb;
 }
 
-.dPad {
-  width: 50px;
-  height: 50px;
-  background: #222;
-  border: 3px solid #333;
-  border-radius: 6px;
+/* D-PAD plus/cross shape */
+.dPadPlus {
+  position: relative;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.4);
 }
 
-.dPadCross {
-  width: 30px;
-  height: 30px;
-  background:
-    linear-gradient(90deg, #555 35%, transparent 35%, transparent 65%, #555 65%),
-    linear-gradient(0deg, #555 35%, transparent 35%, transparent 65%, #555 65%);
-  border-radius: 2px;
+/* Horizontal bar */
+.dPadH {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 18px;
+  background: #1a1a1a;
+  border-top: 2px solid #666;
+  border-bottom: 2px solid #666;
+  border-left: 3px solid #777;
+  border-right: 3px solid #777;
+  border-radius: 4px;
+}
+
+/* Vertical bar */
+.dPadV {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 56px;
+  background: #1a1a1a;
+  border-top: 3px solid #777;
+  border-bottom: 3px solid #777;
+  border-left: 2px solid #666;
+  border-right: 2px solid #666;
+  border-radius: 4px;
 }
 
 /* Green Status Display */
 .greenScreenLeft {
-  background: #51ae5f;
+  background: linear-gradient(90deg, #3d9b49, #51ae5f, #3d9b49);
   border: 3px solid #333;
-  height: 45px;
-  padding: 8px 12px;
+  height: 44px;
+  padding: 6px 14px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+  font-weight: 900;
   color: #000;
   font-size: 14px;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.06em;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 0 6px rgba(80, 200, 80, 0.3);
+  border-radius: 5px;
+  transition: background 0.2s ease;
+  user-select: none;
+}
+
+.greenScreenLeft:hover {
+  background: linear-gradient(90deg, #2e7d35, #3d9b49, #2e7d35);
+}
+
+/* Green bar when guidelines are actively showing */
+.greenBarActive {
+  background: linear-gradient(90deg, #1e6b28, #2e8c38, #1e6b28) !important;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 0 10px rgba(50, 220, 50, 0.4) !important;
+}
+
+.greenBarText {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.greenBarHint {
+  font-size: 10px;
+  opacity: 0.75;
+  letter-spacing: 0.04em;
 }
 
 /* ===== HINGE ===== */
 .hinge {
-  width: 65px;
-  height: 620px;
-  background: linear-gradient(
-    to right,
-    #8b0000 0%,
-    #a01022 25%,
-    #c00d1c 50%,
-    #a01022 75%,
-    #8b0000 100%
-  );
+  width: 52px;
+  height: 490px;
+  /* shorter so bottom aligns with the panels */
+  background: linear-gradient(to right,
+      #8b0000 0%,
+      #a01022 25%,
+      #c00d1c 50%,
+      #a01022 75%,
+      #8b0000 100%);
   border: 5px solid #333;
   position: relative;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
   z-index: 5;
+  transition: background 0.4s ease;
 }
 
 /* ===== RIGHT PANEL ===== */
 .rightPanel {
-  width: 500px;
-  height: 620px;
+  width: 460px;
+  height: 570px;
   border-radius: 0 20px 20px 0;
   border-left: none;
-  clip-path: polygon(0 0, 40% 0, 100% 15%, 100% 100%, 0 100%);
-  padding: 110px 40px 40px 40px;
+  /* Staircase top: flat → diagonal drop → flat (matches drawing) */
+  clip-path: polygon(0 0, 25% 0, 60% 12%, 100% 12%, 100% 100%, 0 100%);
+  padding: 75px 38px 30px 32px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
   transform: rotateY(-10deg) rotateX(-5deg);
   transform-style: preserve-3d;
-  transition: transform 0.5s ease;  position: relative;
-  z-index: 5;}
+  transition: background 0.4s ease, transform 0.5s ease;
+  position: relative;
+  z-index: 5;
+}
 
 .rightPanel:hover {
-  transform: rotateY(-14deg) rotateX(-6deg);
+  /* hover tilt disabled */
+  transform: unset;
 }
 
 /* Info Display */
@@ -259,12 +363,12 @@
   background: #222;
   border: 3px solid #333;
   border-radius: 6px;
-  padding: 12px;
+  padding: 10px 12px;
   color: #51ae5f;
   font-family: 'Courier New', Courier, monospace;
   font-size: 13px;
-  height: 85px;
-  overflow-y: auto;
+  height: auto;
+  overflow: visible;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
@@ -311,6 +415,43 @@
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+.blueKeyActive {
+  background: #1a6fa0;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 8px rgba(50, 152, 203, 0.8);
+  transform: translateY(1px);
+}
+
+/* Pill hover effects (red/blue action buttons) */
+.pill {
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.pill:hover {
+  filter: brightness(1.3);
+  transform: scale(1.08);
+}
+
+.pill:active {
+  transform: scale(0.95) translateY(2px);
+}
+
+/* FAQ Row in descBox */
+.faqRow {
+  cursor: pointer;
+  padding: 3px 0;
+  border-bottom: 1px solid #333;
+  font-size: 10.5px;
+  font-family: 'Courier New', Courier, monospace;
+  transition: color 0.15s, padding-left 0.15s;
+  line-height: 1.4;
+}
+
+.faqRow:hover {
+  padding-left: 6px;
+  color: #aaff44 !important;
+}
+
 /* Bottom Controls */
 .bottomControlsRight {
   display: flex;
@@ -319,32 +460,59 @@
   flex: 1;
 }
 
-.whiteInputBlanks {
-  display: flex;
-  gap: 10px;
-}
-
-.whiteBox {
-  flex: 1;
-  background: #f5f5f5;
-  border: 3px solid #333;
-  height: 32px;
+/* Right panel bottom button row */
+.rightPanelBtns {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
-  font-weight: bold;
-  color: #000;
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6), inset 0 -2px 3px rgba(0, 0, 0, 0.2);
+  gap: 260px;
+}
+
+/* Yellow glowing round button on the left */
+.yellowGlowBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffe066, #d4a000);
+  border: 3px solid #8a6500;
+  box-shadow: 0 0 10px 3px rgba(255, 210, 0, 0.6), inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  animation: yellowPulse 2s ease-in-out infinite;
+}
+
+@keyframes yellowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px 2px rgba(255, 200, 0, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 18px 6px rgba(255, 210, 0, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Two small grey pill buttons on the right */
+.greyPillGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.greyPill {
+  width: 70px;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #aaa, #777);
+  border: 2px solid #444;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .descBox {
   background: #222;
-  color: #f5f5f5;
-  padding: 12px;
+  color: #00ff41;
+  padding: 8px 10px;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
+  font-size: 10.5px;
   flex: 1;
   border-radius: 6px;
   border: 3px solid #333;
@@ -354,39 +522,63 @@
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .leftPanel {
-    width: 350px;
-    height: 480px;
-    padding: 20px;
+    width: 400px;
+    height: 520px;
+    padding: 16px;
   }
 
   .rightPanel {
-    width: 320px;
-    height: 420px;
-    padding: 70px 20px 20px 20px;
+    width: 360px;
+    height: 450px;
+    padding: 75px 25px 25px 25px;
   }
 
   .hinge {
     width: 40px;
-    height: 420px;
-  }
-
-  .screenBorder {
-    padding: 20px;
+    height: 450px;
   }
 
   .screenGlass {
-    height: 150px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .leftPanel {
+    width: 320px;
+    height: 460px;
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .rightPanel {
+    width: 280px;
+    height: 400px;
+    padding: 65px 18px 18px 18px;
+  }
+
+  .hinge {
+    width: 35px;
+    height: 400px;
+  }
+
+  .screenBorder {
+    padding: 14px;
+  }
+
+  .screenGlass {
+    height: 190px;
   }
 
   .bigBlueLight {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
   }
 
   .topLights {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 }
 
@@ -534,6 +726,7 @@
       transform: translateY(100px);
       opacity: 0;
     }
+
     to {
       transform: translateY(0);
       opacity: 1;
