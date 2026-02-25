@@ -1,0 +1,212 @@
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import styles from './PokemonLoader.module.css';
+
+interface PokemonLoaderProps {
+  onSelect: (type: "fire" | "water" | "grass") => void;
+}
+
+export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
+  const [stage, setStage] = useState<'intro' | 'selection'>('intro');
+  const [currentMessageIdx, setCurrentMessageIdx] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  const messages = [
+    "Hello, there! My name is Professor Oak.",
+    "Welcome to Code Uncode 2026!!!",
+    "Before we begin, please choose a companion to set your journey's theme."
+  ];
+
+  const currentMessage = messages[currentMessageIdx];
+
+  // Typewriter effect
+  useEffect(() => {
+    if (stage !== 'intro' || currentMessageIdx >= messages.length) return;
+
+    let charIndex = 0;
+    setDisplayedText('');
+    setIsTypingComplete(false);
+
+    const typeInterval = setInterval(() => {
+      if (charIndex < currentMessage.length) {
+        setDisplayedText(prev => prev + currentMessage[charIndex]);
+        charIndex++;
+      } else {
+        setIsTypingComplete(true);
+        clearInterval(typeInterval);
+      }
+    }, 50); // Typewriter speed
+
+    return () => clearInterval(typeInterval);
+  }, [currentMessageIdx, stage, currentMessage]);
+
+  // Auto-advance to next message
+  useEffect(() => {
+    if (!isTypingComplete || stage !== 'intro') return;
+
+    const timer = setTimeout(() => {
+      if (currentMessageIdx < messages.length - 1) {
+        setCurrentMessageIdx(prev => prev + 1);
+      } else {
+        // Move to stage 2 after last message
+        setStage('selection');
+      }
+    }, 2000); // 2 second delay
+
+    return () => clearTimeout(timer);
+  }, [isTypingComplete, currentMessageIdx, stage]);
+
+  const handleStarterSelect = (type: "fire" | "water" | "grass") => {
+    // Trigger fade out animation then call parent handler
+    setTimeout(() => {
+      onSelect(type);
+    }, 300);
+  };
+
+  return (
+    <div className={styles.loaderContainer}>
+      <AnimatePresence mode="wait">
+        {stage === 'intro' ? (
+          <motion.div
+            key="intro"
+            className={styles.introStage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Background */}
+            <div className={styles.introBackground}>
+              <img src="/loader/background.png" alt="Intro Background" className={styles.bgImage} />
+            </div>
+
+            {/* Pokedex-style container */}
+            <div className={styles.pokedexContainer}>
+              {/* Red top border accent */}
+              <div className={styles.pokedexTop} />
+
+              {/* Professor Oak and Platform */}
+              <div className={styles.professorSection}>
+                <img src="/loader/professoroak.png" alt="Professor Oak" className={styles.professorOak} />
+                <div className={styles.platform}>
+                  <img src="/loader/standing.png" alt="Platform" className={styles.standing} />
+                </div>
+              </div>
+
+              {/* Text Box - Glass Morphism */}
+              <motion.div
+                className={styles.textBox}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <div className={styles.textContent}>
+                  <p className={styles.message}>{displayedText}</p>
+                  {!isTypingComplete && <span className={styles.cursor}>▮</span>}
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="selection"
+            className={styles.selectionStage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Background */}
+            <div className={styles.selectionBackground}>
+              <img src="/loader/gamebg.png" alt="Game Background" className={styles.bgImage} />
+            </div>
+
+            <motion.div
+              className={styles.selectionPanel}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.15 }}
+            >
+              <div className={styles.selectionLayout}>
+                <div className={styles.cardsContainer}>
+                  <motion.button
+                    className={`${styles.starterCard} ${styles.fireCard}`}
+                    onClick={() => handleStarterSelect('fire')}
+                    initial={{ opacity: 0, scale: 0.88 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.45, delay: 0.25 }}
+                    whileHover={{ scale: 1.03, y: -4 }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    <div className={styles.cardBackground}>
+                      <img src="/loader/redbg.png" alt="Fire Background" />
+                    </div>
+                    <div className={styles.pokemonImage}>
+                      <img src="/loader/redpokemon.png" alt="Charmander" />
+                    </div>
+                    <div className={styles.pokeball}>
+                      <img src="/loader/ball.png" alt="Pokeball" />
+                    </div>
+                  </motion.button>
+
+                  <motion.button
+                    className={`${styles.starterCard} ${styles.waterCard}`}
+                    onClick={() => handleStarterSelect('water')}
+                    initial={{ opacity: 0, scale: 0.88 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.45, delay: 0.32 }}
+                    whileHover={{ scale: 1.03, y: -4 }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    <div className={styles.cardBackground}>
+                      <img src="/loader/bluebg.png" alt="Water Background" />
+                    </div>
+                    <div className={styles.pokemonImage}>
+                      <img src="/loader/bluepokemon.png" alt="Squirtle" />
+                    </div>
+                    <div className={styles.pokeball}>
+                      <img src="/loader/ball.png" alt="Pokeball" />
+                    </div>
+                  </motion.button>
+
+                  <motion.button
+                    className={`${styles.starterCard} ${styles.grassCard}`}
+                    onClick={() => handleStarterSelect('grass')}
+                    initial={{ opacity: 0, scale: 0.88 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.45, delay: 0.39 }}
+                    whileHover={{ scale: 1.03, y: -4 }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    <div className={styles.cardBackground}>
+                      <img src="/loader/greenbg.png" alt="Grass Background" />
+                    </div>
+                    <div className={styles.pokemonImage}>
+                      <img src="/loader/greenpokemon.png" alt="Bulbasaur" />
+                    </div>
+                    <div className={styles.pokeball}>
+                      <img src="/loader/ball.png" alt="Pokeball" />
+                    </div>
+                  </motion.button>
+                </div>
+
+                <motion.div
+                  className={styles.oakColumn}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.32 }}
+                >
+                  <img src="/loader/professoroak.png" alt="Professor Oak" className={styles.selectionOak} />
+                  <img src="/loader/standing.png" alt="Oak Platform" className={styles.selectionOakPlatform} />
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

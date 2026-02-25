@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Parallax from '@/components/Parallax.tsx';
-import StarterSelection from '@/components/StarterSelection.tsx';
+import PokemonLoader from '@/components/PokemonLoader.tsx';
 import KantoPokemonQuiz from '@/components/KantoPokemonQuiz.tsx';
 import AboutPokedex from '@/components/AboutPokedex.tsx';
 import AboutCodeUncode from '@/components/AboutCodeUncode.tsx';
@@ -49,7 +49,7 @@ function Home() {
 
   return (
     <>
-      {!selectedType && <StarterSelection onSelect={handleTypeSelect} />}
+      {!selectedType && <PokemonLoader onSelect={handleTypeSelect} />}
       {selectedType && (
         <>
           <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />

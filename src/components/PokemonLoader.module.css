@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.loaderContainer {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #000;
+}
+
+/* ===== INTRO STAGE ===== */
+.introStage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.introBackground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.bgImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pokedexContainer {
+    position: relative;
+    z-index: 10;
+    width: min(90%, 700px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.pokedexTop {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #ff0000 0%, #ff4444 50%, #ff0000 100%);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+}
+
+.professorSection {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+.professorOak {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.platform {
+    width: 180px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.standing {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Text Box - Glass Morphism */
+.textBox {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 0 60px rgba(255, 255, 255, 0.05);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+}
+
+.message {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(0.6rem, 2vw, 1rem);
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin: 0;
+}
+
+.cursor {
+    display: inline-block;
+    font-family: 'Press Start 2P', cursive;
+    color: #ffff00;
+    animation: blink 0.7s infinite;
+    margin-left: 0.2rem;
+}
+
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+/* ===== SELECTION STAGE ===== */
+.selectionStage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2.2vw;
+}
+
+.selectionBackground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.selectionPanel {
+    position: relative;
+    z-index: 10;
+    width: min(92vw, 1280px);
+    height: min(78vh, 620px);
+    background: #d2d2d2;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+    padding: clamp(18px, 2.2vw, 30px);
+}
+
+.selectionLayout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(16px, 3vw, 42px);
+}
+
+.cardsContainer {
+    display: flex;
+    gap: clamp(10px, 1.2vw, 16px);
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Starter Card Base */
+.starterCard {
+    position: relative;
+    width: clamp(140px, 16vw, 220px);
+    height: clamp(260px, 64vh, 560px);
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(10px, 1vw, 16px);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.starterCard:focus {
+    outline: none;
+}
+
+.cardBackground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 32px;
+    z-index: 1;
+}
+
+.cardBackground img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pokemonImage {
+    position: relative;
+    z-index: 3;
+    width: clamp(92px, 11vw, 170px);
+    height: clamp(92px, 11vw, 170px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: clamp(32px, 7vh, 96px);
+}
+
+.pokemonImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.pokeball {
+    position: relative;
+    z-index: 3;
+    width: clamp(54px, 4.8vw, 84px);
+    height: clamp(54px, 4.8vw, 84px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: clamp(6px, 1vh, 14px);
+}
+
+.pokeball img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: rotatePokeball 2s linear infinite;
+}
+
+@keyframes rotatePokeball {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+.oakColumn {
+    width: clamp(220px, 24vw, 360px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.selectionOak {
+    width: clamp(140px, 16vw, 245px);
+    height: auto;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.selectionOakPlatform {
+    width: clamp(120px, 13.5vw, 210px);
+    height: auto;
+    object-fit: contain;
+    margin-top: -10px;
+}
+
+/* Theme-specific styles */
+.fireCard {
+    border: 3px solid #ff4444;
+}
+
+.fireCard:hover {
+    box-shadow: 0 0 22px rgba(255, 68, 68, 0.35);
+}
+
+.waterCard {
+    border: 3px solid #4488ff;
+}
+
+.waterCard:hover {
+    box-shadow: 0 0 22px rgba(68, 136, 255, 0.35);
+}
+
+.grassCard {
+    border: 3px solid #44ff44;
+}
+
+.grassCard:hover {
+    box-shadow: 0 0 22px rgba(68, 255, 68, 0.35);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pokedexContainer {
+        width: 95%;
+        gap: 1rem;
+    }
+
+    .message {
+        font-size: 0.7rem;
+    }
+
+    .selectionPanel {
+        width: min(95vw, 560px);
+        height: auto;
+        min-height: 86vh;
+        padding: 14px;
+    }
+
+    .selectionLayout {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 14px;
+    }
+
+    .cardsContainer {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .starterCard {
+        width: clamp(94px, 27vw, 136px);
+        height: clamp(220px, 48vh, 350px);
+        border-radius: 24px;
+        padding: 8px;
+    }
+
+    .cardBackground {
+        border-radius: 24px;
+    }
+
+    .pokemonImage {
+        width: clamp(66px, 16vw, 92px);
+        height: clamp(66px, 16vw, 92px);
+        margin-top: clamp(18px, 4vh, 34px);
+    }
+
+    .pokeball {
+        width: clamp(42px, 9vw, 56px);
+        height: clamp(42px, 9vw, 56px);
+    }
+
+    .oakColumn {
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        gap: 4px;
+        padding-bottom: 4px;
+    }
+
+    .selectionOak {
+        width: clamp(120px, 34vw, 170px);
+    }
+
+    .selectionOakPlatform {
+        width: clamp(106px, 30vw, 146px);
+        margin-top: -8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .professorOak {
+        width: 120px;
+    }
+
+    .message {
+        font-size: 0.6rem;
+    }
+
+    .selectionPanel {
+        min-height: 88vh;
+    }
+
+    .cardsContainer {
+        gap: 8px;
+    }
+
+    .starterCard {
+        width: clamp(82px, 28vw, 106px);
+        height: clamp(180px, 42vh, 260px);
+        border-radius: 18px;
+    }
+
+    .cardBackground {
+        border-radius: 18px;
+    }
+
+    .pokemonImage {
+        width: clamp(52px, 16vw, 70px);
+        height: clamp(52px, 16vw, 70px);
+    }
+
+    .selectionOak {
+        width: clamp(98px, 31vw, 140px);
+    }
+
+    .selectionOakPlatform {
+        width: clamp(82px, 26vw, 122px);
+    }
+}
