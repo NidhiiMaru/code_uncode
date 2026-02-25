@@ -240,8 +240,8 @@
 .pokemonImage {
     position: relative;
     z-index: 3;
-    width: clamp(92px, 11vw, 170px);
-    height: clamp(92px, 11vw, 170px);
+    width: clamp(120px, 12.5vw, 300px);
+    height: clamp(120px, 12.5vw, 300px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -294,7 +294,7 @@
 }
 
 .selectionOak {
-    width: clamp(140px, 16vw, 245px);
+    width: clamp(195px, 40vw, 400px);
     height: auto;
     object-fit: contain;
     image-rendering: pixelated;
@@ -373,8 +373,8 @@
     }
 
     .pokemonImage {
-        width: clamp(66px, 16vw, 92px);
-        height: clamp(66px, 16vw, 92px);
+        width: clamp(96px, 28vw, 128px);
+        height: clamp(86px, 28vw, 128px);
         margin-top: clamp(18px, 4vh, 34px);
     }
 
@@ -392,7 +392,7 @@
     }
 
     .selectionOak {
-        width: clamp(120px, 34vw, 170px);
+        width: clamp(140px, 38vw, 200px);
     }
 
     .selectionOakPlatform {
@@ -429,12 +429,12 @@
     }
 
     .pokemonImage {
-        width: clamp(52px, 16vw, 70px);
-        height: clamp(52px, 16vw, 70px);
+        width: clamp(70px, 28vw, 92px);
+        height: clamp(70px, 28vw, 92px);
     }
 
     .selectionOak {
-        width: clamp(98px, 31vw, 140px);
+        width: clamp(116px, 34vw, 162px);
     }
 
     .selectionOakPlatform {
