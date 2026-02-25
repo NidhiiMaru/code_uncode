@@ -2,9 +2,27 @@ import React from 'react';
 import { Instagram, Linkedin, MessageCircle } from 'lucide-react'; // Using MessageCircle for Discord as a placeholder if Discord icon isn't directly available in standard Lucide set, or I can use an SVG. Actually Lucide has 'Disc' maybe? No, let's stick to standard names or SVGs if needed. Lucide doesn't have a Discord icon by default in all versions. I will use a simple SVG for Discord if needed, or just a generic icon. Wait, I can use `lucide-react` icons for now and maybe replace Discord with a custom SVG if `lucide-react` doesn't have it.
 import styles from './Footer.module.css';
 
-const Footer = () => {
+interface FooterProps {
+    type?: 'fire' | 'water' | 'grass';
+}
+
+const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
+    const themeClass =
+        type === 'water'
+            ? styles.footerWater
+            : type === 'grass'
+                ? styles.footerGrass
+                : styles.footerFire;
+
+    const pokestopImage =
+        type === 'fire'
+            ? '/footer/pokestop_red.png'
+            : type === 'grass'
+                ? '/footer/pokestop_green.png'
+                : '/footer/pokestop.png';
+
     return (
-        <footer className={styles.footer}>
+        <footer className={`${styles.footer} ${themeClass}`}>
             <div className={styles.contentWrapper}>
 
                 {/* Left Section: Snorlax & Socials */}
@@ -51,7 +69,7 @@ const Footer = () => {
                 <div className={styles.rightSection}>
                     <div className={styles.pokestopContainer}>
                         <div className={styles.pokestopInner}>
-                            <img src="/footer/pokestop.png" alt="Pokestop" className={styles.pokestopImg} />
+                            <img src={pokestopImage} alt="Pokestop" className={styles.pokestopImg} />
                         </div>
                         <div className={styles.mapContainer}>
                             <iframe

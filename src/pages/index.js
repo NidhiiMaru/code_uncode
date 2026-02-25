@@ -74,7 +74,7 @@ function Home() {
               <AboutPokedex type={selectedType} />
               <PrizesSection type={selectedType} />
               <KantoPokemonQuiz />
-              <Footer />
+              <Footer type={selectedType} />
             </div>
           </div>
         </>
