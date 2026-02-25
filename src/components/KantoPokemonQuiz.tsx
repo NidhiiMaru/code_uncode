@@ -19,6 +19,8 @@ export default function KantoPokemonQuiz() {
     const [gameOver, setGameOver] = useState(false);
 
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [isFetching, setIsFetching] = useState(false);
+    const [fetchError, setFetchError] = useState<string | null>(null);
 
     useEffect(() => { startNewGame(); }, []);
 
@@ -28,6 +30,7 @@ export default function KantoPokemonQuiz() {
         setScore(0);
         setCurrentIdx(0);
         setGameOver(false);
+        setFetchError(null);
         fetchPokemon(ids[0]);
     };
 
@@ -35,13 +38,28 @@ export default function KantoPokemonQuiz() {
         setUserInput('');
         setIsRevealed(false);
         setImageLoaded(false); // Reset image load state
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        const data = await res.json();
-        setPokemon({
-            id: data.id,
-            name: data.name,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
-        });
+        setFetchError(null);
+        setIsFetching(true);
+
+        try {
+            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, { cache: 'no-store' });
+            if (!res.ok) {
+                throw new Error(`API returned ${res.status}`);
+            }
+
+            const data = await res.json();
+            setPokemon({
+                id: data.id,
+                name: data.name,
+                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
+            });
+        } catch (error) {
+            console.error('Failed to fetch Pokemon:', error);
+            setPokemon(null);
+            setFetchError('Could not load Pokémon. Check your internet and try again.');
+        } finally {
+            setIsFetching(false);
+        }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -57,7 +75,12 @@ export default function KantoPokemonQuiz() {
         setTimeout(() => {
             if (currentIdx < 4) {
                 setCurrentIdx(prev => prev + 1);
-                fetchPokemon(questions[currentIdx + 1]);
+                const nextId = questions[currentIdx + 1];
+                if (typeof nextId === 'number') {
+                    fetchPokemon(nextId);
+                } else {
+                    setGameOver(true);
+                }
             } else {
                 setGameOver(true);
             }
@@ -106,9 +129,21 @@ export default function KantoPokemonQuiz() {
                     </AnimatePresence>
 
                     {/* Loading Spinner if image not ready */}
-                    {!imageLoaded && (
+                    {(isFetching || (pokemon && !imageLoaded)) && (
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                        </div>
+                    )}
+
+                    {fetchError && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center px-6">
+                            <p className="text-red-300 text-sm md:text-base font-semibold">{fetchError}</p>
+                            <button
+                                onClick={() => fetchPokemon(questions[currentIdx])}
+                                className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs tracking-wider uppercase"
+                            >
+                                Retry
+                            </button>
                         </div>
                     )}
 

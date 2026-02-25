@@ -212,9 +212,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: clamp(10px, 1vw, 16px);
+    padding: 0;
     transition: all 0.3s ease;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+    box-shadow: none;
 }
 
 .starterCard:focus {
@@ -240,12 +240,12 @@
 .pokemonImage {
     position: relative;
     z-index: 3;
-    width: clamp(120px, 12.5vw, 300px);
-    height: clamp(120px, 12.5vw, 300px);
+    width: clamp(148px, 15vw, 360px);
+    height: clamp(148px, 15vw, 360px);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: clamp(32px, 7vh, 96px);
+    margin-top: clamp(26px, 6vh, 82px);
 }
 
 .pokemonImage img {
@@ -253,6 +253,9 @@
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transform: scale(1.95);
+    transform-origin: center;
+    image-rendering: pixelated; 
 }
 
 .pokeball {
@@ -294,7 +297,7 @@
 }
 
 .selectionOak {
-    width: clamp(195px, 40vw, 400px);
+    width: clamp(182px, 36vw, 360px);
     height: auto;
     object-fit: contain;
     image-rendering: pixelated;
@@ -309,7 +312,7 @@
 
 /* Theme-specific styles */
 .fireCard {
-    border: 3px solid #ff4444;
+    border: none;
 }
 
 .fireCard:hover {
@@ -317,7 +320,7 @@
 }
 
 .waterCard {
-    border: 3px solid #4488ff;
+    border: none;
 }
 
 .waterCard:hover {
@@ -325,7 +328,7 @@
 }
 
 .grassCard {
-    border: 3px solid #44ff44;
+    border: none;
 }
 
 .grassCard:hover {
@@ -365,7 +368,7 @@
         width: clamp(94px, 27vw, 136px);
         height: clamp(220px, 48vh, 350px);
         border-radius: 24px;
-        padding: 8px;
+        padding: 0;
     }
 
     .cardBackground {
@@ -373,9 +376,9 @@
     }
 
     .pokemonImage {
-        width: clamp(96px, 28vw, 128px);
-        height: clamp(86px, 28vw, 128px);
-        margin-top: clamp(18px, 4vh, 34px);
+        width: clamp(114px, 34vw, 166px);
+        height: clamp(114px, 34vw, 166px);
+        margin-top: clamp(14px, 3vh, 28px);
     }
 
     .pokeball {
@@ -392,7 +395,7 @@
     }
 
     .selectionOak {
-        width: clamp(140px, 38vw, 200px);
+        width: clamp(132px, 34vw, 186px);
     }
 
     .selectionOakPlatform {
@@ -429,12 +432,12 @@
     }
 
     .pokemonImage {
-        width: clamp(70px, 28vw, 92px);
-        height: clamp(70px, 28vw, 92px);
+        width: clamp(88px, 34vw, 116px);
+        height: clamp(88px, 34vw, 116px);
     }
 
     .selectionOak {
-        width: clamp(116px, 34vw, 162px);
+        width: clamp(108px, 30vw, 150px);
     }
 
     .selectionOakPlatform {
