@@ -83,11 +83,7 @@
 }
 
 .pokedexTop {
-    width: 100%;
-    height: 8px;
-    background: linear-gradient(90deg, #ff0000 0%, #ff4444 50%, #ff0000 100%);
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    display: none;
 }
 
 .professorSection {
@@ -133,15 +129,15 @@
 /* Text Box - Glass Morphism */
 .textBox {
     width: 100%;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.15);
+    padding: 2.4rem 2.2rem;
+    background: rgba(71, 71, 71, 0.35);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(170, 170, 170, 0.45);
     border-radius: 16px;
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 0 60px rgba(255, 255, 255, 0.05);
-    min-height: 120px;
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 0 60px rgba(228, 227, 227, 0.08);
+    min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -205,14 +201,15 @@
 }
 
 .selectionPanel {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 10;
     width: 100vw;
     height: 100vh;
     background: #d2d2d2;
     border: none;
     box-shadow: none;
-    padding: clamp(18px, 2.2vw, 30px);
+    padding: 0;
 }
 
 .selectionLayout {
@@ -232,6 +229,7 @@
     width: 100%;
     height: 100%;
     min-width: 0;
+    overflow: hidden;
 }
 
 /* Starter Card Base */

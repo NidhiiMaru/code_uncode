@@ -20,28 +20,29 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
     "Before we begin, please choose a companion to set your journey's theme."
   ];
 
-  const currentMessage = messages[currentMessageIdx];
+  const currentMessage = messages[currentMessageIdx] ?? '';
+
+  useEffect(() => {
+    if (stage !== 'intro') return;
+    setDisplayedText('');
+    setIsTypingComplete(false);
+  }, [currentMessageIdx, stage]);
 
   // Typewriter effect
   useEffect(() => {
-    if (stage !== 'intro' || currentMessageIdx >= messages.length) return;
+    if (stage !== 'intro' || !currentMessage) return;
 
-    let charIndex = 0;
-    setDisplayedText('');
-    setIsTypingComplete(false);
+    if (displayedText.length < currentMessage.length) {
+      const timer = setTimeout(() => {
+        const nextLength = displayedText.length + 1;
+        setDisplayedText(currentMessage.slice(0, nextLength));
+      }, 50);
 
-    const typeInterval = setInterval(() => {
-      if (charIndex < currentMessage.length) {
-        setDisplayedText(prev => prev + currentMessage[charIndex]);
-        charIndex++;
-      } else {
-        setIsTypingComplete(true);
-        clearInterval(typeInterval);
-      }
-    }, 50); // Typewriter speed
+      return () => clearTimeout(timer);
+    }
 
-    return () => clearInterval(typeInterval);
-  }, [currentMessageIdx, stage, currentMessage]);
+    setIsTypingComplete(true);
+  }, [stage, currentMessage, displayedText]);
 
   // Auto-advance to next message
   useEffect(() => {
