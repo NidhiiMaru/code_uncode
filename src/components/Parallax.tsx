@@ -139,7 +139,7 @@ export default function Parallax({ type }: ParallaxProps) {
               <div className={styles.marqueeContent}>
                 {[...Array(6)].map((_, index) => (
                   <div key={index} className={styles.marqueeTrack}>
-                    <img src="/logos/csispit.png" alt="CSI SPIT" className={styles.partnerLogo} />
+                    <img src="/logos/ramanujan.png" alt="Ramanujan" className={styles.partnerLogo} />
                     <img src="/logos/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
                     <img src="/logos/sdc.png" alt="SDC" className={styles.partnerLogo} />
                     <img src="/logos/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
