@@ -1,11 +1,42 @@
 .timelineSection {
   position: relative;
-  min-height: 350vh;
+  min-height: 480vh;
+  /* Increased from 350vh */
   padding: 10rem 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.grassBackground {
+  background-image: url('/timeline/grass_bg.png');
+
+  /* ---- BACKGROUND CONTROLS ---- */
+  /* 1) Adjust the size here: [width] [height] */
+  background-size: 100% 100%;
+
+  /* 2) Adjust the position here to shift it downwards */
+  /* Format: [horizontal] [vertical] */
+  /* Increase the '150px' value to shift the image further down */
+  background-position: center 360px;
+
+  background-repeat: no-repeat;
+}
+
+.waterBackground {
+  background-image: url('/timeline/water_bg.png');
+
+  /* ---- BACKGROUND CONTROLS ---- */
+  /* 1) Adjust the size here: [width] [height] */
+  background-size: 100% 100%;
+
+  /* 2) Adjust the position here to shift it downwards */
+  /* Format: [horizontal] [vertical] */
+  /* Increase the '360px' value to shift the image further down */
+  background-position: center 360px;
+
+  background-repeat: no-repeat;
 }
 
 .timelineContainer {
@@ -42,14 +73,15 @@
 .timelineWrapper {
   position: relative;
   width: 100%;
-  min-height: 300vh;
+  min-height: 430vh;
+  /* Increased from 300vh */
   margin: 4rem 0;
 }
 
 /* SVG Path styling */
 .timelineSvg {
   position: absolute;
-  left: 50%;
+  left: 55%;
   top: 0;
   transform: translateX(-50%);
   width: 150px;
@@ -80,7 +112,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 300vh;
+  min-height: 430vh;
+  /* Increased from 300vh */
 }
 
 .eventRow {
@@ -159,37 +192,56 @@
 /* Event Cards */
 .eventCard {
   position: relative;
-  background: rgba(20, 20, 30, 0.85);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 450px;
+  background: rgba(20, 20, 30, 0.15);
+  /* More transparent */
+  /* Reduced opacity for better glassmorphism */
+  backdrop-filter: blur(16px);
+  /* Increased blur */
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Thinner, lighter border */
+  border-radius: 4px;
+  /* Changed from 16px to 4px for rectangular look */
+  padding: 1rem;
+  /* Slightly tighter padding */
+  max-width: 240px;
+  /* Made even smaller to prevent overflow issues visually */
   width: 90%;
-  margin: 0 3rem;
+  margin: 0 4rem;
+  /* Increased margin to push further to edges */
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.5),
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    /* Specular glass shadow */
     0 0 20px rgba(var(--theme-rgb), 0.1);
   transition: all 0.3s ease;
+
+  /* Text alignment and overflow handling */
+  text-align: center;
+  word-wrap: break-word;
+  /* Ensure long words break instead of overflowing */
+  overflow: hidden;
+  /* Prevent content from slipping outside the box */
 }
 
 .eventRow.left .eventCard {
   margin-left: auto;
-  margin-right: calc(50% + 4rem);
-  text-align: right;
+  margin-right: calc(60%);
+  /* Pushed even further left */
+  /* Pushed further left */
 }
 
 .eventRow.right .eventCard {
   margin-right: auto;
-  margin-left: calc(50% + 4rem);
-  text-align: left;
+  margin-left: calc(65%);
+  /* Pushed even further right */
+  /* Pushed further right */
 }
 
 .eventCard:hover {
   border-color: rgba(var(--theme-rgb), 0.5);
   box-shadow:
     0 15px 50px rgba(0, 0, 0, 0.7),
-    0 0 40px rgba(var(--theme-rgb), 0.3);
+    0 0 40px rgba(var(--theme-rgb), 0.6);
   transform: translateY(-5px);
 }
 
@@ -206,10 +258,11 @@
 }
 
 .cardTitle {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  /* Made text smaller */
   font-weight: 800;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.4;
@@ -218,9 +271,10 @@
 }
 
 .cardDescription {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  /* Made text smaller */
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
+  line-height: 1.5;
   font-weight: 300;
 }
 
@@ -235,12 +289,14 @@
 }
 
 .eventRow.left .cardConnector {
-  right: -60px;
+  right: -95px;
+  /* Adjusted for new margins */
   background: linear-gradient(to left, rgba(var(--theme-rgb), 0.3), transparent);
 }
 
 .eventRow.right .cardConnector {
-  left: -60px;
+  left: -95px;
+  /* Adjusted for new margins */
   background: linear-gradient(to right, rgba(var(--theme-rgb), 0.3), transparent);
 }
 

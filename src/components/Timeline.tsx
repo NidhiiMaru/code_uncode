@@ -9,10 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface TimelineEvent {
   id: number;
-  date: string;
   title: string;
   description: string;
   position: 'left' | 'right';
+  invisible?: boolean;
 }
 
 interface TimelineProps {
@@ -21,6 +21,7 @@ interface TimelineProps {
 
 const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   const timelineRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const progressLineRef = useRef<SVGPathElement>(null);
   const ashRef = useRef<SVGImageElement>(null);
@@ -44,59 +45,58 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   const events: TimelineEvent[] = [
     {
       id: 1,
-      date: '15th February (Saturday)',
       title: 'REGISTRATION BEGINS',
-      description: 'Start of Registrations for Code Uncode 2026 on Unstop',
-      position: 'right'
+      description: 'Code Uncode 2026 Registration on Unstop',
+      position: 'left'
     },
     {
       id: 2,
-      date: '16th February (Sunday)',
       title: 'PRELIMS',
-      description: 'Online | 5:05 PM - 7:05 PM. The first hurdle in your journey to become a champion.',
-      position: 'left'
+      description: 'Online Round with all participants pan-India',
+      position: 'right'
     },
     {
       id: 3,
-      date: '18th February (Tuesday)',
       title: 'REGIONALS SHORTLISTING',
-      description: 'Calls for Regionals will be announced based on rank and preference across colleges',
-      position: 'right'
+      description: 'Announcements across colleges',
+      position: 'left'
     },
     {
       id: 4,
-      date: '19th February (Wednesday)',
       title: 'REGIONAL - COEP',
-      description: 'First Regional Round at COEP.',
-      position: 'left'
+      description: 'First Regional Round',
+      position: 'right'
     },
     {
       id: 5,
-      date: '20th February (Thursday)',
       title: 'REGIONAL - SPIT',
-      description: 'Second Regional Round at Sardar Patel Institute of Technology.',
-      position: 'right'
+      description: 'Second Regional Round',
+      position: 'left'
     },
     {
       id: 6,
-      date: '21th February (Friday)',
       title: 'REGIONAL - DJ Sanghvi',
-      description: 'Third Regional Round at Dwarkadas J. Sanghvi College of Engineering.',
-      position: 'left'
-    },
-    {
-      id: 7,
-      date: '22th February (Saturday)',
-      title: 'Shortlisting for the Finals',
-      description: 'Top 30 participants from regionals compete.',
+      description: 'Third Regional Round',
       position: 'right'
     },
     {
-      id: 8,
-      date: '23rd February (Sunday)',
-      title: 'FINALS',
-      description: 'The Ultimate Showdown at Dwarkadas J. Sanghvi College of Engineering. Top 30 participants from regionals compete.',
+      id: 7,
+      title: 'Shortlisting for the Finals',
+      description: 'Top 30 participants compete',
       position: 'left'
+    },
+    {
+      id: 8,
+      title: 'FINALS',
+      description: 'The Ultimate Showdown at DJ Sanghvi',
+      position: 'right'
+    },
+    {
+      id: 9,
+      title: '',
+      description: '',
+      position: 'left',
+      invisible: true
     }
   ];
 
@@ -118,7 +118,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
         strokeDashoffset: 0,
         ease: 'none',
         scrollTrigger: {
-          trigger: timelineRef.current,
+          trigger: wrapperRef.current,
           start: 'top center',
           end: 'bottom center',
           scrub: 1,
@@ -156,8 +156,8 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
               duration: 0.8,
               scrollTrigger: {
                 trigger: card,
-                start: 'top 80%',
-                end: 'top 40%',
+                start: 'top 95%', // Starts earlier when scrolling down
+                end: 'top 55%',
                 scrub: 1,
               }
             }
@@ -171,7 +171,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
 
   return (
     <section
-      className={styles.timelineSection}
+      className={`${styles.timelineSection} ${(type === 'grass' || type === 'fire') ? styles.grassBackground : ''} ${type === 'water' ? styles.waterBackground : ''}`}
       ref={timelineRef}
       style={{
         '--theme-color': themeColor,
@@ -180,9 +180,9 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     >
       <div className={styles.timelineContainer}>
         <h2 className={styles.sectionTitle}>THE JOURNEY</h2>
-        <p className={styles.sectionSubtitle}>7 Days • 7 Challenges • 1 Ultimate Goal</p>
+        <p className={styles.sectionSubtitle}>The Path to your Victory</p>
 
-        <div className={styles.timelineWrapper}>
+        <div className={styles.timelineWrapper} ref={wrapperRef}>
           {/* SVG Path */}
           <svg className={styles.timelineSvg} viewBox="0 0 100 2000" preserveAspectRatio="xMidYMid meet">
             <defs>
@@ -255,8 +255,8 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
                 <div
                   className={styles.eventCard}
                   data-event-id={event.id}
+                  style={{ visibility: event.invisible ? 'hidden' : 'visible' }}
                 >
-                  <div className={styles.cardDate}>{event.date}</div>
                   <h3 className={styles.cardTitle}>{event.title}</h3>
                   <p className={styles.cardDescription}>{event.description}</p>
                 </div>
