@@ -102,6 +102,17 @@
     object-fit: contain;
     image-rendering: pixelated;
     filter: none;
+    animation: oakBounce 2.2s ease-in-out infinite;
+}
+
+@keyframes oakBounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-14px);
+    }
 }
 
 .platform {
