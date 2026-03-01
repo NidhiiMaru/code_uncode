@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './AboutPokedex.module.css';
 
 interface AboutPokedexProps {
@@ -99,6 +99,27 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
   const [screenMode, setScreenMode] = useState<ScreenMode>(null);
   const [isBlue, setIsBlue] = useState(false);
   const [brightness, setBrightness] = useState(1); // 1 = normal, 0.5 = dim, 1.5 = bright
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateIsMobile();
+    mediaQuery.addEventListener('change', updateIsMobile);
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateIsMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMobile && screenMode === null) {
+      setScreenMode({ type: 'faq', index: 0 });
+    }
+  }, [isMobile, screenMode]);
 
   // Derive activeIndex for FAQ highlighting compatibility
   const activeIndex = screenMode?.type === 'faq' ? screenMode.index : null;
@@ -265,7 +286,12 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
               />
             </div>
             {/* D-PAD: navigate FAQs up/down */}
-            <div className={styles.dPadPlus} title="Navigate FAQs">
+            <div
+              className={`${styles.dPadPlus} ${isMobile ? styles.dPadPlusHint : ''}`}
+              title="Navigate FAQs"
+              onClick={isMobile ? handleDPadDown : undefined}
+              style={isMobile ? { cursor: 'pointer' } : undefined}
+            >
               <div className={styles.dPadH} />
               <div className={styles.dPadV} />
               {/* Hit zones for up/down */}

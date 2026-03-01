@@ -242,6 +242,21 @@
   justify-content: center;
 }
 
+.dPadPlusHint {
+  animation: dPadGlowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dPadGlowPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 2px rgba(255, 230, 110, 0.35));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 10px rgba(255, 230, 110, 0.95));
+  }
+}
+
 /* Horizontal bar */
 .dPadH {
   position: absolute;
@@ -645,6 +660,14 @@
 
   .controlsRow {
     gap: 8px;
+  }
+
+  .dPadPlus {
+    transform: scale(1.08);
+  }
+
+  .dPadPlus>div[style*='position: absolute'] {
+    pointer-events: none;
   }
 
   .greenScreenLeft {

@@ -1,0 +1,68 @@
+.section {
+  width: 100%;
+  padding: 14px 0 10px;
+  overflow: hidden;
+}
+
+.title {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marqueeViewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: mobileMarquee 18s linear infinite;
+}
+
+.logoItem {
+  min-width: 140px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(10, 10, 10, 0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.logo {
+  width: 100%;
+  max-height: 38px;
+  object-fit: contain;
+}
+
+@keyframes mobileMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: 0.85rem;
+  }
+
+  .logoItem {
+    min-width: 122px;
+    height: 50px;
+    margin: 0 6px;
+  }
+}

@@ -11,7 +11,7 @@ import LiveRegi from '@/components/LiveRegi.tsx';
 
 import MusicPlayer from '@/components/MusicPlayer.tsx';
 import Footer from '@/components/Footer.tsx';
-import MobileHero from '@/components/MobileHero.tsx';
+import MobileSponsorsMarquee from '@/components/MobileSponsorsMarquee.tsx';
 
 const Parallax = dynamic(() => import('@/components/Parallax.tsx'), { ssr: false });
 
@@ -35,6 +35,12 @@ function Home() {
     if (selectedType === 'water') return '/parallax/parallax_water/water-bg.png';
     if (selectedType === 'grass') return '/parallax/parallax_grass/grassbg.png';
     return '';
+  };
+
+  const getMobileLandingImage = () => {
+    if (selectedType === 'fire') return '/mobile_landing_red.png';
+    if (selectedType === 'water') return '/mobile_landing_blue.png';
+    return '/mobile_landing_red.png';
   };
 
   // Apply global background to body
@@ -114,7 +120,16 @@ function Home() {
 
           <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />
           {isMobile ? (
-            <MobileHero type={selectedType} />
+            <>
+              <div style={{ width: '100%', lineHeight: 0, overflow: 'hidden' }}>
+                <img
+                  src={getMobileLandingImage()}
+                  alt={`Code UnCode ${selectedType} mobile landing`}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <MobileSponsorsMarquee type={selectedType} />
+            </>
           ) : (
             <Parallax type={selectedType} />
           )}
