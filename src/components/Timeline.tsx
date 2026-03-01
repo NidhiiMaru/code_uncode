@@ -46,7 +46,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     {
       id: 1,
       title: 'REGISTRATION BEGINS',
-      description: 'Code Uncode 2026 Registration on Unstop',
+      description: 'Code Uncode 2026 Registration begins on Unstop',
       position: 'left'
     },
     {
@@ -58,31 +58,31 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     {
       id: 3,
       title: 'REGIONALS SHORTLISTING',
-      description: 'Announcements across colleges',
+      description: 'Shortlisting for the Regionals based on Preferences and Ranks',
       position: 'left'
     },
     {
       id: 4,
       title: 'REGIONAL - COEP',
-      description: 'First Regional Round',
+      description: 'First Regional Round at COEP,Pune',
       position: 'right'
     },
     {
       id: 5,
       title: 'REGIONAL - SPIT',
-      description: 'Second Regional Round',
+      description: 'Second Regional Round at SPIT,Andheri',
       position: 'left'
     },
     {
       id: 6,
       title: 'REGIONAL - DJ Sanghvi',
-      description: 'Third Regional Round',
+      description: 'Third Regional Round held at the Home College',
       position: 'right'
     },
     {
       id: 7,
       title: 'Shortlisting for the Finals',
-      description: 'Top 30 participants compete',
+      description: 'Top 30 participants from each of the 3 Regionals Compete for the Championship',
       position: 'left'
     },
     {
@@ -141,8 +141,8 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
           ease: 'none',
           scrollTrigger: {
             trigger: wrapperRef.current,
-            start: 'top 70%',
-            end: 'bottom 35%',
+            start: 'top 20%',
+            end: 'bottom 80%',
             scrub: true,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
