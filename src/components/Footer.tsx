@@ -48,15 +48,15 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
                         <img src={starterGif} alt={starterAlt} className={styles.snorlax} />
                     </div>
                     <div className={styles.socials}>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                        <a href="https://www.linkedin.com/company/djs-codestars" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.linkedin}`}>
                             <Linkedin size={24} />
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                        <a href="https://www.instagram.com/djsce_codestars" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.instagram}`}>
                             <Instagram size={24} />
                         </a>
-                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
-                            {/* Discord SVG since Lucide might not have it */}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gamepad-2"><line x1="6" x2="10" y1="12" y2="12" /><line x1="8" x2="8" y1="10" y2="14" /><line x1="15" x2="15.01" y1="13" y2="13" /><line x1="18" x2="18.01" y1="11" y2="11" /><rect width="20" height="12" x="2" y="6" rx="2" /></svg>
+                        <a href="https://discord.gg/Fh2wps5d" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} ${styles.discord}`}>
+                            {/* Actual Discord SVG */}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a67.55,67.55,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.1,46,96,53,91.08,65.69,84.69,65.69Z" /></svg>
                         </a>
                     </div>
                 </div>
@@ -74,15 +74,15 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
                     <div className={styles.contactList}>
                         <div className={styles.contactItem}>
                             <span>Adith Shetty:</span>
-                            <span>+91 6767676767</span>
+                            <span>+91 89285 27980</span>
                         </div>
                         <div className={styles.contactItem}>
                             <span>Sachin:</span>
-                            <span>+91 6767676767</span>
+                            <span>+91 98927 09032</span>
                         </div>
                         <div className={styles.contactItem}>
                             <span>Yash Patel:</span>
-                            <span>+91 6969696969</span>
+                            <span>+91 93216 00186</span>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
                     © DJS Codestars, 2026
                 </div>
                 <div className={styles.attribution}>
-                    Created with <span className={styles.heart}>❤</span> by CodeStars Tech
+                    Created with <span className={styles.heart}>❤</span> by CodeStars Tech Web
                 </div>
                 <img src="/footer/pikachu.png" alt="Pikachu" className={styles.pikachu} />
             </div>
