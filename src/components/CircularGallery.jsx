@@ -173,6 +173,7 @@ class Media {
         uniform float uTime;
         uniform float uSpeed;
         uniform float uHover;
+        uniform float uIsMobile;
         varying vec2 vUv;
         void main() {
           vUv = uv;
@@ -181,7 +182,8 @@ class Media {
           // Hover scale effect removed completely
           
           // Reduced vibration
-          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.02 + uSpeed * 0.2);
+          float vibe = uIsMobile > 0.5 ? 0.0 : 1.0;
+          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.02 + uSpeed * 0.2) * vibe;
           gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
         }
       `,
@@ -233,7 +235,8 @@ class Media {
         uTime: { value: 100 * Math.random() },
         uBorderRadius: { value: this.borderRadius },
         uHover: { value: 0 },
-        uGlowColor: { value: new Color(this.textColor) }
+        uGlowColor: { value: new Color(this.textColor) },
+        uIsMobile: { value: 0 }
       },
       transparent: true
     });
@@ -271,16 +274,19 @@ class Media {
     const x = this.plane.position.x;
     const H = this.viewport.width / 2;
 
-    if (this.bend === 0) {
+    const isMobile = this.screen.width <= 768;
+    const effectiveBend = isMobile ? 0 : this.bend;
+
+    if (effectiveBend === 0) {
       this.plane.position.y = 0;
       this.plane.rotation.z = 0;
     } else {
-      const B_abs = Math.abs(this.bend);
+      const B_abs = Math.abs(effectiveBend);
       const R = (H * H + B_abs * B_abs) / (2 * B_abs);
       const effectiveX = Math.min(Math.abs(x), H);
 
       const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
-      if (this.bend > 0) {
+      if (effectiveBend > 0) {
         this.plane.position.y = -arc;
         this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
       } else {
@@ -321,6 +327,10 @@ class Media {
       if (this.plane.program.uniforms.uViewportSizes) {
         this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
       }
+    }
+    const isMobile = this.screen.width <= 768;
+    if (this.plane.program.uniforms.uIsMobile) {
+      this.plane.program.uniforms.uIsMobile.value = isMobile ? 1.0 : 0.0;
     }
     this.scale = this.screen.height / 1500;
     this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;

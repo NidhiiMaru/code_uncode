@@ -6,7 +6,7 @@ interface MobileSponsorsMarqueeProps {
 
 export default function MobileSponsorsMarquee({ type }: MobileSponsorsMarqueeProps) {
   const titleColor =
-    type === 'water' ? '#7dd3fc' : type === 'grass' ? '#86efac' : '#fcd34d';
+    type === 'water' ? '#00ffff' : type === 'grass' ? '#76ff03' : '#ffcc00';
 
   const logos = [
     { src: '/logos/ramanujan.png', alt: 'Ramanujan' },
