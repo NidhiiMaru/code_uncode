@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styles from './Timeline.module.css';
@@ -103,70 +103,112 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   useLayoutEffect(() => {
     if (!timelineRef.current || !progressLineRef.current || !pathRef.current) return;
 
-    const ctx = gsap.context(() => {
-      // Get the total length of the path
-      const pathLength = pathRef.current!.getTotalLength();
+    let ctx: gsap.Context | null = null;
+    let setupTimeout: number | null = null;
+    let rafId = 0;
 
-      // Set initial state of progress line
-      gsap.set(progressLineRef.current, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength,
-      });
+    const initializeTimeline = () => {
+      ctx = gsap.context(() => {
+        const pathLength = pathRef.current!.getTotalLength();
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-      // Animate the progress line based on scroll
-      gsap.to(progressLineRef.current, {
-        strokeDashoffset: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          start: 'top center',
-          end: 'bottom center',
-          scrub: 1,
-          onUpdate: (self) => {
-            const progress = self.progress;
+        if (!Number.isFinite(pathLength) || pathLength <= 0) return;
 
-            // Move the Ash image along the path
-            if (ashRef.current && pathRef.current) {
-              const point = pathRef.current.getPointAtLength(pathLength * progress);
-              gsap.set(ashRef.current, {
-                x: point.x - 40, // center relative to width="80"
-                y: point.y - 40,
-              });
-            }
-          }
-        }
-      });
+        gsap.set(progressLineRef.current, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength,
+        });
 
-      // Animate event cards on scroll
-      const isMobile = window.innerWidth <= 768;
-      events.forEach((event, index) => {
-        const card = document.querySelector(`[data-event-id="${event.id}"]`);
-        if (card) {
-          gsap.fromTo(
-            card,
-            {
-              opacity: 0,
-              x: isMobile ? 30 : (event.position === 'left' ? -100 : 100),
-              scale: 0.8
+        const setWalkerAtProgress = (progress: number) => {
+          if (!ashRef.current || !pathRef.current) return;
+
+          const clampedProgress = Math.min(1, Math.max(0, progress));
+          const point = pathRef.current.getPointAtLength(pathLength * clampedProgress);
+
+          gsap.set(ashRef.current, {
+            attr: {
+              x: point.x - 55,
+              y: point.y - 55,
             },
-            {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-              duration: 0.8,
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 180%', // Starts much earlier when scrolling down
-                end: 'top 80%',
-                scrub: 1,
+            opacity: 1,
+          });
+        };
+
+        setWalkerAtProgress(0);
+
+        gsap.to(progressLineRef.current, {
+          strokeDashoffset: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: 'top 70%',
+            end: 'bottom 35%',
+            scrub: true,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (!isMobile) {
+                setWalkerAtProgress(self.progress);
               }
             }
-          );
-        }
-      });
-    }, timelineRef);
+          }
+        });
 
-    return () => ctx.revert();
+        events.forEach((event) => {
+          const card = timelineRef.current?.querySelector(`[data-event-id="${event.id}"]`);
+          if (card) {
+            gsap.fromTo(
+              card,
+              {
+                opacity: 0,
+                x: isMobile ? 30 : (event.position === 'left' ? -100 : 100),
+                scale: 0.8
+              },
+              {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.8,
+                scrollTrigger: {
+                  trigger: card,
+                  start: 'top 88%',
+                  toggleActions: 'play none none reverse',
+                }
+              }
+            );
+          }
+        });
+      }, timelineRef);
+
+      ScrollTrigger.refresh();
+    };
+
+    rafId = requestAnimationFrame(() => {
+      setupTimeout = window.setTimeout(initializeTimeline, 120);
+    });
+
+    return () => {
+      if (setupTimeout !== null) window.clearTimeout(setupTimeout);
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
+  }, [type]);
+
+  useEffect(() => {
+    const refreshTriggers = () => ScrollTrigger.refresh();
+    const t1 = window.setTimeout(refreshTriggers, 0);
+    const t2 = window.setTimeout(refreshTriggers, 250);
+    const t3 = window.setTimeout(refreshTriggers, 900);
+
+    window.addEventListener('load', refreshTriggers);
+    window.addEventListener('resize', refreshTriggers);
+
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+      window.removeEventListener('load', refreshTriggers);
+      window.removeEventListener('resize', refreshTriggers);
+    };
   }, []);
 
   return (

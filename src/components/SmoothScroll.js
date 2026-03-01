@@ -26,18 +26,21 @@ export default function SmoothScroll({ children }) {
         lenis.on('scroll', ScrollTrigger.update)
 
         // Use GSAP ticker for smooth integration
-        gsap.ticker.add((time) => {
+        const onTick = (time) => {
             lenis.raf(time * 1000)
-        })
+        }
+
+        gsap.ticker.add(onTick)
+
+        // Ensure triggers calculate with Lenis active
+        requestAnimationFrame(() => ScrollTrigger.refresh())
 
         gsap.ticker.lagSmoothing(0)
 
         // Cleanup
         return () => {
             lenis.destroy()
-            gsap.ticker.remove((time) => {
-                lenis.raf(time * 1000)
-            })
+            gsap.ticker.remove(onTick)
         }
     }, [])
 
