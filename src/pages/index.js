@@ -11,6 +11,7 @@ import LiveRegi from '@/components/LiveRegi.tsx';
 
 import MusicPlayer from '@/components/MusicPlayer.tsx';
 import Footer from '@/components/Footer.tsx';
+import MobileHero from '@/components/MobileHero.tsx';
 
 const Parallax = dynamic(() => import('@/components/Parallax.tsx'), { ssr: false });
 
@@ -113,13 +114,7 @@ function Home() {
 
           <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />
           {isMobile ? (
-            <div style={{ width: '100%', lineHeight: 0, overflow: 'hidden' }}>
-              <img
-                src="/mobile_landing.png"
-                alt="Code UnCode mobile landing"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </div>
+            <MobileHero type={selectedType} />
           ) : (
             <Parallax type={selectedType} />
           )}
@@ -132,7 +127,9 @@ function Home() {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 15vh, rgba(0, 0, 0, 0.6) 30vh, rgba(0, 0, 0, 0.6) 100%)',
+                background: isMobile
+                  ? 'linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.45) 20vh, rgba(0, 0, 0, 0.65) 100%)'
+                  : 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 15vh, rgba(0, 0, 0, 0.6) 30vh, rgba(0, 0, 0, 0.6) 100%)',
                 zIndex: 0,
                 pointerEvents: 'none',
               }}

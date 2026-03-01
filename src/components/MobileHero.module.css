@@ -1,0 +1,234 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.herofire {
+  background: #8f2f1c;
+}
+
+.herowater {
+  background: #0e3a65;
+}
+
+.herograss {
+  background: #1f4b2a;
+}
+
+.bgWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.bg,
+.mountains,
+.trees,
+.foreground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bg {
+  inset: 0;
+}
+
+.mountains {
+  inset: 0;
+  transform: translateY(8%);
+}
+
+.trees {
+  inset: 0;
+  transform: translateY(13%);
+}
+
+.foreground {
+  inset: 0;
+  z-index: 3;
+  transform: translateY(24%);
+}
+
+.pokemon {
+  position: absolute;
+  z-index: 4;
+  width: clamp(88px, 25vw, 140px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+}
+
+.skyPokemonLeft {
+  left: 9%;
+  top: 50%;
+  width: clamp(84px, 24vw, 132px);
+  transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.skyPokemonRight {
+  right: 7%;
+  top: 16%;
+  width: clamp(84px, 22vw, 128px);
+  transform: translate(50%, -50%) rotate(10deg);
+}
+
+.groundPokemonMain {
+  display: none;
+}
+
+.groundPokemonSide {
+  display: none;
+}
+
+.topFade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgba(120, 30, 10, 0.34) 0%,
+    rgba(120, 30, 10, 0.28) 36%,
+    rgba(18, 10, 8, 0.68) 67%,
+    rgba(18, 10, 8, 0.9) 100%
+  );
+}
+
+.centerContent {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: min(92%, 560px);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.logo {
+  width: clamp(180px, 52vw, 280px);
+  height: auto;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.subtitle {
+  font-size: clamp(1.08rem, 4.9vw, 1.4rem);
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin: 0 0 14px;
+  color: #ffca45;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.descriptionCard {
+  width: min(90%, 480px);
+  margin: 0 auto;
+  padding: 14px 14px;
+  border-radius: 10px;
+  background: rgba(212, 178, 134, 0.22);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.description {
+  margin: 0 auto;
+  font-size: clamp(0.88rem, 3.7vw, 1rem);
+  line-height: 1.42;
+  max-width: 36ch;
+  opacity: 0.98;
+}
+
+.partnersWrap {
+  position: relative;
+  width: min(92%, 560px);
+  margin: 0 auto;
+  padding: 14px 12px;
+  border-radius: 14px;
+  background: rgba(16, 10, 10, 0.52);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.partnersSection {
+  width: 100%;
+  padding: 12px 0 8px;
+}
+
+.partnersTitle {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.partnersTrack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: center;
+}
+
+.partnerLogo {
+  width: 100%;
+  max-height: 52px;
+  object-fit: contain;
+}
+
+@media (max-width: 420px) {
+  .centerContent {
+    top: 35%;
+    width: 92%;
+  }
+
+  .partnersWrap {
+    padding: 12px 10px;
+  }
+
+  .partnerLogo {
+    max-height: 44px;
+  }
+
+  .pokemon {
+    width: clamp(72px, 23vw, 110px);
+  }
+
+  .skyPokemonLeft {
+    left: 10%;
+    top: 51%;
+  }
+
+  .skyPokemonRight {
+    right: 8%;
+    top: 17%;
+  }
+
+  .partnersSection {
+    padding: 10px 0 8px;
+  }
+}
+
+@media (max-width: 340px) {
+  .partnersTrack {
+    gap: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.96rem;
+  }
+
+  .descriptionCard {
+    padding: 12px 10px;
+  }
+
+  .partnersSection {
+    padding: 8px 0 6px;
+  }
+}
