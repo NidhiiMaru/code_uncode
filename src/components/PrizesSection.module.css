@@ -194,45 +194,43 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-end;
-    justify-content: flex-start;
-    gap: 16px;
-    overflow-x: auto;
-    overflow-y: visible;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 8px 12px;
+    justify-content: center;
+    gap: 8px;
+    overflow: visible;
+    padding: 0;
   }
 
   /* Keep podium ordering in one horizontal row */
   .trophyItem:nth-child(1) {
     order: 2;
-    transform: translateY(-30px);
+    transform: translateY(-20px);
   }
 
   .trophyItem:nth-child(2) {
     order: 1;
-    transform: translateY(0);
+    transform: translateY(10px);
   }
 
   .trophyItem:nth-child(3) {
     order: 3;
-    transform: translateY(0);
+    transform: translateY(10px);
   }
 
   .trophyItem:nth-child(1) .trophyCard {
-    width: min(260px, 62vw);
-    height: 360px;
+    width: 34vw;
+    height: 48vw;
   }
 
   .trophyCard {
-    width: min(200px, 50vw);
-    height: 290px;
+    width: 28vw;
+    height: 40vw;
   }
 
   .trophyLabel {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
   .trophyItem:nth-child(1) .trophyLabel {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 }
