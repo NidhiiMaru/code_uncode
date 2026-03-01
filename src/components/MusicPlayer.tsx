@@ -24,7 +24,17 @@ export default function MusicPlayer({ type, onReset }: MusicPlayerProps) {
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    // Detect mobile
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 768px)');
+        const update = () => setIsMobile(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
 
     // Color logic based on theme
     const getThemeColors = () => {
@@ -84,76 +94,101 @@ export default function MusicPlayer({ type, onReset }: MusicPlayerProps) {
 
     return (
         <div className="fixed bottom-6 right-6 md:top-8 md:left-8 md:bottom-auto z-50 font-sans max-w-[calc(100vw-3rem)] flex flex-col md:flex-row items-end md:items-start gap-3">
-            {/* Starter Reset Button (Only visible on Desktop/Tablet if space permits, or stack on mobile) */}
-            <button
-                onClick={onReset}
-                className={`
-                    hidden md:flex items-center px-4 py-2
-                    ${colors.glass} backdrop-blur-md
-                    border ${colors.border} rounded-full
-                    shadow-xl
-                    text-xs font-bold tracking-wider uppercase ${colors.text}
-                    transition-all duration-300 hover:scale-105 hover:bg-white/10
-                `}
-            >
-                Choose Your Starter Again
-            </button>
 
-            <div className={`
-                flex items-center gap-3 pl-3 pr-4 py-2
-                ${colors.glass} backdrop-blur-md
-                border ${colors.border} rounded-full
-                shadow-xl
-                transition-all duration-300 hover:scale-105
-            `}>
+            {/* ── MOBILE: single mute-only button ── */}
+            {isMobile && (
+                <button
+                    onClick={toggleMute}
+                    className={`
+                        flex items-center justify-center
+                        w-11 h-11 rounded-full
+                        ${colors.glass} backdrop-blur-md
+                        border ${colors.border}
+                        shadow-xl
+                        text-white/90 hover:text-white
+                        transition-all duration-200 hover:scale-110 active:scale-95
+                    `}
+                    aria-label={isMuted ? "Unmute" : "Mute"}
+                >
+                    {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                </button>
+            )}
 
-                {/* Icon Box */}
-                <div className={`
-                    w-10 h-10 rounded-full flex items-center justify-center
-                    ${colors.iconBg} backdrop-blur-sm
-                    shrink-0
-                `}>
-                    <Music size={18} className="text-white" />
-                </div>
-
-                {/* Song Info */}
-                <div className="flex flex-col mr-2">
-                    <span className={`text-xs font-bold uppercase tracking-wider ${colors.text} truncate max-w-[100px] md:max-w-[140px]`}>
-                        {songs[currentSongIndex].name}
-                    </span>
-                    <span className={`text-[10px] ${colors.subtext} font-medium tracking-wide truncate max-w-[100px]`}>
-                        {songs[currentSongIndex].artist}
-                    </span>
-                </div>
-
-                {/* Vertical Divider */}
-                <div className={`h-6 w-px ${colors.border}`} />
-
-                {/* Controls Group */}
-                <div className="flex items-center gap-2">
+            {/* ── DESKTOP: full player ── */}
+            {!isMobile && (
+                <>
+                    {/* Starter Reset Button (Only visible on Desktop/Tablet if space permits, or stack on mobile) */}
                     <button
-                        onClick={toggleMute}
-                        className="p-1.5 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
+                        onClick={onReset}
+                        className={`
+                            hidden md:flex items-center px-4 py-2
+                            ${colors.glass} backdrop-blur-md
+                            border ${colors.border} rounded-full
+                            shadow-xl
+                            text-xs font-bold tracking-wider uppercase ${colors.text}
+                            transition-all duration-300 hover:scale-105 hover:bg-white/10
+                        `}
                     >
-                        {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                        Choose Your Starter Again
                     </button>
 
-                    <button
-                        onClick={togglePlay}
-                        className="p-1.5 rounded-full hover:bg-white/10 text-white transition-colors"
-                    >
-                        {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
-                    </button>
+                    <div className={`
+                        flex items-center gap-3 pl-3 pr-4 py-2
+                        ${colors.glass} backdrop-blur-md
+                        border ${colors.border} rounded-full
+                        shadow-xl
+                        transition-all duration-300 hover:scale-105
+                    `}>
 
-                    <button
-                        onClick={nextSong}
-                        className="p-1.5 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
-                    >
-                        <SkipForward size={16} fill="currentColor" />
-                    </button>
-                </div>
+                        {/* Icon Box */}
+                        <div className={`
+                            w-10 h-10 rounded-full flex items-center justify-center
+                            ${colors.iconBg} backdrop-blur-sm
+                            shrink-0
+                        `}>
+                            <Music size={18} className="text-white" />
+                        </div>
 
-            </div>
+                        {/* Song Info */}
+                        <div className="flex flex-col mr-2">
+                            <span className={`text-xs font-bold uppercase tracking-wider ${colors.text} truncate max-w-[100px] md:max-w-[140px]`}>
+                                {songs[currentSongIndex].name}
+                            </span>
+                            <span className={`text-[10px] ${colors.subtext} font-medium tracking-wide truncate max-w-[100px]`}>
+                                {songs[currentSongIndex].artist}
+                            </span>
+                        </div>
+
+                        {/* Vertical Divider */}
+                        <div className={`h-6 w-px ${colors.border}`} />
+
+                        {/* Controls Group */}
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={toggleMute}
+                                className="p-1.5 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
+                            >
+                                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                            </button>
+
+                            <button
+                                onClick={togglePlay}
+                                className="p-1.5 rounded-full hover:bg-white/10 text-white transition-colors"
+                            >
+                                {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
+                            </button>
+
+                            <button
+                                onClick={nextSong}
+                                className="p-1.5 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
+                            >
+                                <SkipForward size={16} fill="currentColor" />
+                            </button>
+                        </div>
+
+                    </div>
+                </>
+            )}
 
             <audio
                 ref={audioRef}

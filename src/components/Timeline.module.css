@@ -395,6 +395,15 @@
   .cardDescription {
     font-size: 1.05rem;
   }
+
+  /* Hide the invisible placeholder row completely on mobile */
+  .mobileInvisibleRow {
+    display: none !important;
+  }
+
+  .mobileHideCheckpoint {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {

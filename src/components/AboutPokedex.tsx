@@ -131,12 +131,11 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
   };
 
   const handleRedPill = () => {
-    setScreenMode(null);
     setIsBlue(false);
   };
 
   const handleBluePill = () => {
-    setIsBlue(prev => !prev);
+    setIsBlue(true);
   };
 
   const handleGuidelines = () => {

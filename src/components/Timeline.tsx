@@ -290,10 +290,10 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
             {events.map((event, index) => (
               <div
                 key={event.id}
-                className={`${styles.eventRow} ${styles[event.position]}`}
+                className={`${styles.eventRow} ${styles[event.position]} ${event.invisible ? styles.mobileInvisibleRow : ''}`}
                 style={{ top: `${(index + 0.5) * (100 / events.length)}%` }}
               >
-                <div className={`${styles.checkpoint} ${styles.active}`}></div>
+                <div className={`${styles.checkpoint} ${styles.active} ${event.invisible ? styles.mobileHideCheckpoint : ''}`}></div>
                 {/* Event Card */}
                 <div
                   className={styles.eventCard}

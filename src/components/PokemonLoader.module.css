@@ -31,8 +31,7 @@
     height: 100%;
     z-index: 0;
     background:
-        linear-gradient(
-            to bottom,
+        linear-gradient(to bottom,
             #d9e3e2 0%,
             #d9e3e2 47%,
             #d4dfdd 47%,
@@ -41,8 +40,7 @@
             #9abec0 71%,
             #85b0b3 78%,
             #6b9d9f 86%,
-            #5a8f92 100%
-        );
+            #5a8f92 100%);
 }
 
 .bgImage {
@@ -106,10 +104,12 @@
 }
 
 @keyframes oakBounce {
+
     0%,
     100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-14px);
     }
@@ -134,7 +134,6 @@
 .textBox {
     width: min(96%, 1240px);
     min-height: clamp(170px, 28vh, 230px);
-    margin-bottom: clamp(2px, 0.8vh, 12px);
     padding: clamp(22px, 3.6vw, 44px) clamp(26px, 4vw, 56px);
     background: linear-gradient(180deg, #f3f3f6 0%, #e6e7eb 100%);
     border: clamp(4px, 0.48vw, 7px) solid #b8d2e6;
@@ -144,7 +143,7 @@
         0 12px 0 rgba(69, 111, 151, 0.2);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .textContent {
@@ -175,10 +174,14 @@
 }
 
 @keyframes blink {
-    0%, 49% {
+
+    0%,
+    49% {
         opacity: 1;
     }
-    50%, 100% {
+
+    50%,
+    100% {
         opacity: 0;
     }
 }
@@ -324,8 +327,7 @@
 .starterCard:hover .pokemonImage img {
     transform: translateZ(90px) rotateX(8deg) scale(2.22);
     filter:
-        drop-shadow(0 22px 26px rgba(0, 0, 0, 0.34))
-        drop-shadow(0 10px 10px rgba(0, 0, 0, 0.24));
+        drop-shadow(0 22px 26px rgba(0, 0, 0, 0.34)) drop-shadow(0 10px 10px rgba(0, 0, 0, 0.24));
 }
 
 .pokeball {
@@ -348,9 +350,12 @@
 }
 
 @keyframes rotatePokeball {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: rotate(0deg);
     }
+
     50% {
         transform: rotate(180deg);
     }
@@ -411,6 +416,13 @@
         width: 100%;
         height: 100vh;
         padding-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .professorSection {
+        flex: 0 0 auto;
+        padding-top: max(12vh, 40px);
+        justify-content: center;
     }
 
     .professorOak {
@@ -428,6 +440,7 @@
         border-radius: 26px;
         padding: 18px 16px 20px;
         margin-bottom: 8px;
+        margin-top: max(3vh, 12px);
     }
 
     .message {
@@ -496,6 +509,10 @@
         width: clamp(136px, 38vw, 200px);
     }
 
+    .professorSection {
+        padding-top: max(8vh, 24px);
+    }
+
     .platform {
         width: clamp(148px, 46vw, 214px);
     }
@@ -506,6 +523,7 @@
         min-height: 124px;
         border-radius: 22px;
         margin-bottom: 4px;
+        margin-top: max(2vh, 10px);
     }
 
     .message {
@@ -556,6 +574,7 @@
 }
 
 @media (max-width: 768px) and (max-height: 760px) {
+
     .loaderContainer,
     .introStage {
         min-height: 100dvh;
@@ -568,8 +587,10 @@
         justify-content: flex-start;
     }
 
+    /* KEEP Oak high — do NOT reset flex or padding-top here */
     .professorSection {
-        flex: 0 1 auto;
+        flex: 0 0 auto;
+        padding-top: max(10vh, 28px);
     }
 
     .professorOak {
@@ -586,7 +607,7 @@
         min-height: auto;
         max-height: 36dvh;
         padding: 12px 12px 14px;
-        margin-top: auto;
+        margin-top: max(2vh, 8px);
         margin-bottom: 6px;
         overflow-y: auto;
     }
