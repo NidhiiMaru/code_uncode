@@ -809,6 +809,8 @@
 @media (max-width: 700px) {
     .columnsGrid {
         grid-template-columns: 1fr;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
 
     .section {
