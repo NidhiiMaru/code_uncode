@@ -142,6 +142,10 @@
     filter: drop-shadow(0 0 20px rgba(231, 226, 226, 0.4));
 }
 
+.mobileLegendsWrapper {
+    display: none;
+}
+
 @keyframes floatUpDownLegend {
 
     0%,
@@ -232,5 +236,27 @@
 
     .container {
         padding-top: 5vh;
+    }
+
+    .mobileLegendsWrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 10%;
+        margin-bottom: 3vh;
+        margin-top: -3vh;
+        position: relative;
+        z-index: 20;
+    }
+
+    .mobileLegend {
+        position: static;
+        width: 120px;
+        transform: none;
+        animation: floatUpDownLegend 4s ease-in-out infinite;
+    }
+
+    .desktopLegend {
+        display: none;
     }
 }

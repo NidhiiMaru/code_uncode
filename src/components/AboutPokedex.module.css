@@ -247,6 +247,7 @@
 }
 
 @keyframes dPadGlowPulse {
+
   0%,
   100% {
     filter: drop-shadow(0 0 2px rgba(255, 230, 110, 0.35));
@@ -618,9 +619,11 @@
   .leftPanel {
     width: 90%;
     max-width: 340px;
-    height: 650px;
+    height: 75svh;
+    max-height: 600px;
+    min-height: 480px;
     border-radius: 20px;
-    padding: 20px;
+    padding: 16px;
     gap: 12px;
     transform: none;
     transition: none;
@@ -648,10 +651,15 @@
   .screenBorder {
     padding: 15px;
     border-radius: 10px 10px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 250px;
   }
 
   .screenGlass {
-    height: 320px;
+    height: auto;
+    flex-grow: 1;
   }
 
   .screenFooter {
@@ -664,10 +672,6 @@
 
   .dPadPlus {
     transform: scale(1.08);
-  }
-
-  .dPadPlus>div[style*='position: absolute'] {
-    pointer-events: none;
   }
 
   .greenScreenLeft {

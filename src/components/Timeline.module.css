@@ -145,9 +145,6 @@
   flex-direction: row-reverse;
 }
 
-/* Checkpoint styling */
-.checkpoint {}
-
 @keyframes checkpointPulse {
 
   0%,

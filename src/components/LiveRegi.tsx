@@ -151,7 +151,7 @@ export default function LiveRegi({ type }: Props) {
                     color: titleColor,
                     textShadow: '4px 4px 0px #000000',
                 }}
-            >— Live Arena —</h2>
+            >Live Arena</h2>
 
             <div className={styles.columnsGrid}>
 

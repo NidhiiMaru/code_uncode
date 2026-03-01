@@ -51,8 +51,17 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
             <h1 className={`${styles.title} ${getThemeClass()}`}>ABOUT CODE UNCODE 2025</h1>
             <p className={styles.description}>
                 Code UnCode is India&apos;s Premier ICPC-Style Competition involving multiple rounds of intense algorithmic challenges.<br />
-                Join thousands of participants in a battle of logic and precision to claim the championship in a battle of navigating through <span style={{ color: 'rgba(103, 146, 220, 1)' }}>time</span> and <span style={{ color: '#ac65a9ff' }}>space</span> complexities. 
+                Join thousands of participants in a battle of logic and precision to claim the championship in a battle of navigating through <span style={{ color: 'rgba(103, 146, 220, 1)' }}>time</span> and <span style={{ color: '#ac65a9ff' }}>space</span> complexities.
             </p>
+
+            <div className={styles.mobileLegendsWrapper}>
+                <div className={`${styles.legendLeft} ${styles.mobileLegend}`}>
+                    <img src="/footer/dialga.png" alt="Dialga" className={styles.legendImage} />
+                </div>
+                <div className={`${styles.legendRight} ${styles.mobileLegend}`}>
+                    <img src="/footer/palkia.png" alt="Palkia" className={styles.legendImage} />
+                </div>
+            </div>
 
             <div className={styles.metricsGrid}>
                 <div className={styles.metricCard}>
@@ -70,11 +79,11 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
             </div>
 
             <div className={styles.galleryContainer}>
-                <div className={styles.legendLeft}>
+                <div className={`${styles.legendLeft} ${styles.desktopLegend}`}>
                     <img src="/footer/dialga.png" alt="Dialga" className={styles.legendImage} />
                 </div>
                 <CircularGallery items={galleryItems} bend={3} textColor={getThemeColor()} borderRadius={0.05} font={`bold 72px 'Courier New', Courier, monospace`} />
-                <div className={styles.legendRight}>
+                <div className={`${styles.legendRight} ${styles.desktopLegend}`}>
                     <img src="/footer/palkia.png" alt="Palkia" className={styles.legendImage} />
                 </div>
             </div>

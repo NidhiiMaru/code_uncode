@@ -95,7 +95,7 @@ function Home() {
             onClick={() => { setSkipToSelection(true); setSelectedType(null); }}
             style={{
               position: 'fixed',
-              top: '18px',
+              top: isMobile ? '2px' : '18px',
               right: '20px',
               zIndex: 9999,
               display: 'flex',

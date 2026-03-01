@@ -289,19 +289,40 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
             <div
               className={`${styles.dPadPlus} ${isMobile ? styles.dPadPlusHint : ''}`}
               title="Navigate FAQs"
-              onClick={isMobile ? handleDPadDown : undefined}
-              style={isMobile ? { cursor: 'pointer' } : undefined}
             >
               <div className={styles.dPadH} />
               <div className={styles.dPadV} />
-              {/* Hit zones for up/down */}
+
+              {/* Add visual arrows on mobile */}
+              {isMobile && (
+                <>
+                  <span style={{ position: 'absolute', top: '2px', left: '50%', transform: 'translateX(-50%)', color: '#ffffff5e', fontSize: '12px', pointerEvents: 'none', zIndex: 12 }}>▲</span>
+                  <span style={{ position: 'absolute', bottom: '2px', left: '50%', transform: 'translateX(-50%)', color: '#ffffff5e', fontSize: '12px', pointerEvents: 'none', zIndex: 12 }}>▼</span>
+                  <span style={{ position: 'absolute', left: '2px', top: '50%', transform: 'translateY(-50%)', color: '#ffffff5e', fontSize: '12px', pointerEvents: 'none', zIndex: 12 }}>◀</span>
+                  <span style={{ position: 'absolute', right: '2px', top: '50%', transform: 'translateY(-50%)', color: '#ffffff5e', fontSize: '12px', pointerEvents: 'none', zIndex: 12 }}>▶</span>
+                </>
+              )}
+
+              {/* Hit zones */}
+              {/* Top button -> Next Question */}
               <div
-                onClick={handleDPadUp}
-                style={{ position: 'absolute', top: 0, left: '33%', width: '34%', height: '33%', cursor: 'pointer', zIndex: 10 }}
+                onClick={(e) => { e.stopPropagation(); handleDPadDown(); }}
+                style={{ position: 'absolute', top: 0, left: '33%', width: '34%', height: '33%', cursor: 'pointer', zIndex: 15 }}
               />
+              {/* Bottom button -> Previous Question */}
               <div
-                onClick={handleDPadDown}
-                style={{ position: 'absolute', bottom: 0, left: '33%', width: '34%', height: '33%', cursor: 'pointer', zIndex: 10 }}
+                onClick={(e) => { e.stopPropagation(); handleDPadUp(); }}
+                style={{ position: 'absolute', bottom: 0, left: '33%', width: '34%', height: '33%', cursor: 'pointer', zIndex: 15 }}
+              />
+              {/* Left button -> Previous Question */}
+              <div
+                onClick={(e) => { e.stopPropagation(); handleDPadUp(); }}
+                style={{ position: 'absolute', left: 0, top: '33%', width: '33%', height: '34%', cursor: 'pointer', zIndex: 15 }}
+              />
+              {/* Right button -> Next Question */}
+              <div
+                onClick={(e) => { e.stopPropagation(); handleDPadDown(); }}
+                style={{ position: 'absolute', right: 0, top: '33%', width: '33%', height: '34%', cursor: 'pointer', zIndex: 15 }}
               />
             </div>
           </div>
