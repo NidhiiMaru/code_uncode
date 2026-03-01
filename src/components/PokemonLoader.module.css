@@ -554,3 +554,78 @@
     }
 
 }
+
+@media (max-width: 768px) and (max-height: 760px) {
+    .loaderContainer,
+    .introStage {
+        min-height: 100dvh;
+        height: 100dvh;
+    }
+
+    .pokedexContainer {
+        height: 100dvh;
+        padding: 8px 0 8px;
+        justify-content: flex-start;
+    }
+
+    .professorSection {
+        flex: 0 1 auto;
+    }
+
+    .professorOak {
+        width: min(33vh, 220px);
+    }
+
+    .platform {
+        width: min(30vh, 200px);
+        margin-top: 0;
+    }
+
+    .textBox {
+        width: calc(100% - 10px);
+        min-height: auto;
+        max-height: 36dvh;
+        padding: 12px 12px 14px;
+        margin-top: auto;
+        margin-bottom: 6px;
+        overflow-y: auto;
+    }
+
+    .message {
+        font-size: clamp(0.44rem, 2.2vw, 0.6rem);
+        line-height: 1.45;
+    }
+}
+
+@media (max-width: 768px) and (max-height: 640px) {
+    .skipButton {
+        top: 6px;
+        right: 8px;
+        padding: 6px 9px;
+    }
+
+    .skipText {
+        font-size: 0.38rem;
+    }
+
+    .professorOak {
+        width: min(30vh, 186px);
+    }
+
+    .platform {
+        width: min(26vh, 160px);
+    }
+
+    .textBox {
+        max-height: 40dvh;
+        border-radius: 18px;
+        border-width: 3px;
+        padding: 10px 10px 12px;
+        margin-bottom: 4px;
+    }
+
+    .message {
+        font-size: clamp(0.4rem, 2vw, 0.52rem);
+        line-height: 1.4;
+    }
+}
