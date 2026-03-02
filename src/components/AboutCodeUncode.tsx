@@ -56,10 +56,10 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
 
             <div className={styles.mobileLegendsWrapper}>
                 <div className={`${styles.legendLeft} ${styles.mobileLegend}`}>
-                    <img src="/footer/dialga.png" alt="Dialga" className={styles.legendImage} />
+                    <img src="/footer/dialga.webp" alt="Dialga" className={styles.legendImage} />
                 </div>
                 <div className={`${styles.legendRight} ${styles.mobileLegend}`}>
-                    <img src="/footer/palkia.png" alt="Palkia" className={styles.legendImage} />
+                    <img src="/footer/palkia.webp" alt="Palkia" className={styles.legendImage} />
                 </div>
             </div>
 
@@ -80,11 +80,11 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
 
             <div className={styles.galleryContainer}>
                 <div className={`${styles.legendLeft} ${styles.desktopLegend}`}>
-                    <img src="/footer/dialga.png" alt="Dialga" className={styles.legendImage} />
+                    <img src="/footer/dialga.webp" alt="Dialga" className={styles.legendImage} />
                 </div>
                 <CircularGallery items={galleryItems} bend={3} textColor={getThemeColor()} borderRadius={0.05} font={`bold 72px 'Courier New', Courier, monospace`} />
                 <div className={`${styles.legendRight} ${styles.desktopLegend}`}>
-                    <img src="/footer/palkia.png" alt="Palkia" className={styles.legendImage} />
+                    <img src="/footer/palkia.webp" alt="Palkia" className={styles.legendImage} />
                 </div>
             </div>
         </div>

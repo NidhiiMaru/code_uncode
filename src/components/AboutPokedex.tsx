@@ -223,9 +223,9 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
                   width: '100%', height: '100%', background: '#001a00',
                   padding: '14px', boxSizing: 'border-box', overflowY: 'auto',
                 }}>
-                  <p style={{ color: '#39ff14', fontFamily: "'Courier New', Courier, monospace", fontSize: '13px', fontWeight: 'bold', marginBottom: '10px', display: 'block' }}>== COMPETITION GUIDELINES ==</p>
+                  <p style={{ color: '#39ff14', fontFamily: "'Courier New', Courier, monospace", fontSize: '15px', fontWeight: 'bold', marginBottom: '10px', display: 'block' }}>== COMPETITION GUIDELINES ==</p>
                   {guidelines.map((g, i) => (
-                    <p key={i} style={{ color: '#00ff41', fontFamily: "'Courier New', Courier, monospace", fontSize: '11.5px', lineHeight: '1.7', margin: '0 0 4px 0' }}>{g}</p>
+                    <p key={i} style={{ color: '#00ff41', fontFamily: "'Courier New', Courier, monospace", fontSize: '13px', lineHeight: '1.7', margin: '0 0 4px 0' }}>{g}</p>
                   ))}
                 </div>
               ) : screenMode.type === 'fact' ? (
@@ -235,7 +235,7 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   padding: '18px', boxSizing: 'border-box',
                 }}>
-                  <p style={{ color: '#ffe066', fontFamily: "'Courier New', Courier, monospace", fontSize: '14px', lineHeight: '1.7', textAlign: 'center', margin: 0 }}>{screenMode.text}</p>
+                  <p style={{ color: '#ffe066', fontFamily: "'Courier New', Courier, monospace", fontSize: '16px', lineHeight: '1.7', textAlign: 'center', margin: 0 }}>{screenMode.text}</p>
                 </div>
               ) : (
                 /* FAQ ANSWER mode */
@@ -244,8 +244,8 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
                   display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start',
                   padding: '14px', boxSizing: 'border-box', overflowY: 'auto',
                 }}>
-                  <p style={{ color: '#00ff41', fontFamily: "'Courier New', Courier, monospace", fontSize: '13px', lineHeight: '1.7', textAlign: 'left', margin: 0 }}>
-                    <strong style={{ fontSize: '14px', display: 'block', marginBottom: '10px', color: '#7fff00' }}>
+                  <p style={{ color: '#00ff41', fontFamily: "'Courier New', Courier, monospace", fontSize: '15px', lineHeight: '1.75', textAlign: 'left', margin: 0 }}>
+                    <strong style={{ fontSize: '18px', display: 'block', marginBottom: '12px', color: '#7fff00' }}>
                       {faqs[screenMode.index].question}
                     </strong>
                     {faqs[screenMode.index].answer}

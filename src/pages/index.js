@@ -1,60 +1,45 @@
-"use client";
-
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import PokemonLoader from '@/components/PokemonLoader.tsx';
-import AboutPokedex from '@/components/AboutPokedex.tsx';
-import AboutCodeUncode from '@/components/AboutCodeUncode.tsx';
-import Timeline from '@/components/Timeline.tsx';
-import PrizesSection from '@/components/PrizesSection.tsx';
-import LiveRegi from '@/components/LiveRegi.tsx';
 
-import MusicPlayer from '@/components/MusicPlayer.tsx';
-import Footer from '@/components/Footer.tsx';
-import MobileSponsorsMarquee from '@/components/MobileSponsorsMarquee.tsx';
+// Lazy-loaded: only imported once starter is selected (reduces initial bundle + memory)
+const Parallax = dynamic(() => import('@/components/Parallax.tsx'), { ssr: false });
+const AboutCodeUncode = dynamic(() => import('@/components/AboutCodeUncode.tsx'), { ssr: false });
+const Timeline = dynamic(() => import('@/components/Timeline.tsx'), { ssr: false });
+const AboutPokedex = dynamic(() => import('@/components/AboutPokedex.tsx'), { ssr: false });
+const PrizesSection = dynamic(() => import('@/components/PrizesSection.tsx'), { ssr: false });
+const SponsorsSection = dynamic(() => import('@/components/SponsorsSection.tsx'), { ssr: false });
+const LiveRegi = dynamic(() => import('@/components/LiveRegi.tsx'), { ssr: false });
+const MusicPlayer = dynamic(() => import('@/components/MusicPlayer.tsx'), { ssr: false });
+const Footer = dynamic(() => import('@/components/Footer.tsx'), { ssr: false });
+const MobileSponsorsMarquee = dynamic(() => import('@/components/MobileSponsorsMarquee.tsx'), { ssr: false });
 
-const Parallax = dynamic(() => import('@/components/Parallax.tsx'), {
-  ssr: false,
-  loading: () => (
-    <div
-      style={{
-        width: '100%',
-        height: '100dvh',
-        minHeight: '100vh',
-        background: 'linear-gradient(to bottom, #06080f 0%, #0b1020 100%)',
-      }}
-    />
-  ),
-});
+// Read isMobile synchronously so first render is already correct — no flash
+function getIsMobile() {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 768;
+}
 
 function Home() {
-  const [showIntro, setShowIntro] = useState(true);
   const [selectedType, setSelectedType] = useState(null);
   const [skipToSelection, setSkipToSelection] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  const handleTypeSelect = (type) => {
-    setSelectedType(type);
-  };
-
-  const handleIntroComplete = () => {
-    setShowIntro(false);
-  };
+  // Initialise from real window width immediately — no false→true flip on mount
+  const [isMobile, setIsMobile] = useState(getIsMobile);
 
   // Background image mapping based on type
-  const getBackgroundImage = () => {
-    if (selectedType === 'fire') return '/parallax/parallax_fire/red-bg.png';
-    if (selectedType === 'water') return '/parallax/parallax_water/water-bg.png';
-    if (selectedType === 'grass') return '/parallax/parallax_grass/grassbg.png';
+  const getBackgroundImage = useCallback(() => {
+    if (selectedType === 'fire') return '/parallax/parallax_fire/red-bg.webp';
+    if (selectedType === 'water') return '/parallax/parallax_water/water-bg.webp';
+    if (selectedType === 'grass') return '/parallax/parallax_grass/grassbg.webp';
     return '';
-  };
+  }, [selectedType]);
 
-  const getMobileLandingImage = () => {
-    if (selectedType === 'fire') return '/mobile_landing_red.png';
-    if (selectedType === 'water') return '/mobile_landing_blue.png';
-    if (selectedType === 'grass') return '/mobile_landing_green.png';
-    return '/mobile_landing_red.png';
-  };
+  const getMobileLandingImage = useCallback(() => {
+    if (selectedType === 'fire') return '/mobile_landing_red.webp';
+    if (selectedType === 'water') return '/mobile_landing_blue.webp';
+    if (selectedType === 'grass') return '/mobile_landing_green.webp';
+    return '/mobile_landing_red.webp';
+  }, [selectedType]);
 
   // Apply global background to body
   useEffect(() => {
@@ -65,20 +50,19 @@ function Home() {
       document.body.style.backgroundAttachment = 'fixed';
       document.body.style.backgroundRepeat = 'no-repeat';
     }
+    return () => { document.body.style.backgroundImage = ''; };
+  }, [selectedType, getBackgroundImage]);
 
-    return () => {
-      document.body.style.backgroundImage = '';
-    };
-  }, [selectedType]);
-
+  // Use ResizeObserver for efficient resize detection (fires once per frame, not per pixel)
   useEffect(() => {
-    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-
-    return () => {
-      window.removeEventListener('resize', checkIsMobile);
-    };
+    let rafId;
+    const ro = new ResizeObserver(() => {
+      // Debounce via rAF — avoids thrashing during drag-resize
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => setIsMobile(window.innerWidth < 768));
+    });
+    ro.observe(document.documentElement);
+    return () => { ro.disconnect(); cancelAnimationFrame(rafId); };
   }, []);
 
   return (
@@ -171,6 +155,7 @@ function Home() {
               <Timeline type={selectedType} />
               <AboutPokedex type={selectedType} />
               <PrizesSection type={selectedType} />
+              <SponsorsSection type={selectedType} />
               <LiveRegi type={selectedType} />
 
               <div style={{ marginTop: '160px' }}>

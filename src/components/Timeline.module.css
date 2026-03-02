@@ -8,7 +8,7 @@
 }
 
 .grassBackground {
-  background-image: url('/timeline/grass_bg.png');
+  background-image: url('/timeline/grass_bg.webp');
 
   /* ---- BACKGROUND CONTROLS ---- */
   /* 1) Adjust the size here: [width] [height] */
@@ -23,7 +23,7 @@
 }
 
 .waterBackground {
-  background-image: url('/timeline/water_bg.png');
+  background-image: url('/timeline/water_bg.webp');
 
   /* ---- BACKGROUND CONTROLS ---- */
   /* 1) Adjust the size here: [width] [height] */
@@ -38,7 +38,7 @@
 }
 
 .fireBackground {
-  background-image: url('/timeline/fire_bg.png');
+  background-image: url('/timeline/fire_bg.webp');
 
   /* ---- BACKGROUND CONTROLS ---- */
   /* 1) Adjust the size here: [width] [height] */

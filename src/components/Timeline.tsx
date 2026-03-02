@@ -278,7 +278,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
             {/* Ash moving image */}
             <image
               ref={ashRef}
-              href={type === 'water' ? '/timeline/ash_on_whale.png' : '/timeline/ash.png'}
+              href={type === 'water' ? '/timeline/ash_on_whale.webp' : '/timeline/ash.webp'}
               width="110"
               height="110"
               style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.5))' }}

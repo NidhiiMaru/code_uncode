@@ -81,7 +81,7 @@ export default function PokemonLoader({ onSelect, initialStage = 'intro' }: Poke
           >
             {/* Background */}
             <div className={styles.introBackground}>
-              <img src="/loader/background.png" alt="Intro Background" className={styles.bgImage} />
+              <img src="/loader/background.webp" alt="Intro Background" className={styles.bgImage} />
             </div>
 
             <motion.button
@@ -104,9 +104,9 @@ export default function PokemonLoader({ onSelect, initialStage = 'intro' }: Poke
 
               {/* Professor Oak and Platform */}
               <div className={styles.professorSection}>
-                <img src="/loader/professoroak.png" alt="Professor Oak" className={styles.professorOak} />
+                <img src="/loader/professoroak.webp" alt="Professor Oak" className={styles.professorOak} />
                 <div className={styles.platform}>
-                  <img src="/loader/standing.png" alt="Platform" className={styles.standing} />
+                  <img src="/loader/standing.webp" alt="Platform" className={styles.standing} />
                 </div>
               </div>
 
@@ -153,10 +153,10 @@ export default function PokemonLoader({ onSelect, initialStage = 'intro' }: Poke
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
-                      <img src="/loading/red.png" alt="Fire Background" />
+                      <img src="/loading/red.webp" alt="Fire Background" />
                     </div>
                     <div className={styles.pokemonImage}>
-                      <img src="/loader/redpokemon.png" alt="Charmander" />
+                      <img src="/loader/redpokemon.webp" alt="Charmander" />
                     </div>
                   </motion.button>
 
@@ -169,10 +169,10 @@ export default function PokemonLoader({ onSelect, initialStage = 'intro' }: Poke
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
-                      <img src="/loading/blue1.png" alt="Water Background" />
+                      <img src="/loading/blue1.webp" alt="Water Background" />
                     </div>
                     <div className={styles.pokemonImage}>
-                      <img src="/loader/bluepokemon.png" alt="Squirtle" />
+                      <img src="/loader/bluepokemon.webp" alt="Squirtle" />
                     </div>
                   </motion.button>
 
@@ -185,10 +185,10 @@ export default function PokemonLoader({ onSelect, initialStage = 'intro' }: Poke
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
-                      <img src="/loading/green.png" alt="Grass Background" />
+                      <img src="/loading/green.webp" alt="Grass Background" />
                     </div>
                     <div className={styles.pokemonImage}>
-                      <img src="/loader/greenpokemon.png" alt="Bulbasaur" />
+                      <img src="/loader/greenpokemon.webp" alt="Bulbasaur" />
                     </div>
                   </motion.button>
                 </div>

@@ -16,10 +16,10 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
 
     const pokestopImage =
         type === 'fire'
-            ? '/footer/pokestop_red.png'
+            ? '/footer/pokestop_red.webp'
             : type === 'grass'
-                ? '/footer/pokestop_green.png'
-                : '/footer/pokestop.png';
+                ? '/footer/pokestop_green.webp'
+                : '/footer/pokestop.webp';
 
     const starterGif =
         type === 'fire'
@@ -116,7 +116,7 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
                 <div className={styles.attribution}>
                     Created with <span className={styles.heart}>❤</span> by CodeStars Tech Web
                 </div>
-                <img src="/footer/pikachu.png" alt="Pikachu" className={styles.pikachu} />
+                <img src="/footer/pikachu.webp" alt="Pikachu" className={styles.pikachu} />
             </div>
         </footer>
     );

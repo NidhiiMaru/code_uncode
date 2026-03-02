@@ -9,7 +9,7 @@
     width: 100%;
     height: 100dvh;
     overflow: hidden;
-    background-image: url('/parallax/parallax_water/water-bg.png');
+    background-image: url('/parallax/parallax_water/water-bg.webp');
     background-size: cover;
 }
 
@@ -55,12 +55,21 @@
 
 .foregroundLayer {
     z-index: 26;
-    bottom: -36%;
-    /* Shifted higher up */
+    /* Combined: old foreground (130%) + old mask (~100vh) = one tall image.
+       bottom: -130% pushes it down so the bottom (water section) starts below the screen.
+       height: 230% gives room for the full image. */
+    height: 230%;
+    bottom: -110%;
+    pointer-events: none;
+}
+
+.foregroundLayer img {
+    object-position: top;
+    /* show from cliff/beach top down to water bottom */
 }
 
 .mountainLayer {
-    bottom: -25%;
+    bottom: -30%;
     /* Shift Sun higher up */
 }
 
@@ -69,16 +78,9 @@
     /* Shift water layer higher up */
 }
 
-/* THE FIX: Rising curtain anchored to screen bottom */
+/* fireMaskLayer removed — no longer a separate mask layer for water */
 .fireMaskLayer {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 28;
-    top: 84%;
-    background-image: url('/parallax/parallax_water/water-bg1.png');
-    background-size: cover;
+    display: none;
 }
 
 .copy {
@@ -213,31 +215,31 @@
 }
 
 /* Hosting Partners Marquee - Water Theme */
+/* top: 72% targets the underwater section of the combined foreground image (starts ~70% down) */
 .marqueeContainer {
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 0;
-    width: 95%;
-    transform: translateY(-50%);
+    width: 100%;
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 0;
 }
 
 .marqueeTitle {
     color: #00ffff;
-    font-size: 2rem;
+    font-size: 2.0rem;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
     margin: 0;
     z-index: 2;
-    margin-bottom: 5vh;
+    margin-bottom: 5.5vh;
     transition: all 0.4s ease;
 }
 
@@ -251,12 +253,13 @@
 .marqueeTrack {
     display: flex;
     align-items: center;
-    gap: 100px;
-    padding: 0 50px;
+    gap: 50px;
+    padding: 0 25px;
 }
 
 .partnerLogo {
-    height: 25vh;
+    height: 8vh;
+    max-height: 220px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.4));

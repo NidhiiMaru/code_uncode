@@ -9,7 +9,7 @@
     width: 100%;
     height: 100dvh;
     overflow: hidden;
-    background-image: url('/parallax/parallax_grass/grassbg.png');
+    background-image: url('/parallax/parallax_grass/grassbg.webp');
     background-size: cover;
 }
 
@@ -19,9 +19,7 @@
     width: 100%;
     height: 130%;
     bottom: -40%;
-    /* Pushed to bottom of page */
     pointer-events: none;
-    /* Mouse passes through to text */
 }
 
 .layer img {
@@ -54,19 +52,20 @@
 
 .foregroundLayer {
     z-index: 26;
-    /* Below text */
+    /* Combined: foreground image + mask panel in one tall image */
+    height: 230%;
+    bottom: -150%;
+    pointer-events: none;
 }
 
-/* THE FIX: Rising curtain anchored to screen bottom */
+.foregroundLayer img {
+    object-position: top;
+    /* show from top of scene down to grass/ground bottom */
+}
+
+/* fireMaskLayer disabled — foreground image covers the full area */
 .fireMaskLayer {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 28;
-    top: 84%;
-    background-image: url('/parallax/parallax_grass/grassbg1.png');
-    background-size: cover;
+    display: none;
 }
 
 .treeLayer {
@@ -208,32 +207,32 @@
     opacity: 0.8;
 }
 
-/* Hosting Partners Marquee */
+/* Hosting Partners Marquee - Grass Theme */
+/* top: 65% targets the grassy ground section of the combined foreground image */
 .marqueeContainer {
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 0;
-    width: 95%;
-    transform: translateY(-50%);
+    width: 100%;
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 0;
 }
 
 .marqueeTitle {
     color: #76ff03;
-    font-size: 2rem;
+    font-size: 2.0rem;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
     margin: 0;
     z-index: 2;
-    margin-bottom: 5vh;
+    margin-bottom: 5.5vh;
     transition: all 0.4s ease;
 }
 
@@ -247,15 +246,16 @@
 .marqueeTrack {
     display: flex;
     align-items: center;
-    gap: 100px;
-    padding: 0 50px;
+    gap: 50px;
+    padding: 0 25px;
 }
 
 .partnerLogo {
-    height: 25vh;
+    height: 8vh;
+    max-height: 220px;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+    filter: drop-shadow(0 0 15px rgba(50, 205, 50, 0.4));
     transition: all 0.3s ease;
 }
 

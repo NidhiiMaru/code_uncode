@@ -34,14 +34,14 @@ export default function Parallax({ type }: ParallaxProps) {
     if (type === "grass") folder = "parallax/parallax_grass";
 
     return {
-      background: type === "fire" ? "red-bg.png" : type === "water" ? "water-bg.png" : "grassbg.png",
-      mask: type === "fire" ? "red-bg1.png" : type === "water" ? "water-bg1.png" : "grassbg1.png",
-      bird1: type === "fire" ? "ho-oh.png" : type === "water" ? "lugia.png" : "ho-oh.png",
-      bird2: type === "fire" ? "moltres.png" : type === "water" ? "kyogre.png" : "moltres.png",
-      mountains: type === "fire" ? "mountains.png" : type === "water" ? "sun.png" : "mountains.png",
-      trees: type === "fire" ? "trees.png" : type === "water" ? "water-layer.png" : "trees.png",
-      foreground: "foreground-layer.png",
-      logo: type === "fire" ? "uncode-logo.png" : type === "water" ? "uncode-logoblue.png" : "uncodelogo-green.svg",
+      background: type === "fire" ? "red-bg.webp" : type === "water" ? "water-bg.webp" : "grassbg.webp",
+      mask: type === "fire" ? "red-bg1.webp" : type === "water" ? "water-bg2.webp" : "grassbg1.webp",
+      bird1: type === "fire" ? "ho-oh.webp" : type === "water" ? "lugia.webp" : "ho-oh.webp",
+      bird2: type === "fire" ? "moltres.webp" : type === "water" ? "kyogre.webp" : "moltres.webp",
+      mountains: type === "fire" ? "mountains.webp" : type === "water" ? "sun.webp" : "mountains.webp",
+      trees: type === "fire" ? "trees.webp" : type === "water" ? "water-layer.webp" : "trees.webp",
+      foreground: "foreground-layer.webp",
+      logo: type === "fire" ? "uncode-logo.webp" : type === "water" ? "uncode-logoblue.webp" : "uncodelogo-green.svg",
       folder,
     };
   }, [type]);
@@ -52,7 +52,7 @@ export default function Parallax({ type }: ParallaxProps) {
   const hoOh = useRef<HTMLImageElement>(null);
   const moltres = useRef<HTMLImageElement>(null);
   const textContent = useRef<HTMLDivElement>(null);
-  const mask = useRef<HTMLDivElement>(null);
+  // mask ref removed — no longer using a separate mask layer
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -62,8 +62,8 @@ export default function Parallax({ type }: ParallaxProps) {
         scrollTrigger: {
           trigger: parallaxOuterRef.current,
           start: "top top",
-          end: "+=180%",
-          scrub: 0.5, // Reduced for snappier response with Lenis
+          end: "+=200%",
+          scrub: 0.5,
           pin: true,
           invalidateOnRefresh: true,
         },
@@ -77,23 +77,26 @@ export default function Parallax({ type }: ParallaxProps) {
       tl.to(moltres.current, {
         keyframes: [
           { y: "-80vh", scale: 3.5, rotate: 15, ease: "power1.out" },
-         
+
         ]
       }, 0);
 
       // 2. Reveal Logic - Mountains, Trees, and Foreground
       tl.to(mountains.current, { y: "-25%", ease: "none" }, 0);
       tl.to(trees.current, { y: "-45%", ease: "none" }, 0);
-      tl.to(foreground.current, { y: "-65%", ease: "none" }, 0);
-
-      // 3. Mask Movement - Syncing with the foreground rise
-      // Ensure the mask reaches y: 0 by the end of the scroll to cover background
-      tl.to(mask.current, { y: "-80vh", ease: "none" }, 0);
+      const foregroundY = type === "fire" ? "-100vh" : type === "water" ? "-80vh" : "-115vh";
+      tl.to(foreground.current, { y: foregroundY, ease: "none" }, 0);
+      tl.to(textContent.current, {
+        opacity: 0,
+        y: "-30px",
+        ease: "power1.in",
+        duration: 0.3,
+      }, 0);
 
     }, parallaxOuterRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     if (!isReady) return;
@@ -139,28 +142,23 @@ export default function Parallax({ type }: ParallaxProps) {
           <img ref={moltres} src={`/${images.folder}/${images.bird2}`} className={styles.moltres} alt={type === "fire" ? "Moltres" : type === "water" ? "Kyogre" : "Celebi"} />
 
 
-          <div
-            ref={mask}
-            className={styles.fireMaskLayer}
-            style={{ backgroundImage: `url(/${images.folder}/${images.mask})` }}
-          >
+          {/* Foreground: big combined image (beach + water scene) with partners overlaid at the bottom */}
+          <div ref={foreground} className={`${styles.layer} ${styles.foregroundLayer}`}>
+            <img src={`/${images.folder}/${images.foreground}`} alt="foreground" />
+            {/* Hosting partners sit in the bottom water section of the foreground image */}
             <div className={styles.marqueeContainer}>
               <h3 className={styles.marqueeTitle}>Our Hosting Partners</h3>
               <div className={styles.marqueeContent}>
                 {[...Array(6)].map((_, index) => (
                   <div key={index} className={styles.marqueeTrack}>
-                    <img src="/logos/ramanujan.png" alt="Ramanujan" className={styles.partnerLogo} />
-                    <img src="/logos/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
-                    <img src="/logos/sdc.png" alt="SDC" className={styles.partnerLogo} />
-                    <img src="/logos/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
+                    <img src="/logos/ramanujan.webp" alt="Ramanujan" className={styles.partnerLogo} />
+                    <img src="/logos/codestars.webp" alt="CodeStars" className={styles.partnerLogo} />
+                    <img src="/logos/sdc.webp" alt="SDC" className={styles.partnerLogo} />
+                    <img src="/logos/ieeespit.webp" alt="IEEE SPIT" className={styles.partnerLogo} />
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-
-          <div ref={foreground} className={`${styles.layer} ${styles.foregroundLayer}`}>
-            <img src={`/${images.folder}/${images.foreground}`} alt="foreground" />
           </div>
         </div>
 

@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('/loader/background.png') center top;
+    background: url('/loader/background.webp') center top;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -42,9 +42,12 @@
 }
 
 @keyframes professorFloat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-10px);
     }
@@ -130,19 +133,27 @@
 }
 
 @keyframes blink {
-    0%, 50% {
+
+    0%,
+    50% {
         opacity: 1;
     }
-    51%, 100% {
+
+    51%,
+    100% {
         opacity: 0;
     }
 }
 
 @keyframes fastBlink {
-    0%, 50% {
+
+    0%,
+    50% {
         opacity: 1;
     }
-    51%, 100% {
+
+    51%,
+    100% {
         opacity: 0;
     }
 }
@@ -161,22 +172,25 @@
     color: #2F4F4F;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 
+    box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.2),
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
     animation: buttonPulse 2s ease-in-out infinite;
 }
 
 @keyframes buttonPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
-        box-shadow: 
+        box-shadow:
             0 4px 8px rgba(0, 0, 0, 0.2),
             inset 0 2px 4px rgba(255, 255, 255, 0.5);
     }
+
     50% {
         transform: scale(1.05);
-        box-shadow: 
+        box-shadow:
             0 6px 12px rgba(0, 0, 0, 0.3),
             inset 0 2px 4px rgba(255, 255, 255, 0.7);
     }
@@ -185,14 +199,14 @@
 .continueButton:hover {
     background: linear-gradient(180deg, #FFE55C 0%, #FFB347 100%);
     transform: scale(1.1);
-    box-shadow: 
+    box-shadow:
         0 6px 12px rgba(0, 0, 0, 0.3),
         inset 0 2px 4px rgba(255, 255, 255, 0.7);
 }
 
 .continueButton:active {
     transform: scale(0.95);
-    box-shadow: 
+    box-shadow:
         0 2px 4px rgba(0, 0, 0, 0.3),
         inset 0 1px 2px rgba(255, 255, 255, 0.5);
 }
@@ -203,17 +217,17 @@
         max-width: 580px;
         max-height: 630px;
     }
-    
+
     .textContent {
         font-size: 1.5rem;
         padding-left: 15px;
     }
-    
+
     .textBox {
         padding: 15px 30px;
         margin-bottom: 1vh;
     }
-    
+
     .continueButton {
         font-size: 0.9rem;
         padding: 6px 12px;
@@ -225,22 +239,22 @@
     .professorContainer {
         margin-top: 6vh;
     }
-    
+
     .professorImage {
         max-width: 450px;
         max-height: 500px;
     }
-    
+
     .textContent {
         font-size: 1.3rem;
         padding-left: 10px;
     }
-    
+
     .textBox {
         padding: 10px 20px;
         margin-bottom: 1vh;
     }
-    
+
     .continueButton {
         right: 20px;
         bottom: 15px;

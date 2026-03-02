@@ -12,13 +12,13 @@ export default function SmoothScroll({ children }) {
 
         // Initialize Lenis with enhanced smooth scrolling
         const lenis = new Lenis({
-            duration: 1.5, // Increased for more noticeable smoothness
+            duration: 0.9,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 1.2, // Increased for more responsive scrolling
-            touchMultiplier: 2,
+            wheelMultiplier: 1.0,
+            touchMultiplier: 1.8,
             infinite: false,
         })
 

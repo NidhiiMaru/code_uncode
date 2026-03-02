@@ -12,19 +12,19 @@ const prizes: PrizeItem[] = [
   {
     title: "1st Place",
     description: "Grand champion trophy + premium rewards.",
-    imagePath: "/prizes/1st.png",
+    imagePath: "/prizes/1st.webp",
     prizeAmount: "₹ 50,000",
   },
   {
     title: "2nd Place",
     description: "Runner-up trophy + special perks.",
-    imagePath: "/prizes/2nd.png",
+    imagePath: "/prizes/2nd.webp",
     prizeAmount: "₹ 30,000",
   },
   {
     title: "3rd Place",
     description: "Top-three trophy + recognition.",
-    imagePath: "/prizes/3rd.png",
+    imagePath: "/prizes/3rd.webp",
     prizeAmount: "₹ 20,000",
   },
 ];

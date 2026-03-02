@@ -9,10 +9,10 @@ export default function MobileSponsorsMarquee({ type }: MobileSponsorsMarqueePro
     type === 'water' ? '#00ffff' : type === 'grass' ? '#76ff03' : '#ffcc00';
 
   const logos = [
-    { src: '/logos/ramanujan.png', alt: 'Ramanujan' },
-    { src: '/logos/codestars.png', alt: 'CodeStars' },
-    { src: '/logos/sdc.png', alt: 'SDC' },
-    { src: '/logos/ieeespit.png', alt: 'IEEE SPIT' },
+    { src: '/logos/ramanujan.webp', alt: 'Ramanujan' },
+    { src: '/logos/codestars.webp', alt: 'CodeStars' },
+    { src: '/logos/sdc.webp', alt: 'SDC' },
+    { src: '/logos/ieeespit.webp', alt: 'IEEE SPIT' },
   ];
 
   return (

@@ -54,7 +54,7 @@ export default function MobileHero({ type }: MobileHeroProps) {
         ? 'moltres.png'
         : 'moltres.png';
 
-  const foregroundImage = 'foreground-layer.png';
+  const foregroundImage = 'foreground-layer.webp';
 
   const subtitle =
     type === 'water'
@@ -94,10 +94,10 @@ export default function MobileHero({ type }: MobileHeroProps) {
         <div className={styles.partnersWrap}>
           <h3 className={styles.partnersTitle}>Hosting Partners</h3>
           <div className={styles.partnersTrack}>
-            <img src="/logos/ramanujan.png" alt="Ramanujan" className={styles.partnerLogo} />
-            <img src="/logos/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
-            <img src="/logos/sdc.png" alt="SDC" className={styles.partnerLogo} />
-            <img src="/logos/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
+            <img src="/logos/ramanujan.webp" alt="Ramanujan" className={styles.partnerLogo} />
+            <img src="/logos/codestars.webp" alt="CodeStars" className={styles.partnerLogo} />
+            <img src="/logos/sdc.webp" alt="SDC" className={styles.partnerLogo} />
+            <img src="/logos/ieeespit.webp" alt="IEEE SPIT" className={styles.partnerLogo} />
           </div>
         </div>
       </section>

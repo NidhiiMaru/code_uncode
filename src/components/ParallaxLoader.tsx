@@ -20,7 +20,7 @@ function preloadImage(src: string): Promise<void> {
 const THEME_CONFIG = {
     fire: {
         folder: "parallax/parallax_fire",
-        images: ["red-bg.png", "red-bg1.png", "ho-oh.png", "moltres.png", "mountains.png", "trees.png", "foreground-layer.png", "uncode-logo.png"],
+        images: ["red-bg.webp", "ho-oh.webp", "moltres.webp", "mountains.webp", "trees.webp", "foreground-layer.webp", "uncode-logo.webp"],
         title: "LOADING MOUNT EMBER",
         sub: "Fire Region · Kanto",
         accent: "#ff6600",
@@ -29,7 +29,7 @@ const THEME_CONFIG = {
     },
     water: {
         folder: "parallax/parallax_water",
-        images: ["water-bg.png", "water-bg1.png", "lugia.png", "kyogre.png", "sun.png", "water-layer.png", "foreground-layer.png", "uncode-logoblue.png"],
+        images: ["water-bg.webp", "lugia.webp", "kyogre.webp", "sun.webp", "water-layer.webp", "foreground-layer.webp", "uncode-logoblue.webp"],
         title: "LOADING ORANGE ISLANDS",
         sub: "Water Region · Johto",
         accent: "#00ccff",
@@ -38,7 +38,7 @@ const THEME_CONFIG = {
     },
     grass: {
         folder: "parallax/parallax_grass",
-        images: ["grassbg.png", "grassbg1.png", "ho-oh.png", "moltres.png", "mountains.png", "trees.png", "foreground-layer.png", "uncodelogo-green.svg"],
+        images: ["grassbg.webp", "ho-oh.webp", "moltres.webp", "mountains.webp", "trees.webp", "foreground-layer.webp", "uncodelogo-green.svg"],
         title: "LOADING VIRIDIAN FOREST",
         sub: "Grass Region · Pallet",
         accent: "#76ff03",
