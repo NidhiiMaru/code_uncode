@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Q2 : What programming languages are allowed?",
     answer:
-      "Participants may use C, C++, Java, or Python. All submissions must be made through the official judge platform. No other languages are permitted.",
+      "Participants may use any language that the given platform allows(e.g., Hackerrank,Codeforces,etc). All submissions must be made through the official judge platform itself.",
   },
   {
     question: "Q3 : Is it a team or individual event?",
@@ -24,12 +24,12 @@ const faqs = [
   {
     question: "Q4 : Who is eligible to participate?",
     answer:
-      "The event is open to all currently enrolled college students (UG & PG). School students are not eligible. A valid college ID is required for registration.",
+      "The event is open to all currently enrolled UG college students with a valid college ID.",
   },
   {
     question: "Q5 : How many regionals can I register for?",
     answer:
-      "Each participant can register for a maximum of 2 Regional rounds. Regionals will be held offline at COEP, SPIT, and DJ Sanghvi from 19th-21st Feb.",
+      "Each participant can register for a maximum of 2 Regional rounds and will be alloted to them via preference order and rank. Regionals will be held offline at COEP, SPIT, and DJ Sanghvi.",
   },
   {
     question: "Q6 : What are the rounds?",
@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Q7 : Is there a registration fee?",
     answer:
-      "Registration for the Prelims is free. A nominal fee may apply for Regional and Final rounds. Check the official website for updated fee details.",
+      "Registration for the Prelims is free. A nominal fee may apply for Regional and Final rounds for arrangements, which will be informed on further notice",
   },
   {
     question: "Q8 : What topics will the problems cover?",
@@ -60,23 +60,35 @@ const faqs = [
 
 const guidelines = [
   "► No mobile phones or external devices during rounds.",
+  "► No tab switching or homemade code templates are allowed on the device during Regionals & Finals.",
   "► Participants must carry a valid college ID at all times.",
   "► Plagiarism or code sharing results in immediate disqualification.",
   "► All submissions must compile and run without errors.",
   "► Internet access is restricted to the official judge platform only.",
   "► Late submissions after the timer ends will NOT be evaluated.",
-  "► Participants must be seated 10 min before the round begins.",
+  "► Participants are requested to arrive at alloted centers during Regionals & Finals 45 minutes before start.",
   "► Contact the coordinator immediately for any technical issues.",
   "► Decision of the judges is final and binding in all cases.",
   "► Respect all participants, volunteers, and coordinators.",
 ];
 
 const funFacts = [
-  "🔥 Charizard is NOT a Dragon-type Pokémon!",
-  "💧 Vaporeon has 130 Base HP — highest of all Eevee evolutions.",
-  "🌿 Bulbasaur is the only starter that is Grass/Poison dual type.",
-  "⚡ Pikachu was not the first choice as Pokémon mascot — Clefairy was!",
-  "🏆 There are 1025 Pokémon as of Generation IX.",
+  "🔥🐉 Charizard is NOT a Dragon-type Pokémon!",
+  "💧💙 Vaporeon has 130 Base HP — highest of all Eevee evolutions.",
+  "🌿☠️ Bulbasaur is the only starter that is Grass/Poison dual type.",
+  "⚡🐭 Pikachu was not the first choice as Pokémon mascot — Clefairy was!",
+  "🏆📊 There are 1025 Pokémon as of Generation IX.",
+  "🔥🐕 Arcanine was originally classified as a Legendary Pokémon in early Pokédex drafts.",
+  "🧠⚠️ In Generation I, Psychic-type Pokémon had no effective weaknesses due to a programming error.",
+  "🐟🐉 Magikarp is based on a Chinese legend where a carp becomes a dragon after leaping a waterfall.",
+  "🔤👁️ Unown has 28 forms, corresponding to the alphabet plus punctuation.",
+  "🎮🗃️ Pokémon Red and Blue shipped with unused Pokémon data that later became official species in future generations.",
+  "🪨🦏 Rhydon was the first Pokémon ever designed, not Pikachu.",
+  "👻🌕 Gengar is strongly implied to be Clefairy's shadow in early sprite lore and Pokédex sizing.",
+  "💀😢 Cubone literally wears its dead mother's skull. This was never retconned.",
+  "📵⚖️ Kadabra stopped appearing in the anime and cards for years due to a real-world lawsuit.",
+  "✨🧬 Mew was added after the game was finished, hidden in leftover memory space.",
+  "🥋👊 Hitmonlee and Hitmonchan are named after Bruce Lee and Jackie Chan."
 ];
 
 const titleColors: Record<string, string> = {
