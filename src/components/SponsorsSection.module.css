@@ -109,7 +109,8 @@
 /* ── Mobile landscape / small tablet ────────────────────────────────────── */
 @media (max-width: 768px) {
     .sponsorsSection {
-        padding: clamp(30px, 4vw, 60px) 20px clamp(50px, 6vw, 80px);
+        padding: 60px 20px 80px;
+        margin-top: 120px;
         min-height: 40vh;
     }
 

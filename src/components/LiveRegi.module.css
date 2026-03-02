@@ -814,7 +814,8 @@
     }
 
     .section {
-        padding: 40px 16px;
+        padding: 60px 16px;
+        margin-top: 120px;
     }
 
     .card {

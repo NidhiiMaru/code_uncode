@@ -345,3 +345,113 @@
         transform: translateY(-10px);
     }
 }
+
+/* ===== MOBILE FOOTER ===== */
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 12px 20px;
+        margin-top: 80px;
+    }
+
+    .contentWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        /* slightly more room for text */
+        column-gap: 10px;
+        row-gap: 15px;
+        padding-top: 0;
+        padding-bottom: 20px;
+        align-items: start;
+    }
+
+    .leftSection {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .centerSection {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        min-width: 0;
+        width: 100%;
+        margin-top: 20px;
+        /* align roughly with socials */
+    }
+
+    .rightSection {
+        display: flex;
+        grid-column: 1;
+        grid-row: 2;
+        min-width: 0;
+        width: 100%;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: -10px;
+    }
+
+    .snorlaxContainer {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .snorlax {
+        width: 70px;
+        height: 70px;
+    }
+
+    .socials {
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .socialIcon {
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+    }
+
+    .pokestopContainer {
+        width: 90px;
+        height: 90px;
+    }
+
+    .mapContainer {
+        border-width: 2px;
+    }
+
+    .contactTitle {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+    }
+
+    .email {
+        font-size: 0.68rem;
+        margin-bottom: 16px;
+        word-break: break-all;
+    }
+
+    .contactList {
+        font-size: 0.55rem;
+        gap: 8px;
+    }
+
+    .contactItem {
+        flex-direction: column;
+        gap: 3px;
+        text-align: center;
+    }
+
+    .bottomBar {
+        font-size: 0.65rem;
+        padding-top: 16px;
+        gap: 8px;
+    }
+
+    .pikachu {
+        width: 45px;
+        margin-top: 6px;
+    }
+}
