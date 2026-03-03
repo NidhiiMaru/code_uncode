@@ -12,15 +12,17 @@ export default function MobileSponsorsMarquee({ type }: MobileSponsorsMarqueePro
     { src: '/logos/ramanujan.webp', alt: 'Ramanujan' },
     { src: '/logos/codestars.webp', alt: 'CodeStars' },
     { src: '/logos/sdc.webp', alt: 'SDC' },
+    { src: '/logos/ieeespit.webp', alt: 'IEEE Spit' },
   ];
 
   return (
     <section className={styles.section}>
       <h3 className={styles.title} style={{ color: titleColor }}>Our Hosting Partners</h3>
       <div className={styles.staticContainer}>
-        <img src="/logos/ramanujan.webp" alt="Ramanujan" className={styles.logoSide} />
-        <img src="/logos/codestars.webp" alt="CodeStars" className={styles.logoCenter} />
-        <img src="/logos/sdc.webp" alt="SDC" className={styles.logoSide} />
+        <img src="/logos/ramanujan.webp" alt="Ramanujan" className={styles.logo} />
+        <img src="/logos/codestars.webp" alt="CodeStars" className={styles.logo} />
+        <img src="/logos/sdc.webp" alt="SDC" className={styles.logo} />
+        <img src="/logos/ieeespit.webp" alt="IEEE Spit" className={`${styles.logo} ${styles.ieeeLogo}`} />
       </div>
     </section>
   );

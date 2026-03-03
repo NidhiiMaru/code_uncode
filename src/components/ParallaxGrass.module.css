@@ -237,13 +237,34 @@
 }
 
 .staticPartnersContent {
+    display: none;
+}
+
+.marqueeContent {
     display: flex;
-    justify-content: center;
+    white-space: nowrap;
+    width: 100vw;
+}
+
+.marqueeGroup {
+    display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
+    justify-content: space-around;
+    min-width: 100%;
     gap: 50px;
     padding: 0 25px;
+    animation: scroll 20s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 .partnerLogo {
@@ -382,8 +403,17 @@
     }
 
     .staticPartnersContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
         gap: 60px;
         padding: 0 30px;
+    }
+
+    .marqueeContent {
+        display: none;
     }
 }
 
