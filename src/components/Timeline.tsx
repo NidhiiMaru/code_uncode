@@ -52,7 +52,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     },
     {
       id: 2,
-      date: '20 March',
+      date: '22 March',
       title: 'PRELIMS',
       description: 'Online Round with all participants pan-India',
       position: 'right'
@@ -65,7 +65,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     },
     {
       id: 4,
-      date: '28 March',
+      date: '29 March',
       title: 'REGIONAL - COEP',
       description: 'First Regional Round at COEP, Pune',
       position: 'right'
@@ -92,7 +92,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     },
     {
       id: 8,
-      date: '12 April',
+      date: '11 April',
       title: 'FINALS',
       description: 'The Ultimate Showdown at DJ Sanghvi, Mumbai',
       position: 'right'
