@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Q6 : What are the rounds?",
     answer:
-      "Round 1 — Prelims (Online, 20th March). Round 2 — Regionals (Offline, 28th March, 30th March, 1st April at COEP, SPIT, DJ Sanghvi). Round 3 — Finals (12th April at DJ Sanghvi, Mumbai).",
+      "Round 1 — Prelims (Online, 22nd March). Round 2 — Regionals (Offline, 29th March, 30th March, 1st April at COEP, SPIT, DJ Sanghvi). Round 3 — Finals (12th April at DJ Sanghvi, Mumbai).",
   },
   {
     question: "Q7 : Is there a registration fee?",

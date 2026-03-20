@@ -6,7 +6,23 @@ import styles from "./LiveRegi.module.css";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
-const EVENT_DATE = new Date("2026-03-20T20:05:00+05:30");
+const EVENTS = [
+    { target: new Date("2026-03-22T20:05:00+05:30"), name: "Online Prelims", dateStr: "22 March 2026" },
+    { target: new Date("2026-03-29T10:00:00+05:30"), name: "COEP REGIONALS", dateStr: "29 March 2026" },
+    { target: new Date("2026-03-30T10:00:00+05:30"), name: "SPIT REGIONALS", dateStr: "30 March 2026" },
+    { target: new Date("2026-04-01T10:00:00+05:30"), name: "DJ SANGHVI REGIONALS", dateStr: "1 April 2026" },
+    { target: new Date("2026-04-11T10:00:00+05:30"), name: "FINALS", dateStr: "11 April 2026" },
+];
+
+function getNextEvent() {
+    const now = new Date();
+    for (const event of EVENTS) {
+        if (event.target.getTime() > now.getTime()) {
+            return event;
+        }
+    }
+    return EVENTS[EVENTS.length - 1];
+}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 async function fetchRegisCount(): Promise<number | null> {
@@ -22,14 +38,16 @@ async function fetchRegisCount(): Promise<number | null> {
 }
 
 function getTimeLeft() {
+    const nextEvent = getNextEvent();
     const now = new Date();
-    const diff = EVENT_DATE.getTime() - now.getTime();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    const diff = nextEvent.target.getTime() - now.getTime();
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, event: nextEvent };
     return {
         days: Math.floor(diff / (1000 * 60 * 60 * 24)),
         hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
         minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((diff % (1000 * 60)) / 1000),
+        event: nextEvent
     };
 }
 
@@ -196,8 +214,8 @@ export default function LiveRegi({ type }: Props) {
                     <div className={styles.countdownHeader}>
                         <span className={styles.pokeballDivider}>⚫</span>
                         <p className={styles.countdownTitle}>Time Until</p>
-                        <p className={styles.countdownEventName}>Online Prelims</p>
-                        <p className={styles.countdownDate}>20 March 2026</p>
+                        <p className={styles.countdownEventName}>{timeLeft.event.name}</p>
+                        <p className={styles.countdownDate}>{timeLeft.event.dateStr}</p>
                     </div>
 
                     {/* ── Single unified countdown box ── */}
